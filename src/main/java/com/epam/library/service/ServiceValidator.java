@@ -4,6 +4,7 @@ public class ServiceValidator {
 
     private static final int MAX_LENGTH = 20;
     private static final int MAX_LENGTH_TITLE = 70;
+    private static final int MAX_LENGTH_STREET = 50;
     private static final String REGEX_EMAIL = "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}\\b";
     private final String REGEX_PASSWORD  = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$";
 
@@ -16,6 +17,20 @@ public class ServiceValidator {
 
     public boolean isLengthTitle(String line) {
         if (line != null && line.length() <= MAX_LENGTH_TITLE && line != "") {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isLengthStreet(String line) {
+        if (line != null && line.length() <= MAX_LENGTH_STREET && line != "") {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isLengthForUpdateStreet(String line) {
+        if (line != null && line.length() <= MAX_LENGTH_STREET) {
             return true;
         }
         return false;

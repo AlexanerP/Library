@@ -42,8 +42,12 @@ public class UserServiceImpl implements UserService {
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
             if (validator.isNumber(userId.trim())) {
                 Optional<User> optionalUser = userDao.getUserById(Long.parseLong(userId.trim()));
-                userDao.delete(optionalUser.get());
-                return true;
+                if (optionalUser.isPresent()) {
+                    userDao.delete(optionalUser.get());
+                    return true;
+                } else {
+                    throw new ServiceException("User in not found.");
+                }
             } else {
                 throw new ServiceException("Trying to get a user by an ID that is not a number.");
             }
@@ -171,7 +175,7 @@ public class UserServiceImpl implements UserService {
             if (validator.isLength(email.trim())) {
                 return userDAO.getUserByEmail(email.trim());
             }else {
-                throw new ServiceException("Invalid email value.");
+                throw new ServiceException("Too long value.");
             }
         }catch (DaoException e) {
             logger.error("Error in services when fetching users by email");

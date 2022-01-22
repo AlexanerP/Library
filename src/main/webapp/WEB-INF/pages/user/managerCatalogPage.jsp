@@ -52,6 +52,9 @@
 
 <c:if test="${not empty users}">
 <div align="center">
+    <c:if test="${not empty books}">
+        <b><fmt:message key="message_count_found_result"></fmt:message><c:out value="${userSize}"/></b>
+    </c:if>
 <table border="1" cellpadding="5">
     <c:forEach var="users" items="${users}" varStatus="status">
     <tr class="tr">

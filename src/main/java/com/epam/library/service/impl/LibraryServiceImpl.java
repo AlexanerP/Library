@@ -24,7 +24,7 @@ public class LibraryServiceImpl implements LibraryService {
         try {
             LibraryDao libraryDao = DaoFactory.getInstance().getLibraryDAO();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
-                if (validator.isLength(city) && validator.isLength(street)) {
+                if (validator.isLength(city) && validator.isLengthStreet(street)) {
                     Optional<Library> optionalLibrary = libraryDao.getLibraryByCity(city);
                     if(optionalLibrary.isEmpty()) {
                         Library library = new Library();
@@ -95,7 +95,7 @@ public class LibraryServiceImpl implements LibraryService {
             if (validator.isNumber(libraryId.trim())) {
                 Optional<Library> optionalLibrary = libraryDao.getLibraryById(Long.parseLong(libraryId.trim()));
                 if (optionalLibrary.isPresent()) {
-                    if (validator.isLengthForUpdate(city) && validator.isLengthForUpdate(street)) {
+                    if (validator.isLengthForUpdate(city) && validator.isLengthForUpdateStreet(street)) {
                         Library library = new Library();
                         library.setLibraryId(optionalLibrary.get().getLibraryId());
                         library.setCity(city != "" ? city : optionalLibrary.get().getCity());

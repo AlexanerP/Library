@@ -90,12 +90,12 @@ public class UserDaoImplTest {
     }
 
     @Test
-    public void getUser() {
+    public void getUserById() {
         logger.info("Get user by id test");
-        Optional<User> optional = userDao.getUserById(2);
-        System.out.println(optional);
+        long userId = 2;
+        Optional<User> optional = userDao.getUserById(userId);
         logger.info(optional.toString());
-//        assertFalse(optional.isEmpty());
+        assertFalse(optional.isEmpty());
     }
 
     @Test
@@ -105,15 +105,10 @@ public class UserDaoImplTest {
         String password = "!Password";
         try {
             Optional<User> optional = userDao.getUserByEmailAndPassword(email, password);
-            System.out.println(optional.toString());
-//            assertFalse(optional.isEmpty());
+            assertFalse(optional.isEmpty());
         }catch (DaoException e) {
             e.printStackTrace();
         }
-    }
-
-    @Test
-    public void testGetUser1() {
     }
 
     @Test
@@ -121,6 +116,7 @@ public class UserDaoImplTest {
         logger.info("Delete user test");
         User user = new User();
         long userId = 1;
+        user.setUserId(userId);
         try {
             int expected = userDao.delete(user);
             int actual = 1;

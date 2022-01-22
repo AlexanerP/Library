@@ -28,6 +28,7 @@ public class RoleFilter implements Filter {
         commandsUser.put(CommandType.SIGN_IN, allUsers);
         commandsUser.put(CommandType.SEARCH_BOOKS, allUsers);
         commandsUser.put(CommandType.CHANGE_LOCALE, allUsers);
+        commandsUser.put(CommandType.GO_TO_MESSAGE_PAGE, allUsers);
 
         commandsUser.put(CommandType.GO_TO_HOME, userAdminManager);
         commandsUser.put(CommandType.GO_TO_CATALOG, userAdminManager);
@@ -39,7 +40,6 @@ public class RoleFilter implements Filter {
         commandsUser.put(CommandType.UPDATE_USER_PASSWORD, userAdminManager);
         commandsUser.put(CommandType.ORDER_USER, userAdminManager);
         commandsUser.put(CommandType.WISH_BOOKS_USER_PAGE, userAdminManager);
-        commandsUser.put(CommandType.GO_TO_MESSAGE_PAGE, userAdminManager);
         commandsUser.put(CommandType.ACTION_USER_ORDER, userAdminManager);
         commandsUser.put(CommandType.SIGN_OUT, userAdminManager);
         commandsUser.put(CommandType.ACTION_WISH_BOOK, userAdminManager);

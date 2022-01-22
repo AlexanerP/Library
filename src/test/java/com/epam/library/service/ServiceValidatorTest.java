@@ -48,6 +48,39 @@ class ServiceValidatorTest {
     }
 
     @Test
+    void isLengthStreetRightTest() {
+        String line = "ул. Героев обороны Брестской крепости 60";
+        boolean condition = validator.isLengthTitle(line);
+        assertTrue(condition);
+    }
+
+    @Test
+    void isLengthStreetWrongTest() {
+        String line = "Beginning in the eighth century B.C., Ancient Rome grew from a small town on central " +
+                "Italy’s Tiber River into an empire that at its peak encompassed most of continental Europe, " +
+                "Britain, much of western Asia, northern Africa and the Mediterranean islands. Among the many " +
+                "legacies of Roman dominance are the widespread use of the Romance languages (Italian, French, " +
+                "Spanish, Portuguese and Romanian) derived from Latin, the modern Western alphabet and calendar " +
+                "and the emergence of Christianity as a major world religion. ";
+        boolean condition = validator.isLengthTitle(line);
+        assertFalse(condition);
+    }
+
+    @Test
+    void isLengthStreetEmptyTest() {
+        String line = "";
+        boolean condition = validator.isLengthTitle(line);
+        assertFalse(condition);
+    }
+
+    @Test
+    void isLengthStreetNullTest() {
+        String line = null;
+        boolean condition = validator.isLengthTitle(line);
+        assertFalse(condition);
+    }
+
+    @Test
     void isLengthTitleRightTest() {
         String line = "word";
         boolean condition = validator.isLengthTitle(line);
@@ -77,6 +110,39 @@ class ServiceValidatorTest {
     void isLengthTitleNullTest() {
         String line = null;
         boolean condition = validator.isLengthTitle(line);
+        assertFalse(condition);
+    }
+
+    @Test
+    void isLengthForUpdateStreetRightTest() {
+        String line = "word";
+        boolean condition = validator.isLengthForUpdate(line);
+        assertTrue(condition);
+    }
+
+    @Test
+    void isLengthForUpdateStreetWrongTest() {
+        String line = "Beginning in the eighth century B.C., Ancient Rome grew from a small town on central " +
+                "Italy’s Tiber River into an empire that at its peak encompassed most of continental Europe, " +
+                "Britain, much of western Asia, northern Africa and the Mediterranean islands. Among the many " +
+                "legacies of Roman dominance are the widespread use of the Romance languages (Italian, French, " +
+                "Spanish, Portuguese and Romanian) derived from Latin, the modern Western alphabet and calendar " +
+                "and the emergence of Christianity as a major world religion. ";
+        boolean condition = validator.isLengthForUpdate(line);
+        assertFalse(condition);
+    }
+
+    @Test
+    void isLengthForUpdateStreetEmptyTest() {
+        String line = "";
+        boolean condition = validator.isLengthForUpdate(line);
+        assertTrue(condition);
+    }
+
+    @Test
+    void isLengthForUpdateStreetNullTest() {
+        String line = null;
+        boolean condition = validator.isLengthForUpdate(line);
         assertFalse(condition);
     }
 

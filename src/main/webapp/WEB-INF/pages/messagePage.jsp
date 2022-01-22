@@ -17,7 +17,11 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="body">
-<jsp:include page="/WEB-INF/pages/common/header.jsp"></jsp:include>
+<div class="container">
+    <div class="center">
+        <button class="button" type="button" name="back" onclick="history.back()"><fmt:message key="back"></fmt:message></button>
+    </div>
+</div>
 <br><br>
 <div align="center">
     <h1><fmt:message key="message_page"></fmt:message></h1>

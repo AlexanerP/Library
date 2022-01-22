@@ -15,8 +15,16 @@
     <title><fmt:message key="registration"></fmt:message></title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-<jsp:include page="/WEB-INF/pages/common/header.jsp"></jsp:include>
+<body class="body">
+<div class="container">
+    <div class="left">
+        <a class="button" href="?sessionLocale=en&command=ChangeLocale"><fmt:message key="language.en"/>  |</a>
+        <a class="button" href="?sessionLocale=ru&command=ChangeLocale"><fmt:message key="language.ru"/>  |</a>
+    </div>
+    <div class="center">
+        <button class="button" type="button" name="back" onclick="history.back()"><fmt:message key="back"></fmt:message></button>
+    </div>
+</div>
 <br><br>
 <div align="center"><h1><fmt:message key="registration"></fmt:message></h1></div>
 <form action="Controller" method="post">
@@ -46,13 +54,10 @@
                 <td><input type="text" name="lastName" placeholder="<fmt:message key="user_last_name"></fmt:message>"></td>
             </tr>
             <tr>
-                <td colspan="2" align="center"><input class="button" type="submit" value="<fmt:message key="registration"></fmt:message>"></td>
+                <td colspan="2" align="center"><input type="submit" value="<fmt:message key="registration"></fmt:message>"></td>
             </tr>
         </table>
     </div>
 </form>
-<div align="center">
-    <c:out value="${requestScope.message}"></c:out>
-</div>
 </body>
 </html>

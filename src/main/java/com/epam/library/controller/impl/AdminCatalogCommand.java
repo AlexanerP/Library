@@ -41,6 +41,7 @@ public class AdminCatalogCommand implements Command {
                 users.addAll(userService.showUserByRole(UserRole.MANAGER.name()));
             }
             req.setAttribute(Constant.USERS, users);
+            req.setAttribute(Constant.USERS_SIZE, users.size());
             req.getRequestDispatcher(PathJsp.MANAGER_CATALOG_PAGE).forward(req, resp);
         }catch (ServiceException e) {
             logger.error("Error while searching for administrators.", e);

@@ -133,7 +133,7 @@ class UserServiceImplTest {
     }
 
     @Test
-    void showUserByStatus() {
+    void showUserByStatusRightTest() {
         try {
             String status = "active";
             List<User> users = userService.showUserByStatus(status);
@@ -142,6 +142,18 @@ class UserServiceImplTest {
         }catch (ServiceException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    void showUserByStatusWrongTest() {
+            ServiceException exception = assertThrows(ServiceException.class, () -> {
+                String status = "active1";
+                userService.showUserByStatus(status);
+            });
+
+            String expectedMessage = "Unknown user status.";
+            String actualMessage = exception.getMessage();
+            assertTrue(actualMessage.contains(expectedMessage));
     }
 
     @Test
@@ -157,7 +169,7 @@ class UserServiceImplTest {
     }
 
     @Test
-    void showUserByEmail() {
+    void showUserByEmailRightTest() {
         try {
             String email = "admin@gmail.com";
             List<User> users = userService.showUserByEmail(email);
@@ -166,7 +178,23 @@ class UserServiceImplTest {
         }catch (ServiceException e) {
             e.printStackTrace();
         }
+    }
 
+    @Test
+    void showUserByEmailWrongTest() {
+            ServiceException exception = assertThrows(ServiceException.class, () -> {
+                String email = "Beginning in the eighth century B.C., Ancient Rome grew from a small town on central " +
+                        "Italy’s Tiber River into an empire that at its peak encompassed most of continental Europe, " +
+                        "Britain, much of western Asia, northern Africa and the Mediterranean islands. Among the many " +
+                        "legacies of Roman dominance are the widespread use of the Romance languages (Italian, French, " +
+                        "Spanish, Portuguese and Romanian) derived from Latin, the modern Western alphabet and calendar " +
+                        "and the emergence of Christianity as a major world religion. ";
+                userService.showUserByEmail(email);
+            });
+
+            String expectedMessage = "Too long value.";
+            String actualMessage = exception.getMessage();
+            assertTrue(actualMessage.contains(expectedMessage));
     }
 
     @Test
@@ -266,6 +294,8 @@ class UserServiceImplTest {
             e.printStackTrace();
         }
     }
+
+
 
     private void output(List<User> list) {
         for (User user : list) {
