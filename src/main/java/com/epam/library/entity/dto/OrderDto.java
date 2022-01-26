@@ -14,7 +14,6 @@ public class OrderDto implements Serializable {
     private long adminId;
     private long userId;
     private LocalDate date;
-    private String email;
     private int countViolations;
     private String title;
     private String year;
@@ -22,6 +21,9 @@ public class OrderDto implements Serializable {
     private String cityLibrary;
     private OrderStatus status;
     private String comment;
+
+    public OrderDto() {
+    }
 
     public long getOrderDtoId() {
         return orderDtoId;
@@ -61,14 +63,6 @@ public class OrderDto implements Serializable {
 
     public void setDate(LocalDate date) {
         this.date = date;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public int getCountViolations() {
@@ -156,9 +150,6 @@ public class OrderDto implements Serializable {
         if (!date.equals(orderDto.date)) {
             return false;
         }
-        if (!email.equals(orderDto.email)) {
-            return false;
-        }
         if (!title.equals(orderDto.title)) {
             return false;
         }
@@ -184,7 +175,6 @@ public class OrderDto implements Serializable {
         result = 31 * result + (int) (adminId ^ (adminId >>> 32));
         result = 31 * result + (int) (userId ^ (userId >>> 32));
         result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + countViolations;
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (year != null ? year.hashCode() : 0);
@@ -203,7 +193,6 @@ public class OrderDto implements Serializable {
                 .append("', adminId='").append(adminId)
                 .append("', userId='").append(userId)
                 .append("', date='").append(date)
-                .append("', email='").append(email)
                 .append("', count violations='" ).append(countViolations)
                 .append("', title='").append(title)
                 .append("', year='").append(year)

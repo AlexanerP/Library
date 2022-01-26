@@ -22,14 +22,10 @@ public class OrderDtoServiceImpl implements OrderDtoService {
         try {
             OrderDtoDao orderDtoDao = DaoFactory.getInstance().getOrderBookDtoDao();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
-            if (userId != null) {
-                if (validator.isNumber(userId)) {
-                    return orderDtoDao.getOrderByUser(Long.parseLong(userId.trim()));
-                } else {
-                    throw new ServiceException("Invalid user ID");
-                }
+            if (validator.isNumber(userId)) {
+                return orderDtoDao.getOrderByUser(Long.parseLong(userId.trim()));
             } else {
-                throw new ServiceException("The user ID value is empty.");
+                throw new ServiceException("Invalid user ID");
             }
         }catch (DaoException e) {
             logger.error("Error in services when receiving user orders.");
@@ -42,14 +38,10 @@ public class OrderDtoServiceImpl implements OrderDtoService {
         try {
             OrderDtoDao orderDtoDao = DaoFactory.getInstance().getOrderBookDtoDao();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
-            if (orderId != null) {
-                if (validator.isNumber(orderId)) {
-                    return orderDtoDao.getOrderById(Long.parseLong(orderId.trim()));
-                } else {
-                    throw new ServiceException("Invalid order ID");
-                }
+            if (validator.isNumber(orderId)) {
+                return orderDtoDao.getOrderById(Long.parseLong(orderId.trim()));
             } else {
-                throw new ServiceException("The order ID value is empty.");
+                throw new ServiceException("Invalid order ID");
             }
         }catch (DaoException e) {
             logger.error("Error in services when receiving an order by ID.");
@@ -73,16 +65,15 @@ public class OrderDtoServiceImpl implements OrderDtoService {
     public List<OrderDto> showOrdersByStatus(String status) throws ServiceException {
         try {
             OrderDtoDao orderDtoDao = DaoFactory.getInstance().getOrderBookDtoDao();
-            if (status != null) {
-                if (status.equalsIgnoreCase(OrderStatus.OPENED.name()) || status.equalsIgnoreCase(OrderStatus.APPROVED.name())
-                        || status.equalsIgnoreCase(OrderStatus.ARRIVED.name()) || status.equalsIgnoreCase(OrderStatus.REJECTED.name())) {
+                if (status.equalsIgnoreCase(OrderStatus.OPENED.name())
+                        || status.equalsIgnoreCase(OrderStatus.APPROVED.name())
+                        || status.equalsIgnoreCase(OrderStatus.ARRIVED.name())
+                        || status.equalsIgnoreCase(OrderStatus.REJECTED.name())
+                        || status.equalsIgnoreCase(OrderStatus.CLOSED.name())) {
                     return orderDtoDao.getOrderByStatus(OrderStatus.valueOf(status.toUpperCase()));
                 } else {
                     throw new ServiceException("Invalid order status.");
                 }
-            } else {
-                throw new ServiceException("The status value is empty.");
-            }
         }catch (DaoException e) {
             logger.error("Error in services when receiving all orders by status.");
             throw new ServiceException("Error in services when receiving all orders by status.", e);
@@ -95,27 +86,24 @@ public class OrderDtoServiceImpl implements OrderDtoService {
             OrderDtoDao orderDtoDao = DaoFactory.getInstance().getOrderBookDtoDao();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
             LibraryService libraryService = ServiceFactory.getInstance().getLibraryService();
-            if (city != null && status != null) {
-                if (validator.isLength(city)) {
-                    Optional<Library> optionalLibrary = libraryService.showByCity(city);
-                    if (optionalLibrary.isPresent()) {
-                        if (status.equalsIgnoreCase(OrderStatus.OPENED.name())
-                                || status.equalsIgnoreCase(OrderStatus.APPROVED.name())
-                                || status.equalsIgnoreCase(OrderStatus.ARRIVED.name())
-                                || status.equalsIgnoreCase(OrderStatus.REJECTED.name())) {
-                            return orderDtoDao.getOrderByCityAndStatus(city,
-                                    OrderStatus.valueOf(status.toUpperCase()));
-                        } else {
-                            throw new ServiceException("Invalid order status.");
-                        }
+            if (validator.isLength(city)) {
+                Optional<Library> optionalLibrary = libraryService.showByCity(city);
+                if (optionalLibrary.isPresent()) {
+                    if (status.equalsIgnoreCase(OrderStatus.OPENED.name())
+                            || status.equalsIgnoreCase(OrderStatus.APPROVED.name())
+                            || status.equalsIgnoreCase(OrderStatus.ARRIVED.name())
+                            || status.equalsIgnoreCase(OrderStatus.REJECTED.name())
+                            || status.equalsIgnoreCase(OrderStatus.CLOSED.name())) {
+                        return orderDtoDao.getOrderByCityAndStatus(city,
+                                OrderStatus.valueOf(status.toUpperCase()));
                     } else {
-                        throw new ServiceException("Invalid city value. City is missing from the database.");
+                        throw new ServiceException("Invalid order status.");
                     }
                 } else {
-                    throw new ServiceException("Invalid city value. The word is too long.");
+                    throw new ServiceException("Invalid city value. City is missing from the database.");
                 }
-            }else {
-                throw new ServiceException("The status or the city value is empty.");
+            } else {
+                throw new ServiceException("Invalid city value. The word is too long.");
             }
         } catch (DaoException e) {
             logger.error("Error in services when receiving orders by city and status.");
@@ -127,17 +115,12 @@ public class OrderDtoServiceImpl implements OrderDtoService {
     public List<OrderDto> showOrdersByCity(String city) throws ServiceException {
         try {
             OrderDtoDao orderDtoDao = DaoFactory.getInstance().getOrderBookDtoDao();
-            ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
             LibraryService libraryService = ServiceFactory.getInstance().getLibraryService();
-            if (city != null) {
-                Optional<Library> optionalLibrary = libraryService.showByCity(city);
-                if (optionalLibrary.isPresent()) {
-                    return orderDtoDao.getOrderByCity(city);
-                } else {
-                    throw new ServiceException("Invalid city value. City is missing from the database.");
-                }
-            }else {
-                throw new ServiceException("The city value is empty.");
+            Optional<Library> optionalLibrary = libraryService.showByCity(city);
+            if (optionalLibrary.isPresent()) {
+                return orderDtoDao.getOrderByCity(city);
+            } else {
+                throw new ServiceException("Invalid city value. City is missing from the database.");
             }
         } catch (DaoException e) {
             logger.error("Error in services when receiving orders by city.");

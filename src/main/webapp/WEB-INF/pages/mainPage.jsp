@@ -19,18 +19,16 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="body">
-
 <br><br>
-
 <c:if test="${user.role eq 'GUEST'}">
     <form action="Controller" width="400" height="300" align="right" method="POST">
         <input type="hidden" name="command" value="SignIn">
         <p><input type="text" placeholder="<fmt:message key="enter_email"></fmt:message>" name="email"></p>
         <p><input type="password" placeholder="<fmt:message key="enter_password"></fmt:message>" name="password"></p>
-        <p><input class="button" type="submit" value="<fmt:message key="login_sign_in"></fmt:message>"></p>
+        <input class="btn btn-primary btn-md" type="submit" value="<fmt:message key="login_sign_in"></fmt:message>">
     </form>
     <p><div align="right">
-    <a class="button" href="Controller?command=Registration"><fmt:message key="registration"></fmt:message></a>
+    <a class="btn btn-primary btn-md" href="Controller?command=Registration"><fmt:message key="registration"></fmt:message></a>
 </div></p>
 </c:if>
 <table>
@@ -107,7 +105,6 @@
         <tr>
             <td>
                 <b><fmt:message key="book_author"></fmt:message></b>
-
                 <c:forEach var="author" items="${booksDTO.authors}">
                     <c:out value="${author.name}"></c:out>
                 </c:forEach>
@@ -146,9 +143,9 @@
                 <c:if test="${user.role != 'GUEST'}">
                     <td>
                         <c:if test="${user.status != 'BLOCKED'}">
-                            <a class="button" href="?command=GoToOrder&bookId=${booksDTO.bookDtoId}"><fmt:message key="order_command"></fmt:message></a>
+                            <a class="btn btn-dark" href="?command=GoToOrder&bookId=${booksDTO.bookDtoId}"><fmt:message key="order_command"></fmt:message></a>
                         </c:if>
-                        <a class="button" href="?command=ActionWishBook&bookId=${booksDTO.bookDtoId}&add=add"><fmt:message key="wish_command"></fmt:message></a>
+                        <a class="btn btn-primary" href="?command=ActionWishBook&bookId=${booksDTO.bookDtoId}&add=add"><fmt:message key="wish_command"></fmt:message></a>
                     </td>
                 </c:if>
             </div>

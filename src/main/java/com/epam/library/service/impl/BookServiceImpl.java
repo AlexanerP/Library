@@ -26,7 +26,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public int update(String bookId, Book book, String quantity,  String cityLibrary) throws ServiceException {
+    public boolean update(String bookId, Book book, String quantity,  String cityLibrary) throws ServiceException {
         try {
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
             BookDao bookDao = DaoFactory.getInstance().getBookDao();
@@ -56,11 +56,10 @@ public class BookServiceImpl implements BookService {
                 newBook.setAdded(optionalBook.get().getAdded());
                 newBook.setBorrow(optionalBook.get().getBorrow());
                 bookDao.update(newBook);
-                return 1;
+                return true;
             } else {
-                return 0;
+                return false;
             }
-
         }catch (DaoException e) {
             logger.error("An error in services when preparing to update a book without authors and genres.");
             throw new ServiceException(e);
@@ -72,9 +71,9 @@ public class BookServiceImpl implements BookService {
         try {
             BookDao bookDao = DaoFactory.getInstance().getBookDao();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
-            if (bookDao != null) {
-                if (validator.isNumber(bookId)) {
-                    Optional<Book> optionalBook = bookDao.getBookById(Long.parseLong(bookId));
+            if (validator.isNumber(bookId)) {
+                Optional<Book> optionalBook = bookDao.getBookById(Long.parseLong(bookId.trim()));
+                if (optionalBook.isPresent()) {
                     if (optionalBook.get().getBorrow() < optionalBook.get().getQuantity()) {
                         Book book = optionalBook.get();
                         book.setBorrow(optionalBook.get().getBorrow() + 1);
@@ -82,11 +81,11 @@ public class BookServiceImpl implements BookService {
                     } else {
                         return false;
                     }
+                } else {
+                    throw new ServiceException("The book doesn't exist.");
                 }
-                return true;
-            }  else {
-                throw new ServiceException("The book ID value is empty.");
             }
+            return true;
         } catch (DaoException e) {
             logger.error("The column 'On issue' has not been updated.");
             throw new ServiceException("The column 'On issue' has not been updated.", e);
@@ -98,23 +97,18 @@ public class BookServiceImpl implements BookService {
         try {
             BookDao bookDao = DaoFactory.getInstance().getBookDao();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
-            if (bookDao != null) {
-                if (validator.isNumber(bookId)) {
-                    Optional<Book> optionalBook = bookDao.getBookById(Long.parseLong(bookId));
-                    if (optionalBook.isPresent()) {
-                        Book book = bookDao.getBookById(Long.parseLong(bookId)).get();
-                        book.setBorrow(optionalBook.get().getBorrow() - 1);
-                        bookDao.update(book);
-                        return true;
-                    } else {
-                        throw new ServiceException("The book does not exist.");
-                    }
+            if (validator.isNumber(bookId)) {
+                Optional<Book> optionalBook = bookDao.getBookById(Long.parseLong(bookId.trim()));
+                if (optionalBook.isPresent()) {
+                    Book book = bookDao.getBookById(Long.parseLong(bookId)).get();
+                    book.setBorrow(optionalBook.get().getBorrow() - 1);
+                    bookDao.update(book);
+                    return true;
                 } else {
-                    throw new ServiceException("Book ID is not valid.");
+                    throw new ServiceException("The book does not exist.");
                 }
-
             } else {
-                throw new ServiceException("The book ID value is empty.");
+                throw new ServiceException("Book ID is not valid.");
             }
         } catch (DaoException e) {
             logger.error("The column 'On issue' has not been updated.");
@@ -127,14 +121,10 @@ public class BookServiceImpl implements BookService {
         try {
             BookDao bookDao = DaoFactory.getInstance().getBookDao();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
-            if (bookId != null) {
-                if (validator.isNumber(bookId)) {
-                    return bookDao.getBookById(Long.parseLong(bookId.trim()));
-                } else {
-                    throw new ServiceException("The value is not a number.");
-                }
+            if (validator.isNumber(bookId)) {
+                return bookDao.getBookById(Long.parseLong(bookId.trim()));
             } else {
-                throw new ServiceException("The book ID is empty.");
+                throw new ServiceException("The value is not a number.");
             }
         }catch (DaoException e) {
             logger.error("Error in services when retrieving a book by ID.");

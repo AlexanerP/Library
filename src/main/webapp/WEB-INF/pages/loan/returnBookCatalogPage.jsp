@@ -18,7 +18,7 @@
 </head>
 <body class="body">
 <jsp:include page="/WEB-INF/pages/common/header.jsp"></jsp:include>
-<br>
+<br><br>
 <div align="center"><h1><fmt:message key="admin_menu_return_books"></fmt:message></h1></div>
 <form>
     <input type="hidden" name="command" value="ReturnBookCatalog">
@@ -77,54 +77,96 @@
 <div align="center">
     <form>
         <c:if test="${not empty loanCards}">
-            <p><fmt:message key="message_count_found_result"></fmt:message><c:out value="${loanCardSize}"/></p>
+            <p><fmt:message key="message_count_found_result"></fmt:message><c:out value="${loanCardsSize}"/></p>
         </c:if>
         <c:if test="${not empty loanCards}">
-        <table border="1" cellpadding="5">
-            <tr>
-                <th>#</th>
-                <th><fmt:message key="id"></fmt:message></th>
-                <th><fmt:message key="book_id"></fmt:message></th>
-                <th><fmt:message key="user_id"></fmt:message></th>
-                <th><fmt:message key="book_id"></fmt:message></th>
-                <th><fmt:message key="book_isbn"></fmt:message></th>
-                <th><fmt:message key="loan_card_taking_date"></fmt:message></th>
-                <th><fmt:message key="loan_card_deadline"></fmt:message></th>
-                <th><fmt:message key="loan_card_return"></fmt:message></th>
-                <th><fmt:message key="library_city"></fmt:message></th>
-                <th><fmt:message key="loan_card_type_use"></fmt:message></th>
-                <th><fmt:message key="status"></fmt:message></th>
-                <th><fmt:message key="return_book"></fmt:message></th>
-            </tr>
+        <table class="table table-hover">
             <c:forEach var="card" items="${loanCards}" varStatus="status">
-                <tr>
-                    <td><c:out value="${status.index + 1}"></c:out></td>
-                    <td><c:out value="${card.loanCardDtoId}"></c:out></td>
-                    <td>
-                        <a href="?command=CatalogBook&bookId=${card.bookId}"><c:out value="${card.bookId}"></c:out></a>
-                        <p>
-                            <input type="button" value="<fmt:message key="details"></fmt:message>">
-                        </p>
-                    </td>
-                    <td>
-                        <a href="?command=UserCatalog&userId=${card.userId}"><c:out value="${card.userId}"></c:out></a>
-                        <input type="button" value="<fmt:message key="details"></fmt:message>">
-                    </td>
-                    <td><c:out value="${card.title}"></c:out></td>
-                    <td><c:out value="${card.isbn}"></c:out></td>
-                    <td><c:out value="${card.takingBook}"></c:out></td>
-                    <td><c:out value="${card.returnBook}"></c:out></td>
-                    <td><c:out value="${card.deadline}"></c:out></td>
-                    <td><c:out value="${card.cityLibrary}"></c:out></td>
-                    <td><c:out value="${card.typeUse}"></c:out></td>
-                    <td><c:out value="${card.status}"></c:out></td>
-                    <td>
-                        <c:if test="${card.loanCardDtoId > 0}">
-                            <a href="?command=ActionReturnBook&loanCardId=${card.loanCardDtoId}"><input type="button" value="<fmt:message key="return_book_command"></fmt:message>"></a>
-                            <a href="?command=ActionReturnBook&loanCardId=${card.loanCardDtoId}&violation=yes"><input type="button" value="<fmt:message key="book_return_with_violation"></fmt:message>"></a>
-                        </c:if>
-                    </td>
-                </tr>
+                <c:if test="${card.loanCardDtoId > 0}">
+                    <tr class="tr">
+                        <tr>
+                            <td>
+                                <b>#</b>
+                                <c:out value="${status.index + 1}"></c:out>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td>
+                                    <b><fmt:message key="id"></fmt:message>:</b>
+                                    <c:out value="${card.loanCardDtoId}"></c:out>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td>
+                                <b><fmt:message key="book_id"></fmt:message>:</b>
+                                <c:out value="${card.bookId}"></c:out>
+                                <a class="btn btn-info" href="?command=CatalogBook&bookId=${card.bookId}"><fmt:message key="details"></fmt:message></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b><fmt:message key="user_id"></fmt:message>:</b>
+                                <c:out value="${card.userId}"></c:out>
+                                <a class="btn btn-info" href="?command=UserCatalog&userId=${card.userId}"><fmt:message key="details"></fmt:message></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b><fmt:message key="book_title">:</fmt:message></b>
+                                <c:out value="${card.title}"></c:out>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b><fmt:message key="book_isbn"></fmt:message>:</b>
+                                <c:out value="${card.isbn}"></c:out>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b><fmt:message key="loan_card_taking_date"></fmt:message>:</b>
+                                <c:out value="${card.takingBook}"></c:out>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b><fmt:message key="loan_card_deadline"></fmt:message>:</b>
+                                <c:out value="${card.deadline}"></c:out>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b><fmt:message key="loan_card_return"></fmt:message>:</b>
+                                <c:out value="${card.returnBook}"></c:out>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b><fmt:message key="library_city"></fmt:message>:</b>
+                                <c:out value="${card.cityLibrary}"></c:out>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b><fmt:message key="loan_card_type_use"></fmt:message>:</b>
+                                <c:out value="${card.typeUse}"></c:out>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b><fmt:message key="status"></fmt:message>:</b>
+                                <c:out value="${card.status}"></c:out>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b><fmt:message key="return_book"></fmt:message>:</b>
+                                <a class="btn btn-success" href="?command=ActionReturnBook&loanCardId=${card.loanCardDtoId}"><fmt:message key="return_book_command"></fmt:message></a>
+                                <a class="btn btn-danger" href="?command=ActionReturnBook&loanCardId=${card.loanCardDtoId}&violation=yes"><fmt:message key="book_return_with_violation"></fmt:message></a>
+                            </td>
+                        </tr>
+                    </tr>
+                </c:if>
             </c:forEach>
             </c:if>
         </table>

@@ -45,13 +45,21 @@ public class BookDtoServiceImpl implements BookDtoService {
 
                 List<Author> authors = new ArrayList<>();
                 for (String setAuthor : authorLine) {
-                    authors.add(new Author(setAuthor.trim()));
+                    if (validator.isLength(setAuthor.trim())) {
+                        authors.add(new Author(setAuthor.trim()));
+                    } else {
+                        throw new ServiceException("The value is too long.");
+                    }
                 }
                 book.setAuthors(authors);
 
                 List<Genre> genres = new ArrayList<>();
                 for (String setGenre : genreLine) {
-                    genres.add(new Genre(setGenre.trim()));
+                    if (validator.isLength(setGenre.trim())) {
+                        genres.add(new Genre(setGenre.trim()));
+                    } else {
+                        throw new ServiceException("The value is too long.");
+                    }
                 }
                 book.setGenres(genres);
                 return bookDtoDao.create(book);
@@ -65,7 +73,7 @@ public class BookDtoServiceImpl implements BookDtoService {
     }
 
     @Override
-    public int update(String bookId, BookDto bookDto, String author, String genre, String quantity) throws ServiceException {
+    public boolean update(String bookId, BookDto bookDto, String author, String genre, String quantity) throws ServiceException {
         try {
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
             BookDtoDao bookDtoDao = DaoFactory.getInstance().getBookDtoDao();
@@ -108,14 +116,12 @@ public class BookDtoServiceImpl implements BookDtoService {
                 }
                 newBookDto.setGenres(genres);
                 bookDtoDao.update(newBookDto);
-                return 1;
-            } else {
-                return 0;
+                return true;
             }
         } catch (DaoException e) {
             logger.error("Error in services while preparing a book update.", e);
         }
-        return 0;
+        return false;
     }
 
     @Override
@@ -137,9 +143,8 @@ public class BookDtoServiceImpl implements BookDtoService {
         logger.info("Retrieving books by parameters");
         List<BookDto> booksDto = new ArrayList<>();
         BookDtoDao bookDtoDao = DaoFactory.getInstance().getBookDtoDao();
-        ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
         try {
-            if (isbn != null && isbn != "" && validator.isLength(isbn)) {
+            if (isbn != null && isbn != "") {
                 booksDto = bookDtoDao.getBookByIsbn(isbn);
             }
         }catch (DaoException e) {
@@ -147,7 +152,7 @@ public class BookDtoServiceImpl implements BookDtoService {
             throw  new ServiceException("Error in services when retrieving books via ISBN.", e);
         }
         try {
-            if (title != null && title != "" && validator.isLength(title)) {
+            if (title != null && title != "") {
                 booksDto.addAll(bookDtoDao.getBooksByTitle(title));
             }
         } catch (DaoException e) {
@@ -155,7 +160,7 @@ public class BookDtoServiceImpl implements BookDtoService {
             throw new ServiceException("Error in services when retrieving books by title.", e);
         }
         try{
-            if (genre != null && genre != "" && validator.isLength(genre)) {
+            if (genre != null && genre != "") {
                 booksDto.addAll(bookDtoDao.getBooksByGenre(genre));
             }
         }catch (DaoException e) {
@@ -163,7 +168,7 @@ public class BookDtoServiceImpl implements BookDtoService {
             throw new ServiceException("Error in services when retrieving books by genre.", e);
         }
         try {
-            if (author != null && author != "" && validator.isLength(author)) {
+            if (author != null && author != "") {
                 booksDto.addAll(bookDtoDao.getBooksByAuthor(author));
             }
         }catch (DaoException e) {
@@ -179,9 +184,9 @@ public class BookDtoServiceImpl implements BookDtoService {
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
             BookDtoDao bookDtoDao = DaoFactory.getInstance().getBookDtoDao();
             if (validator.isNumber(bookId)) {
-                return bookDtoDao.getBookById(Long.parseLong(bookId));
+                return bookDtoDao.getBookById(Long.parseLong(bookId.trim()));
             } else {
-                throw new ServiceException("Invalid book ID");
+                throw new ServiceException("Invalid book ID value.");
             }
         } catch (DaoException e) {
             logger.error("Error in services when retrieving a book by ID. ID - {}", bookId);
@@ -194,15 +199,11 @@ public class BookDtoServiceImpl implements BookDtoService {
         try {
             BookDtoDao bookDtoDao = DaoFactory.getInstance().getBookDtoDao();
             LibraryService libraryService = ServiceFactory.getInstance().getLibraryService();
-            if (city != null) {
-                Optional<Library> optionalLibrary = libraryService.showByCity(city);
-                if (optionalLibrary.isPresent()) {
-                    return bookDtoDao.getBooksByCity(city);
-                } else {
-                    throw new ServiceException("A library with such a city does not exist.");
-                }
-            }else {
-                throw new ServiceException("The city value is empty");
+            Optional<Library> optionalLibrary = libraryService.showByCity(city);
+            if (optionalLibrary.isPresent()) {
+                return bookDtoDao.getBooksByCity(city);
+            } else {
+                throw new ServiceException("A library with such a city does not exist.");
             }
         } catch (DaoException e) {
             logger.error("Error retrieving books from the library.");

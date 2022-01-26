@@ -20,7 +20,7 @@ public class LibraryServiceImpl implements LibraryService {
     private static final Logger logger = LoggerFactory.getLogger(LibraryServiceImpl.class);
 
     @Override
-    public int create(String city, String street) throws ServiceException {
+    public boolean create(String city, String street) throws ServiceException {
         try {
             LibraryDao libraryDao = DaoFactory.getInstance().getLibraryDAO();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
@@ -32,12 +32,12 @@ public class LibraryServiceImpl implements LibraryService {
                         library.setCity(city);
                         library.setStatus(LibraryStatus.OPENED);
                         libraryDao.create(library);
-                        return 1;
+                        return true;
                     } else {
-                        return 2;
+                        throw new ServiceException("Trying to build a library that exists on the system.");
                     }
                 } else {
-                    return 3;
+                    return false;
                 }
         }catch (DaoException e) {
             logger.error("Error while creating a library.");
@@ -61,7 +61,7 @@ public class LibraryServiceImpl implements LibraryService {
         try {
             LibraryDao libraryDAO = DaoFactory.getInstance().getLibraryDAO();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
-            if (validator.isNumber(libraryId.trim())) {
+            if (validator.isNumber(libraryId)) {
                 if (status.equalsIgnoreCase(LibraryStatus.OPENED.name()) ||
                         status.equalsIgnoreCase(LibraryStatus.CLOSED.name())) {
                     Optional<Library> optionalLibrary = libraryDAO.getLibraryById(Long.parseLong(libraryId.trim()));
@@ -88,7 +88,7 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    public int update(String libraryId, String city, String street) throws ServiceException {
+    public boolean update(String libraryId, String city, String street) throws ServiceException {
         try {
             LibraryDao libraryDao = DaoFactory.getInstance().getLibraryDAO();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
@@ -102,17 +102,16 @@ public class LibraryServiceImpl implements LibraryService {
                         library.setStreet(street != "" ? street : optionalLibrary.get().getStreet());
                         library.setStatus(optionalLibrary.get().getStatus());
                         libraryDao.update(library);
-                        return 1;
-                    } else {
-                        return 2;
+                        return true;
                     }
                 } else {
-                    return 0;
+                    throw new ServiceException("Attempting to update a library that exists on the system.");
                 }
             } else {
                 throw new ServiceException("Trying to get a library by ID using a text string that does not " +
                         "have a digit");
             }
+            return false;
         }catch (DaoException e) {
             logger.error("Services error when updating the library.");
             throw new ServiceException("Services error when updating the library.", e);

@@ -18,7 +18,7 @@
 </head>
 <body class="body">
 <jsp:include page="/WEB-INF/pages/common/header.jsp"></jsp:include>
-<br>
+<br><br>
 <div align="center"><h1><fmt:message key="admin_menu_catalog_user"></fmt:message></h1></div>
 <form action="Controller">
     <input type="hidden" name="command" value="UserCatalog">
@@ -26,7 +26,7 @@
         <tr>
             <td><fmt:message key="search_user_id"></fmt:message></td>
             <td><input type="number" name="userId" min="1" placeholder="<fmt:message key="search_user_id"></fmt:message>"></td>
-            <td><input type="submit" value="<fmt:message key="button_find"></fmt:message>"></td>
+            <td><input  type="submit" value="<fmt:message key="button_find"></fmt:message>"></td>
         </tr>
     </table>
 </form>
@@ -84,8 +84,8 @@
     <br><br><br>
     <c:if test="${not empty users}">
         <div align="center"><p><fmt:message key="message_count_found_result"></fmt:message><c:out value="${userSize}"/></p></div>
-        <table border="1" cellpadding="5">
-            <tr>
+        <table class="table table-hover">
+            <tr class="thead-dark">
                 <th>#</th>
                 <th><fmt:message key="id"></fmt:message></th>
                 <th><fmt:message key="user_second_name"></fmt:message></th>
@@ -112,15 +112,15 @@
                     <td><c:out value="${user.role}"></c:out></td>
                     <td><c:out value="${user.status}"></c:out></td>
                     <td>
-                        <a href="?command=ActionUser&userId=${user.userId}&status=active"><input type="button" value="<fmt:message key="user_status_active"></fmt:message>"></a>
-                        <a href="?command=ActionUser&userId=${user.userId}&status=blocked"><input type="button" value="<fmt:message key="user_status_blocked"></fmt:message>"></a>
-                        <a href="?command=ActionUser&userId=${user.userId}&status=delete"><input type="button" value="<fmt:message key="user_status_delete"></fmt:message>"></a>
+                        <a class="btn btn-success" href="?command=ActionUser&userId=${user.userId}&status=active"><fmt:message key="user_status_active"></fmt:message></a>
+                        <a class="btn btn-warning" href="?command=ActionUser&userId=${user.userId}&status=blocked"><fmt:message key="block_command"></fmt:message></a>
+                        <a class="btn btn-danger" href="?command=ActionUser&userId=${user.userId}&status=delete"><fmt:message key="delete_command"></fmt:message></a>
                     </td>
                     <td>
-                        <a href="?command=LoanCardCatalog&userId=${user.userId}"><input type="button" value="<fmt:message key="history"></fmt:message>"></a>
+                        <a class="btn btn-info" href="?command=LoanCardCatalog&userId=${user.userId}"><fmt:message key="history"></fmt:message></a>
                     </td>
                     <td>
-                        <a href="?command=OrderCatalog&userId=${user.userId}"><input type="button" value="<fmt:message key="orders"></fmt:message>"></a>
+                        <a class="btn btn-info" href="?command=OrderCatalog&userId=${user.userId}"><fmt:message key="orders"></fmt:message></a>
                     </td>
                 </tr>
             </c:forEach>

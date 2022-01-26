@@ -27,17 +27,13 @@ public class UpdateGenreCommand implements Command {
             Long genreId = (Long) req.getSession().getAttribute(Constant.UPDATE_GENRE_ID);
             String category = req.getParameter(Constant.GENRE_NAME);
             req.getSession().removeAttribute(Constant.UPDATE_AUTHOR_ID);
-            System.out.println("genreId/" + genreId + ". category/" + category);
             if (genreId != null && category != null) {
-                int resultOperation = genreService.update(genreId + "", category);
-                if (resultOperation == 1) {
+                boolean resultOperation = genreService.update(genreId + "", category);
+                if (resultOperation) {
                     req.getSession().setAttribute(Constant.MESSAGE_CODE_1003, Constant.MESSAGE_CODE_1003);
                     resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
-                } else if (resultOperation == 2){
+                } else {
                     req.getSession().setAttribute(Constant.MESSAGE_ERROR_CODE_1008, Constant.MESSAGE_ERROR_CODE_1008);
-                    resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
-                }else if (resultOperation == 3){
-                    req.getSession().setAttribute(Constant.MESSAGE_ERROR_CODE_1007, Constant.MESSAGE_ERROR_CODE_1007);
                     resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
                 }
             } else {

@@ -18,20 +18,20 @@
 </head>
 <body class="body">
 <jsp:include page="/WEB-INF/pages/common/header.jsp"></jsp:include>
-<br>
+<br><br>
 <div align="center"><h1><fmt:message key="user_menu_my_order"></fmt:message></h1></div>
 <div align="center"><h3><c:out value="${secondName} ${lastName}"></c:out></h3></div>
 <div align="center">
     <form action="Controller" method="get">
         <input type="hidden" name="command" value="GoToOrderUser">
-        <table border="1" cellpadding="5">
-            <tr>
+        <table class="table table-hover">
+            <tr class="thead-dark">
                 <th>#</th>
-                <th><fmt:message key="id"></fmt:message></th>
-                <th><fmt:message key="book_id"></fmt:message></th>
-                <th><fmt:message key="book_title"></fmt:message></th>
-                <th><fmt:message key="book_isbn"></fmt:message></th>
-                <th><fmt:message key="book_year"></fmt:message></th>
+                <th><fmt:message key="order_id_for_row"></fmt:message></th>
+                <th><fmt:message key="book_id_for_row"></fmt:message></th>
+                <th><fmt:message key="book_title_for_row"></fmt:message></th>
+                <th><fmt:message key="book_isbn_for_row"></fmt:message></th>
+                <th><fmt:message key="book_year_for_row"></fmt:message></th>
                 <th><fmt:message key="order_date"></fmt:message></th>
                 <th><fmt:message key="library_city"></fmt:message></th>
                 <th><fmt:message key="order_comment"></fmt:message></th>
@@ -51,8 +51,8 @@
                     <td><c:out value="${orders.comment}"></c:out></td>
                     <td><c:out value="${orders.status}"></c:out></td>
                     <td>
-                        <c:if test="${orders.status eq 'OPENED' or 'CLOSED'}">
-                            <a href="?command=ActionUserOrder&orderUserId=${orders.orderDtoId}&action=remove"><input type="button" value="<fmt:message key="delete_command"></fmt:message>"></a> </td>
+                        <c:if test="${orders.status eq 'OPENED'}">
+                            <a class="btn btn-danger" href="?command=ActionUserOrder&orderUserId=${orders.orderDtoId}&action=remove"><fmt:message key="delete_command"></fmt:message></a> </td>
                         </c:if>
                 </tr>
             </c:forEach>

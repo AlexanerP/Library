@@ -18,6 +18,9 @@ public class LoanCard implements Serializable {
     private LoanCardStatus status;
     private BookTypeUse typeUse;
 
+    public LoanCard() {
+    }
+
     public long getLoanCardId() {
         return loanCardId;
     }

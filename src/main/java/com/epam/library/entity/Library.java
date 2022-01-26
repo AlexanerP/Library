@@ -11,11 +11,12 @@ public class Library implements Serializable {
     private String street;
     private LibraryStatus status;
 
-    public Library(int libraryId, String city, String street, LibraryStatus status) {
-        this.libraryId = libraryId;
+    public Library() {
+    }
+
+    public Library(String city, String street) {
         this.city = city;
         this.street = street;
-        this.status = status;
     }
 
     public Library(int libraryId, String city, String street) {
@@ -24,12 +25,11 @@ public class Library implements Serializable {
         this.street = street;
     }
 
-    public Library(String city, String street) {
+    public Library(int libraryId, String city, String street, LibraryStatus status) {
+        this.libraryId = libraryId;
         this.city = city;
         this.street = street;
-    }
-
-    public Library() {
+        this.status = status;
     }
 
     public int getLibraryId() {

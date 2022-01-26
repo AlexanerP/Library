@@ -83,7 +83,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Library`.`libraries` (
   `id_library` INT NOT NULL AUTO_INCREMENT,
-  `street` VARCHAR(30) NOT NULL,
+  `street` VARCHAR(50) NOT NULL,
   `city` VARCHAR(30) NOT NULL,
   `id_status` INT NOT NULL,
   PRIMARY KEY (`id_library`),

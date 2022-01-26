@@ -26,9 +26,9 @@ class LibraryServiceImplTest {
         try {
             String city = "Brest";
             String street = "Main street";
-            int expected = 1;
-            int actual = libraryService.create(city, street);
-            assertEquals(expected, actual);
+
+            boolean condition = libraryService.create(city, street);
+            assertTrue(condition);
         }catch (ServiceException e) {
             e.printStackTrace();
         }
@@ -63,9 +63,8 @@ class LibraryServiceImplTest {
             String city = "city";
             String street = "street";
             String libraryId = "1 ";
-            int expected = 1;
-            int actual = libraryService.update(libraryId, city, street);
-            assertEquals(expected, actual);
+            boolean condition = libraryService.update(libraryId, city, street);
+            assertTrue(condition);
         } catch (ServiceException e) {
             e.printStackTrace();
         }

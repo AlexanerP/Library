@@ -18,7 +18,7 @@
 </head>
 <body class="body">
 <jsp:include page="/WEB-INF/pages/common/header.jsp"></jsp:include>
-<br>
+<br><br>
 <div align="center"><h1><fmt:message key="admin_menu_libraries"></fmt:message></h1></div>
 <table>
     <tr>
@@ -89,10 +89,10 @@
     </tr>
 </table>
 
-<div align="center">
-    <table>
+<div>
+    <table class="table table-hover">
         <c:if test="${not empty libraries}">
-            <tr>
+            <tr class="thead-dark">
                 <th>#</th>
                 <th><fmt:message key="id"></fmt:message></th>
                 <th><fmt:message key="library_city"></fmt:message></th>
@@ -100,7 +100,7 @@
                 <th><fmt:message key="orders"></fmt:message></th>
                 <th><fmt:message key="loan_card"></fmt:message></th>
                 <th><fmt:message key="books"></fmt:message></th>
-                <th><fmt:message key="enter_library_street"></fmt:message></th>
+                <th><fmt:message key="update_command"></fmt:message></th>
                 <th><fmt:message key="change_status"></fmt:message></th>
             </tr>
             <c:forEach var="library" items="${libraries}" varStatus="status">
@@ -109,15 +109,15 @@
                     <td><c:out value="${library.libraryId}"></c:out></td>
                     <td><c:out value="${library.city}"></c:out></td>
                     <td><c:out value="${library.street}"></c:out></td>
-                    <td> <a href="?command=OrderCatalog&city=${library.city}"><input type="button" value="<fmt:message key="orders"></fmt:message>"></a></td>
-                    <td> <a href="?command=LoanCardCatalog&city=${library.city}"><input type="button" value="<fmt:message key="loan_card"></fmt:message>"></a></td>
-                    <td> <a href="?command=CatalogBook&city=${library.city}"><input type="button" value="<fmt:message key="books"></fmt:message>"></a></td>
+                    <td> <a class="btn btn-info" href="?command=OrderCatalog&city=${library.city}"><fmt:message key="orders"></fmt:message></a></td>
+                    <td> <a class="btn btn-info" href="?command=LoanCardCatalog&city=${library.city}"><fmt:message key="loan_card"></fmt:message></a></td>
+                    <td> <a class="btn btn-info" href="?command=CatalogBook&city=${library.city}"><fmt:message key="books"></fmt:message></a></td>
                     <td>
-                        <a href="?command=GoToUpdateLibrary&libraryId=${library.libraryId}&city=${library.city}&street=${library.street}"><input type="button" value="<fmt:message key="button_update"></fmt:message>"></a>
+                        <a class="btn btn-dark" href="?command=GoToUpdateLibrary&libraryId=${library.libraryId}&city=${library.city}&street=${library.street}"><fmt:message key="button_update"></fmt:message></a>
                     </td>
                     <td>
-                        <a href="?command=ActionLibrary&libraryId=${library.libraryId}&status=opened"><input type="button" value="<fmt:message key="library_status_opened"></fmt:message>"></a>
-                        <a href="?command=ActionLibrary&libraryId=${library.libraryId}&status=closed"><input type="button" value="<fmt:message key="library_status_closed"></fmt:message>"></a>
+                        <a class="btn btn-success" href="?command=ActionLibrary&libraryId=${library.libraryId}&status=opened"><fmt:message key="library_status_opened"></fmt:message></a>
+                        <a class="btn btn-danger" href="?command=ActionLibrary&libraryId=${library.libraryId}&status=closed"><fmt:message key="library_status_closed"></fmt:message></a>
                     </td>
                 </tr>
             </c:forEach>

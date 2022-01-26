@@ -15,14 +15,15 @@ public class LoanCardDto implements Serializable {
     private long bookId;
     private String title;
     private String isbn;
-    private String secondName;
-    private String lastName;
     private String cityLibrary;
     private LocalDate takingBook;
     private String returnBook;
     private LocalDate deadline;
     private LoanCardStatus status;
     private BookTypeUse typeUse;
+
+    public LoanCardDto() {
+    }
 
     public long getLoanCardDtoId() {
         return loanCardDtoId;
@@ -62,22 +63,6 @@ public class LoanCardDto implements Serializable {
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
-    }
-
-    public String getSecondName() {
-        return secondName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getCityLibrary() {
@@ -154,12 +139,6 @@ public class LoanCardDto implements Serializable {
         if (!isbn.equals(that.isbn)) {
             return false;
         }
-        if (!secondName.equals(that.secondName)) {
-            return false;
-        }
-        if (!lastName.equals(that.lastName)) {
-            return false;
-        }
         if (!cityLibrary.equals(that.cityLibrary)) {
             return false;
         }
@@ -185,8 +164,6 @@ public class LoanCardDto implements Serializable {
         result = 31 * result + (int) (bookId ^ (bookId >>> 32));
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (isbn != null ? isbn.hashCode() : 0);
-        result = 31 * result + (secondName != null ? secondName.hashCode() : 0);
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (cityLibrary != null ? cityLibrary.hashCode() : 0);
         result = 31 * result + (takingBook != null ? takingBook.hashCode() : 0);
         result = 31 * result + (returnBook != null ? returnBook.hashCode() : 0);
@@ -204,8 +181,6 @@ public class LoanCardDto implements Serializable {
                 .append("', bookId='").append(bookId)
                 .append("', title='").append(title)
                 .append("', ISBN='").append(isbn)
-                .append("', secondName='").append(secondName)
-                .append("', lastName='").append(lastName)
                 .append("', cityLibrary='").append(cityLibrary)
                 .append( "', takingBook='").append(takingBook)
                 .append("', returnBook='").append(returnBook)

@@ -216,7 +216,7 @@ public class Constant {
     public static final String MESSAGE_ERROR_CODE_1020 = "Error when deleting order. An order can only be deleted if " +
             "the status is \"Open\".";
     public static final String MESSAGE_ERROR_CODE_1021 = "The book has not been updated. Too long values.";
-    public static final String MESSAGE_ERROR_CODE_1022 = "Library not found.";
+    public static final String MESSAGE_ERROR_CODE_1022 = The library has not been updated.";
     public static final String MESSAGE_ERROR_CODE_1023 = "User is not found.";
     public static final String MESSAGE_ERROR_CODE_1024 = "Invalid email.";
      */

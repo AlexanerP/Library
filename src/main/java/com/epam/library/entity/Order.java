@@ -16,6 +16,9 @@ public class Order implements Serializable {
     private String comment;
     private OrderStatus status;
 
+    public Order() {
+    }
+
     public long getOrderId() {
         return orderId;
     }

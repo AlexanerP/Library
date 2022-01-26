@@ -18,8 +18,6 @@ public class LoanCardDtoMapper implements RowMapper<LoanCardDto> {
         loanCard.setBookId(resultSet.getLong(ColumnName.BOOK_ID_BOOK));
         loanCard.setTitle(resultSet.getString(ColumnName.BOOK_TITLE));
         loanCard.setIsbn(resultSet.getString(ColumnName.BOOK_ISBN));
-        loanCard.setSecondName(resultSet.getString(ColumnName.USER_SECOND_NAME));
-        loanCard.setLastName(resultSet.getString(ColumnName.USER_LAST_NAME));
         loanCard.setCityLibrary(resultSet.getString(ColumnName.LIBRARY_CITY));
         loanCard.setTakingBook(resultSet.getDate(ColumnName.LOAN_CARD_TAKING_BOOK).toLocalDate());
         loanCard.setReturnBook(resultSet.getString(ColumnName.LOAN_CARD_RETURN_BOOK));

@@ -18,7 +18,7 @@
 </head>
 <body class="body">
 <jsp:include page="/WEB-INF/pages/common/header.jsp"></jsp:include>
-<br>
+<br><br>
 <div align="center"><h1><fmt:message key="admin_menu_catalog_loan_card"></fmt:message></h1></div>
 <form>
     <input type="hidden" name="command" value="LoanCardCatalog">
@@ -119,15 +119,13 @@
         </c:if>
 
         <c:if test="${not empty loanCards}">
-            <table border="1" cellpadding="5">
-                <tr>
+            <table class="table table-hover">
+                <tr class="thead-dark">
                     <th>#</th>
                     <th><fmt:message key="loan_card_id"></fmt:message></th>
-                    <th><fmt:message key="user_id"></fmt:message></th>
-                    <th><fmt:message key="book_id"></fmt:message></th>
-                    <th><fmt:message key="book_title"></fmt:message></th>
-                    <th><fmt:message key="book_isbn"></fmt:message></th>
-                    <th><fmt:message key="loan_card_name_user"></fmt:message></th>
+                    <th><fmt:message key="user_id_for_row"></fmt:message></th>
+                    <th><fmt:message key="book_id_for_row"></fmt:message></th>
+                    <th><fmt:message key="book_title_for_row"></fmt:message></th>
                     <th><fmt:message key="library_city"></fmt:message></th>
                     <th><fmt:message key="loan_card_taking_date"></fmt:message></th>
                     <th><fmt:message key="loan_card_deadline"></fmt:message></th>
@@ -139,11 +137,16 @@
                     <tr>
                         <td><c:out value="${status.index + 1}"></c:out></td>
                         <td><c:out value="${loanCards.loanCardDtoId}"></c:out></td>
-                        <td> <a href="?command=UserCatalog&userId=${loanCards.userId}"><c:out value="${loanCards.userId}"></c:out> <br><input type="button" value="<fmt:message key="details"></fmt:message>"></a></td>
-                        <td> <a href="?command=CatalogBook&bookId=${loanCards.bookId}"><c:out value="${loanCards.bookId}"></c:out> <br><input type="button" value="<fmt:message key="details"></fmt:message>"></a></td>
+                        <td>
+                            <c:out value="${loanCards.userId}"></c:out>
+                            <br>
+                            <a class="btn btn-info" href="?command=UserCatalog&userId=${loanCards.userId}"><fmt:message key="details"></fmt:message></a>
+                        </td>
+                        <td>
+                            <c:out value="${loanCards.bookId}"></c:out>
+                            <br>
+                            <a class="btn btn-info" href="?command=CatalogBook&bookId=${loanCards.bookId}"><fmt:message key="details"></fmt:message></a></td>
                         <td><c:out value="${loanCards.title}"></c:out></td>
-                        <td><c:out value="${loanCards.isbn}"></c:out></td>
-                        <td><c:out value="${loanCards.secondName} ${loanCards.lastName} "></c:out></td>
                         <td><c:out value="${loanCards.cityLibrary}"></c:out></td>
                         <td><c:out value="${loanCards.takingBook}"></c:out></td>
                         <td><c:out value="${loanCards.deadline}"></c:out></td>

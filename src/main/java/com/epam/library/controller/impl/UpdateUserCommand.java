@@ -34,15 +34,12 @@ public class UpdateUserCommand implements Command {
             User user = (User) session.getAttribute(Constant.USER);
             if (email != null && email != "" || secondName != null && secondName != ""
                     || lastName != null && lastName != "") {
-                int resultOperation = userService.update(email, secondName, lastName, user.getUserId() + "");
-                if (resultOperation == 1) {
+                boolean resultOperation = userService.update(email, secondName, lastName, user.getUserId() + "");
+                if (resultOperation) {
                     session.setAttribute(Constant.MESSAGE_CODE_1019, Constant.MESSAGE_CODE_1019);
                     resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
-                } else if (resultOperation == 2){
+                } else {
                     session.setAttribute(Constant.MESSAGE_ERROR_CODE_1024, Constant.MESSAGE_ERROR_CODE_1024);
-                    resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
-                } else if (resultOperation == 3){
-                    session.setAttribute(Constant.MESSAGE_ERROR_CODE_1007, Constant.MESSAGE_ERROR_CODE_1007);
                     resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
                 }
             } else if (delete != null) {

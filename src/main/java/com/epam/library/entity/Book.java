@@ -19,6 +19,9 @@ public class Book implements Serializable {
     private LocalDate added;
     private String shelf;
 
+    public Book() {
+    }
+
     public long getBookId() {
         return bookId;
     }

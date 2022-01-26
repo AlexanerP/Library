@@ -29,14 +29,11 @@ public class UpdateLibraryCommand implements Command {
             String street = req.getParameter(Constant.LIBRARY_STREET);
             req.getSession().removeAttribute(Constant.UPDATE_LIBRARY_ID);
             if (libraryId != null && city != null && street != null) {
-                int resultOperation = libraryService.update(libraryId + "", city, street);
-                if (resultOperation == 1) {
+                boolean resultOperation = libraryService.update(libraryId + "", city, street);
+                if (resultOperation) {
                     req.getSession().setAttribute(Constant.MESSAGE_CODE_1018, Constant.MESSAGE_CODE_1018);
                     resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
-                } else if (resultOperation == 2){
-                    req.getSession().setAttribute(Constant.MESSAGE_ERROR_CODE_1007, Constant.MESSAGE_ERROR_CODE_1007);
-                    resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
-                } else if (resultOperation == 0){
+                }  else {
                     req.getSession().setAttribute(Constant.MESSAGE_ERROR_CODE_1022, Constant.MESSAGE_ERROR_CODE_1022);
                     resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
                 }

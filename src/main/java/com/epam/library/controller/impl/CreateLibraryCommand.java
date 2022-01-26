@@ -27,15 +27,12 @@ public class CreateLibraryCommand implements Command {
             String city = req.getParameter(Constant.LIBRARY_CITY);
             String street = req.getParameter(Constant.LIBRARY_STREET);
             if (city != null && street != null && city != "" && street != "") {
-                int resultOperation = libraryService.create(city, street);
-                if (resultOperation == 1) {
+                boolean resultOperation = libraryService.create(city, street);
+                if (resultOperation) {
                     req.getSession().setAttribute(Constant.MESSAGE_CODE_1005, Constant.MESSAGE_CODE_1005);
                     resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
-                } else if (resultOperation == 2){
+                } else {
                     req.getSession().setAttribute(Constant.MESSAGE_ERROR_CODE_1010, Constant.MESSAGE_ERROR_CODE_1010);
-                    resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
-                } else if (resultOperation == 3){
-                    req.getSession().setAttribute(Constant.MESSAGE_ERROR_CODE_1007, Constant.MESSAGE_ERROR_CODE_1007);
                     resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
                 }
             } else {

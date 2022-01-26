@@ -42,7 +42,7 @@ public class UpdateBookCommand implements Command {
             String quantity = req.getParameter(Constant.BOOK_QUANTITY);
             String description = req.getParameter(Constant.BOOK_DESCRIPTION);
 
-            int resultOperation;
+            boolean resultOperation;
 
             if (bookId != null) {
                if (title != "" && title != null || isbn != "" && isbn != null
@@ -76,7 +76,7 @@ public class UpdateBookCommand implements Command {
                        req.getSession().removeAttribute(Constant.UPDATE_BOOK_ID);
                        resultOperation = bookDtoService.update(bookId + "", bookDto, author, genre, quantity);
                    }
-                   if (resultOperation == 1) {
+                   if (resultOperation) {
                        req.getSession().setAttribute(Constant.MESSAGE_CODE_1017, Constant.MESSAGE_CODE_1017);
                        resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
                    } else {

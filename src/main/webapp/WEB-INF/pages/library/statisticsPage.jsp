@@ -18,7 +18,7 @@
 </head>
 <body class="body">
 <jsp:include page="/WEB-INF/pages/common/header.jsp"></jsp:include>
-<br>
+<br><br>
 <div align="center"><h1><fmt:message key="admin_menu_statistic"></fmt:message></h1></div>
 <div align="center">
     <table>
@@ -46,18 +46,6 @@
                         <td><fmt:message key="statistic_user_count_count_delete"></fmt:message></td>
                         <td>${countUsersDelete}</td>
                     </tr>
-<%--                    <tr>--%>
-<%--                        <td>Количество новых пользователей в этом месяце</td>--%>
-<%--                        <td>-</td>--%>
-<%--&lt;%&ndash;                        <td>${countNewUsersMonth}</td>&ndash;%&gt;--%>
-<%--                    </tr>--%>
-<%--                    </td>--%>
-<%--                    <td>--%>
-<%--                        <tr>--%>
-<%--                            <td>Количество новых пользователей в этом году</td>--%>
-<%--                            <td>-</td>--%>
-<%--&lt;%&ndash;                            <td>${countNewUsersYear}</td>&ndash;%&gt;--%>
-<%--                        </tr>--%>
                 </table>
             </td>
             <td>
@@ -71,16 +59,6 @@
                         <td><fmt:message key="statistic_book_count"></fmt:message></td>
                         <td>${countBooks}</td>
                     </tr>
-<%--                    <tr>--%>
-<%--                        <td>Количество новых книг в этом месяце</td>--%>
-<%--                        <td>-</td>--%>
-<%--&lt;%&ndash;                        <td>${countNewBookMonth}</td>&ndash;%&gt;--%>
-<%--                    </tr>--%>
-<%--                    <tr>--%>
-<%--                        <td>Количество новых книг в этом году</td>--%>
-<%--                        <td>${countNewBookYear}</td>--%>
-<%--                    </tr>--%>
-<%--                    </td>--%>
                 </table>
             </td>
         </tr>
@@ -142,7 +120,7 @@
                     </thead>
                     <tr>
                         <td><fmt:message key="statistic_author_count"></fmt:message></td>
-                        <td>${countAuthor}</td>
+                        <td>${countAuthors}</td>
                     </tr>
                 </table>
             </td>
@@ -155,7 +133,7 @@
                     </thead>
                     <tr>
                         <td><fmt:message key="statistic_genres_count"></fmt:message></td>
-                        <td>${countGenre}</td>
+                        <td>${countGenres}</td>
                     </tr>
                 </table>
             </td>

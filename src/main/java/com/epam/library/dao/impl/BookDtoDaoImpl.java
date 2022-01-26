@@ -213,7 +213,6 @@ public class BookDtoDaoImpl extends DaoHelper implements BookDtoDao {
             }
 
             connection.commit();
-            connection.setAutoCommit(true);
             return true;
         }catch (SQLException sqlE) {
             logger.error("Error while adding bookDto to table. BookDto - {}", bookDto.toString());
@@ -225,6 +224,11 @@ public class BookDtoDaoImpl extends DaoHelper implements BookDtoDao {
             }
             throw new DaoException("Error while adding bookDto to table.", sqlE);
         } finally {
+            try {
+                connection.setAutoCommit(true);
+            }catch (SQLException sql) {
+                logger.error("An error occurred while closing the transaction.");
+            }
             closeResultSet(resultSet);
             closePreparedStatement(prStatement);
             try {

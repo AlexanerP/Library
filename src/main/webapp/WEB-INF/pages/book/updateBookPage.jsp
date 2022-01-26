@@ -19,7 +19,7 @@
 </head>
 <body class="body">
 <jsp:include page="/WEB-INF/pages/common/header.jsp"></jsp:include>
-<br>
+<br><br>
 <div align="center"><h1><fmt:message key="title_update_book"></fmt:message></h1></div>
 
 <div align="center">

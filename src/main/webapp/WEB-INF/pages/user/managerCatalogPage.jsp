@@ -18,7 +18,7 @@
 </head>
 <body class="body">
 <jsp:include page="/WEB-INF/pages/common/header.jsp"></jsp:include>
-<br>
+<br><br>
 <div align="center"><h1><fmt:message key="title_work_with_admin"></fmt:message></h1></div>
 <form action="Controller" method="get">
     <input type="hidden" name="command" value="ManagerCatalog">
@@ -55,7 +55,7 @@
     <c:if test="${not empty books}">
         <b><fmt:message key="message_count_found_result"></fmt:message><c:out value="${userSize}"/></b>
     </c:if>
-<table border="1" cellpadding="5">
+<table class="table table-hover">
     <c:forEach var="users" items="${users}" varStatus="status">
     <tr class="tr">
         <tr>
@@ -65,12 +65,12 @@
         </td>
         </tr>
         <tr>
-            <th><fmt:message key="user_id"></fmt:message></th>
+            <th><fmt:message key="user_id_for_row"></fmt:message></th>
             <td>
                 <c:out value="${users.userId}"></c:out>
             </td>
             <td>
-                <a href="?command=UserCatalog&userId=${users.userId}"><input type="button" value="<fmt:message key="details"></fmt:message>"></a>
+                <a class="btn btn-info" href="?command=UserCatalog&userId=${users.userId}"><fmt:message key="details"></fmt:message></a>
             </td>
         </tr>
         <tr>
@@ -103,8 +103,8 @@
                 <c:out value="${users.countViolations}"></c:out>
             </td>
             <td>
-                <a href="?command=ActionUser&userId=${users.userId}&addViolation=addViolation"><input type="button" value="<fmt:message key="user_add_violation"></fmt:message>"></a>
-                <a href="?command=ActionUser&userId=${users.userId}&removeViolation=removeViolation"><input type="button" value="<fmt:message key="user_remove_violation"></fmt:message>"></a>
+                <a class="btn btn-danger" href="?command=ActionUser&userId=${users.userId}&addViolation=addViolation"><fmt:message key="user_add_violation"></fmt:message></a>
+                <a class="btn btn-success" href="?command=ActionUser&userId=${users.userId}&removeViolation=removeViolation"><fmt:message key="user_remove_violation"></fmt:message></a>
 
             </td>
         </tr>
@@ -114,9 +114,9 @@
                 <c:out value="${users.role}"></c:out>
             </td>
             <td>
-                <a href="?command=ActionAdminCommand&userId=${users.userId}&role=user"><input type="button" value="<fmt:message key="user_role_user"></fmt:message>"></a>
-                <a href="?command=ActionAdminCommand&userId=${users.userId}&role=admin"><input type="button" value="<fmt:message key="user_role_admin"></fmt:message>"></a>
-                <a href="?command=ActionAdminCommand&userId=${users.userId}&role=manager"><input type="button" value="<fmt:message key="user_role_manager"></fmt:message>"></a>
+                <a class="btn btn-light" href="?command=ActionAdminCommand&userId=${users.userId}&role=user"><fmt:message key="user_role_user"></fmt:message></a>
+                <a class="btn btn-light" href="?command=ActionAdminCommand&userId=${users.userId}&role=admin"><fmt:message key="user_role_admin"></fmt:message></a>
+                <a class="btn btn-light" href="?command=ActionAdminCommand&userId=${users.userId}&role=manager"><fmt:message key="user_role_manager"></fmt:message></a>
             </td>
         </tr>
         <tr>
@@ -125,9 +125,9 @@
                 <c:out value="${users.status}"></c:out>
             </td>
             <td>
-                <a href="?command=ActionUser&userId=${user.userId}&status=active"><input type="button" value="<fmt:message key="user_status_active"></fmt:message>"></a>
-                <a href="?command=ActionUser&userId=${user.userId}&status=blocked"><input type="button" value="<fmt:message key="user_status_blocked"></fmt:message>"></a>
-                <a href="?command=ActionUser&userId=${user.userId}&status=delete"><input type="button" value="<fmt:message key="user_status_delete"></fmt:message>"></a>
+                <a class="btn btn-success" href="?command=ActionUser&userId=${user.userId}&status=active"><fmt:message key="user_status_active"></fmt:message></a>
+                <a class="btn btn-warning" href="?command=ActionUser&userId=${user.userId}&status=blocked"><fmt:message key="block_command"></fmt:message></a>
+                <a class="btn btn-danger" href="?command=ActionUser&userId=${user.userId}&status=delete"><fmt:message key="delete_command"></fmt:message></a>
             </td>
         </tr>
     </tr>

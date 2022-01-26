@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int create(String email, String password, String secondName, String lastName) throws ServiceException {
+    public boolean create(String email, String password, String secondName, String lastName) throws ServiceException {
         try {
             UserDao userDAO = DaoFactory.getInstance().getUserDAO();
             Cipher cipher = UtilFactory.getInstance().getCipher();
@@ -83,20 +83,19 @@ public class UserServiceImpl implements UserService {
                         user.setRole(UserRole.USER);
                         user.setCountViolations(0);
                         userDAO.create(user);
-                        return 1;
-                    } else {
-                        return 2;
+                        return true;
                     }
                 } else {
-                    return 3;
+                    throw new ServiceException("The value is too long.");
                 }
             } else {
-                return 4;
+                return false;
             }
         }catch (DaoException e) {
             logger.error("Error in services during registration.");
             throw new ServiceException("Error in services during registration.", e);
         }
+        return false;
     }
 
     @Override
@@ -114,16 +113,12 @@ public class UserServiceImpl implements UserService {
     public long showCountByStatus(String status) throws ServiceException {
         try {
             UserDao userDAO = DaoFactory.getInstance().getUserDAO();
-            if (status != null) {
-                if (status.equalsIgnoreCase(UserStatus.ACTIVE.name())
-                        || status.equalsIgnoreCase(UserStatus.BLOCKED.name())
-                        || status.equalsIgnoreCase(UserStatus.DELETE.name())) {
-                    return userDAO.getCountByStatus(UserStatus.valueOf(status.toUpperCase()));
-                } else {
-                    throw new ServiceException("Unknown user status.");
-                }
+            if (status.equalsIgnoreCase(UserStatus.ACTIVE.name())
+                    || status.equalsIgnoreCase(UserStatus.BLOCKED.name())
+                    || status.equalsIgnoreCase(UserStatus.DELETE.name())) {
+                return userDAO.getCountByStatus(UserStatus.valueOf(status.toUpperCase()));
             } else {
-                throw new ServiceException("The value is empty.");
+                throw new ServiceException("Unknown user status.");
             }
         }catch (DaoException e) {
             logger.error("Error in services when getting the number of users by status.");
@@ -200,13 +195,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int update(String email, String secondName, String lastName, String userId) throws ServiceException {
+    public boolean update(String email, String secondName, String lastName, String userId) throws ServiceException {
         try {
             UserDao userDao = DaoFactory.getInstance().getUserDAO();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
             if (email != "") {
                 if(!validator.isEmail(email.trim())) {
-                    return 2;
+                    return false;
                 }
             }
             if (validator.isLengthForUpdate(secondName) && validator.isLengthForUpdate(lastName)
@@ -219,10 +214,9 @@ public class UserServiceImpl implements UserService {
                 user.setLastName(lastName != "" ? lastName : optionalUser.get().getLastName());
                 user.setEmail(email != "" ? email : optionalUser.get().getEmail());
                 userDao.update(user);
-                return 1;
-            } else {
-                return 3;
+                return true;
             }
+            return false;
         }catch (DaoException e) {
             logger.error("An error occurred while updating the user in services.", e);
             throw new ServiceException("An error occurred while updating the user in services.");
@@ -264,7 +258,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int updatePassword(String newPassword, String email, String oldPassword) throws ServiceException {
+    public boolean updatePassword(String newPassword, String email, String oldPassword) throws ServiceException {
         try {
             UserDao userDao = DaoFactory.getInstance().getUserDAO();
             Cipher cipher = UtilFactory.getInstance().getCipher();
@@ -276,12 +270,12 @@ public class UserServiceImpl implements UserService {
                     User user = optionalUser.get();
                     user.setPassword(cipher.getCipherString(newPassword));
                     userDao.updatePassword(user);
-                    return 1;
+                    return true;
                 } else {
-                    return 2;
+                    throw new ServiceException("User is not found.");
                 }
             } else {
-                return 3;
+                return false;
             }
     }catch (DaoException e) {
         logger.error("Error in services during registration.");

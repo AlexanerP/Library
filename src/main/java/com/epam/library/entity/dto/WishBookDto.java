@@ -20,6 +20,9 @@ public class WishBookDto implements Serializable {
     private String isbn;
     private String shelf;
 
+    public WishBookDto() {
+    }
+
     public long getWishBooksId() {
         return wishBooksId;
     }

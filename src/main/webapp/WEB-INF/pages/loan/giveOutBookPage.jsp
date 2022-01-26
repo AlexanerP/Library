@@ -87,89 +87,89 @@
         </c:if>
 
         <c:if test="${not empty orders}">
-            <table border="1" cellpadding="5">
+            <table class="table table-sm">
                 <c:forEach var="orders" items="${orders}" varStatus="status">
                 <tr class="tr">
                     <tr>
-                        <th>#</th>
                         <td>
+                            <b>#</b>
                             <c:out value="${status.index + 1}"></c:out>
                         </td>
-                        </tr>
+                    </tr>
                         <tr>
-                            <th><fmt:message key="id"></fmt:message></th>
                             <td>
+                                <b><fmt:message key="order_id"></fmt:message>:</b>
                                 <c:out value="${orders.orderDtoId}"></c:out>
                             </td>
                         </tr>
                         <tr>
-                            <th><fmt:message key="enter_user_id"></fmt:message></th>
                             <td>
+                                <b><fmt:message key="user_id"></fmt:message>:</b>
                                 <c:out value="${orders.userId}"></c:out>
-                                <a href="?command=UserCatalog&userId=${orders.userId}"><input type="button" value="<fmt:message key="details"></fmt:message>"></a>
+                                <a class="btn btn-info" href="?command=UserCatalog&userId=${orders.userId}"><fmt:message key="details"></fmt:message></a>
                             </td>
                         </tr>
                         <tr>
-                            <th><fmt:message key="order_id_admin"></fmt:message></th>
                             <td>
+                                <b><fmt:message key="order_id_admin"></fmt:message>:</b>
                                 <c:out value="${orders.adminId}"></c:out>
-                                <a href="?command=UserCatalog&userId=${orders.adminId}"><input type="button" value="<fmt:message key="details"></fmt:message>"></a>
+                                <a class="btn btn-info" href="?command=UserCatalog&userId=${orders.adminId}"><fmt:message key="details"></fmt:message></a>
                             </td>
                         </tr>
                         <tr>
-                            <th><fmt:message key="book_id"></fmt:message></th>
                             <td>
+                                <b><fmt:message key="book_id"></fmt:message>:</b>
                                 <c:out value="${orders.bookId}"></c:out>
-                                <a href="?command=CatalogBook&bookId=${orders.bookId}"><input type="button" value="<fmt:message key="details"></fmt:message>"></a>
+                                <a class="btn btn-info" href="?command=CatalogBook&bookId=${orders.bookId}"><fmt:message key="details"></fmt:message></a>
                             </td>
                         </tr>
                         <tr>
-                            <th><fmt:message key="book_title"></fmt:message></th>
                             <td>
+                                <b><fmt:message key="book_title"></fmt:message>:</b>
                                 <c:out value="${orders.title}"></c:out>
                             </td>
                         </tr>
                         <tr>
-                            <th><fmt:message key="book_isbn"></fmt:message></th>
                             <td>
+                                <b><fmt:message key="book_isbn"></fmt:message>:</b>
                                 <c:out value="${orders.isbn}"></c:out>
                             </td>
                         </tr>
                         <tr>
-                            <th><fmt:message key="book_year"></fmt:message></th>
                             <td>
+                                <b><fmt:message key="book_year"></fmt:message>:</b>
                                 <c:out value="${orders.year}"></c:out>
                             </td>
                         </tr>
                         <tr>
-                            <th><fmt:message key="order_date"></fmt:message></th>
                             <td>
+                                <b><fmt:message key="order_date"></fmt:message>:</b>
                                 <c:out value="${orders.date}"></c:out>
                             </td>
                         </tr>
                         <tr>
-                            <th><fmt:message key="library_city"></fmt:message></th>
                             <td>
+                                <b><fmt:message key="library_city"></fmt:message>:</b>
                                 <c:out value="${orders.cityLibrary}"></c:out>
                             </td>
                         </tr>
                         <tr>
-                            <th><fmt:message key="order_comment"></fmt:message></th>
                             <td>
+                                <b><fmt:message key="order_comment"></fmt:message>:</b>
                                 <c:out value="${orders.comment}"></c:out>
                             </td>
                         </tr>
                         <tr>
-                            <th><fmt:message key="status"></fmt:message></th>
                             <td>
+                                <b><fmt:message key="status"></fmt:message>:</b>
                                 <c:out value="${orders.status}"></c:out>
                             </td>
                         </tr>
                         <tr>
-                            <th><fmt:message key="order_issuing_book"></fmt:message></th>
                             <td>
-                                <a href="?command=ActionGiveOutBook&orderId=${orders.orderDtoId}&type_use=take_home"><input type="button" value="<fmt:message key="order_issuing_home"></fmt:message>"></a>
-                                <a href="?command=ActionGiveOutBook&orderId=${orders.orderDtoId}&type_use=read_room"><input type="button" value="<fmt:message key="order_issuing_room"></fmt:message>"></a>
+                                <b><fmt:message key="order_issuing_book"></fmt:message>:</b>
+                                <a class="btn btn-light" href="?command=ActionGiveOutBook&orderId=${orders.orderDtoId}&type_use=take_home"><fmt:message key="order_issuing_home"></fmt:message></a>
+                                <a class="btn btn-light" href="?command=ActionGiveOutBook&orderId=${orders.orderDtoId}&type_use=read_room"><fmt:message key="order_issuing_room"></fmt:message></a>
                             </td>
                         </tr>
                 </c:forEach>

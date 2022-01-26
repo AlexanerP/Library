@@ -62,7 +62,7 @@ public class WishBookServiceImpl implements WishBookService {
                         }
                     }
                 } else {
-                    throw new ServiceException("Invalid ID values.");
+                    throw new ServiceException("Invalid ID value.");
                 }
             } else {
                 throw new ServiceException("The wish book ID value is empty.");

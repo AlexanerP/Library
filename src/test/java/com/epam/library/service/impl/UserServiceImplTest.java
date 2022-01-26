@@ -41,39 +41,9 @@ class UserServiceImplTest {
             String password = "Password1";
             String secondName = "secondName";
             String lastName = "lastName";
-            int expected = 1;
-            int actual = userService.create(email, password, secondName, lastName);
-            assertEquals(expected, actual);
-        }catch (ServiceException e) {
-            e.printStackTrace();
-        }
-    }
 
-    @Test
-    void createBusyEmailTest() {
-        try {
-            String email = "email@gamil.com";
-            String password = "Password1";
-            String secondName = "secondName";
-            String lastName = "lastName";
-            int expected = 2;
-            int actual = userService.create(email, password, secondName, lastName);
-            assertEquals(expected, actual);
-        }catch (ServiceException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    void createWrongLongDataTest() {
-        try {
-            String email = "email@gamil.com";
-            String password = "Password1";
-            String secondName = "Beginning in the eighth century B.C., Ancient Rome grew from a small town on central";
-            String lastName = "lastName";
-            int expected = 3;
-            int actual = userService.create(email, password, secondName, lastName);
-            assertEquals(expected, actual);
+            boolean condition = userService.create(email, password, secondName, lastName);
+            assertTrue(condition);
         }catch (ServiceException e) {
             e.printStackTrace();
         }
@@ -86,9 +56,8 @@ class UserServiceImplTest {
             String password = "Password1";
             String secondName = "secondName";
             String lastName = "lastName";
-            int expected = 4;
-            int actual = userService.create(email, password, secondName, lastName);
-            assertEquals(expected, actual);
+            boolean condition = userService.create(email, password, secondName, lastName);
+            assertFalse(condition);
         }catch (ServiceException e) {
             e.printStackTrace();
         }
@@ -101,9 +70,8 @@ class UserServiceImplTest {
             String password = "password";
             String secondName = "secondName";
             String lastName = "lastName";
-            int expected = 4;
-            int actual = userService.create(email, password, secondName, lastName);
-            assertEquals(expected, actual);
+            boolean condition = userService.create(email, password, secondName, lastName);
+            assertFalse(condition);
         }catch (ServiceException e) {
             e.printStackTrace();
         }
@@ -216,9 +184,8 @@ class UserServiceImplTest {
             String secondName = "";
             String lastName = "update";
 
-            int expected = 1;
-            int actual =  userService.update(email, secondName, lastName, userId);
-            assertEquals(expected, actual);
+            boolean condition =  userService.update(email, secondName, lastName, userId);
+            assertTrue(condition);
         }catch (ServiceException e) {
             e.printStackTrace();
         }
@@ -232,25 +199,8 @@ class UserServiceImplTest {
             String secondName = "";
             String lastName = "update";
 
-            int expected = 2;
-            int actual =  userService.update(email, secondName, lastName, userId);
-            assertEquals(expected, actual);
-        }catch (ServiceException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    void updateLongDataTest() {
-        try {
-            String userId = "1";
-            String email = "update@gmail.com";
-            String secondName = "";
-            String lastName = "Beginning in the eighth century B.C., Ancient Rome grew from a small town on central";
-
-            int expected = 3;
-            int actual =  userService.update(email, secondName, lastName, userId);
-            assertEquals(expected, actual);
+            boolean condition =  userService.update(email, secondName, lastName, userId);
+            assertFalse(condition);
         }catch (ServiceException e) {
             e.printStackTrace();
         }
@@ -287,9 +237,8 @@ class UserServiceImplTest {
             String password = "test@gmail.com";
             String email = "1";
             String oldPassword = "1";
-            int expected = 1;
-            int actual = userService.updatePassword(password, email, oldPassword);
-            assertEquals(expected, actual);
+            boolean condition = userService.updatePassword(password, email, oldPassword);
+            assertTrue(condition);
         }catch (ServiceException e) {
             e.printStackTrace();
         }

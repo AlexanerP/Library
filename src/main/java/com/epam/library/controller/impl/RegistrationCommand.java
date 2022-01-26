@@ -5,6 +5,7 @@ import com.epam.library.controller.CommandType;
 import com.epam.library.controller.Constant;
 import com.epam.library.controller.PathJsp;
 import com.epam.library.entity.User;
+import com.epam.library.entity.UserStatus;
 import com.epam.library.service.ServiceException;
 import com.epam.library.service.ServiceFactory;
 import com.epam.library.service.UserService;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -36,25 +38,24 @@ public class RegistrationCommand implements Command {
             String lastName = req.getParameter(Constant.USER_LAST_NAME);
             if (email != null && email != "" && password != null && password != ""
                     && secondName != null && secondName != "" && lastName != null && lastName != ""){
-                int flagRegistration = userService.create(email, password, secondName, lastName);
-                if(flagRegistration == 1) {
-                    Optional<User> optionalUser = userService.verification(email, password);
-                    User user = new User();
-                    user.setUserId(optionalUser.get().getUserId());
-                    user.setRole(optionalUser.get().getRole());
-                    user.setSecondName(optionalUser.get().getSecondName());
-                    user.setLastName(optionalUser.get().getLastName());
-                    user.setStatus(optionalUser.get().getStatus());
-                    session.setAttribute(Constant.USER, user);
-                    req.getRequestDispatcher(PathJsp.INDEX_PAGE).forward(req, resp);
-                } else if (flagRegistration == 2){
+                if (isFreeEmail(email)) {
+                    boolean flagRegistration = userService.create(email, password, secondName, lastName);
+                    if(flagRegistration) {
+                        Optional<User> optionalUser = userService.verification(email, password);
+                        User user = new User();
+                        user.setUserId(optionalUser.get().getUserId());
+                        user.setRole(optionalUser.get().getRole());
+                        user.setSecondName(optionalUser.get().getSecondName());
+                        user.setLastName(optionalUser.get().getLastName());
+                        user.setStatus(optionalUser.get().getStatus());
+                        session.setAttribute(Constant.USER, user);
+                        req.getRequestDispatcher(PathJsp.INDEX_PAGE).forward(req, resp);
+                    } else  {
+                        session.setAttribute(Constant.MESSAGE_ERROR_CODE_1003, Constant.MESSAGE_ERROR_CODE_1003);
+                        resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
+                    }
+                } else {
                     session.setAttribute(Constant.MESSAGE_ERROR_CODE_1001, Constant.MESSAGE_ERROR_CODE_1001);
-                    resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
-                }else if (flagRegistration == 3) {
-                    session.setAttribute(Constant.MESSAGE_ERROR_CODE_1002, Constant.MESSAGE_ERROR_CODE_1002);
-                    resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
-                }else if (flagRegistration == 4) {
-                    session.setAttribute(Constant.MESSAGE_ERROR_CODE_1003, Constant.MESSAGE_ERROR_CODE_1003);
                     resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
                 }
             } else {
@@ -64,5 +65,25 @@ public class RegistrationCommand implements Command {
             logger.error("An error occured during registration. ", e);
             resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.ERROR_500);
         }
+    }
+
+    private boolean isFreeEmail(String email) {
+        try {
+            UserService userService = ServiceFactory.getInstance().getUserService();
+            List<User> users = userService.showUserByEmail(email);
+            if (users != null) {
+                for (User user : users) {
+                    if (user.getStatus().equals(UserStatus.ACTIVE)
+                            || user.getStatus().equals(UserStatus.BLOCKED)) {
+                        return false;
+                    }
+                }
+            } else {
+                return true;
+            }
+        } catch (ServiceException e) {
+        logger.error("Error while checking if email exists in the system.", e);
+        }
+        return false;
     }
 }

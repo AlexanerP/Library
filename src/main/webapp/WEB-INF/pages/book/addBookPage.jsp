@@ -18,7 +18,7 @@
 </head>
 <body class="body">
 <jsp:include page="/WEB-INF/pages/common/header.jsp"></jsp:include>
-<br>
+<br><br>
 <div align="center"><h1><fmt:message key="title_add_new_book"></fmt:message></h1></div>
 
 <div align="center">
@@ -28,11 +28,6 @@
             <table>
                 <form action="Controller" method="get">
                     <input type="hidden" name="command" value="CreateBook">
-                    <thead>
-                    <tr>
-                        <th colspan="2"><fmt:message key="title_add_new_book"></fmt:message></th>
-                    </tr>
-                    </thead>
                     <tr>
                         <td><fmt:message key="enter_title"></fmt:message></td>
                         <td><input type="text" placeholder="<fmt:message key="enter_title"></fmt:message>" name="title"></td>

@@ -15,30 +15,34 @@
 <html>
 <head>
     <title>Header</title>
-    <link rel="stylesheet" href="css/style.css">
+<%--    <link rel="stylesheet" href="css/style.css">--%>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
 <body>
-<div class="container" >
-    <div class="left">
-        <a class="button" href="?sessionLocale=en&command=ChangeLocale"><fmt:message key="language.en"/>  |</a>
-        <a class="button" href="?sessionLocale=ru&command=ChangeLocale"><fmt:message key="language.ru"/>  |</a>
-    </div>
+<div class="position-fixed" >
+<%--    <div class="row justify-content-around ">--%>
+
+        <a class="btn btn-info" href="?sessionLocale=en&command=ChangeLocale"><fmt:message key="language.en"/>  |</a>
+        <a class="btn btn-info" href="?sessionLocale=ru&command=ChangeLocale"><fmt:message key="language.ru"/>  |</a>
+<%--    </div>--%>
     <c:if test="${user.role != 'GUEST'}">
-    <div class="right">
-        <a class="button" href="?command=SignOut"><fmt:message key="login_sign_out"></fmt:message></a>
-    </div>
+        <button class="btn btn-info" type="button" name="back" onclick="history.back()"><fmt:message key="back"></fmt:message></button>
+        <a class="btn btn-info" href="Controller?command=GoToMainPage"><fmt:message key="main_page"></fmt:message></a>
 
-    <div class="center">
-        <button class="button" type="button" name="back" onclick="history.back()"><fmt:message key="back"></fmt:message></button>
-        <a class="button" href="Controller?command=GoToMainPage"><fmt:message key="main_page"></fmt:message></a>
-
-        <a class="button" href="?command=GoToHome"><fmt:message key="private_room"></fmt:message></a>
+        <a class="btn btn-info" href="?command=GoToHome"><fmt:message key="private_room"></fmt:message></a>
 
         <c:if test="${user.role != 'GUEST' and user.role eq 'ADMIN' or user.role eq 'MANAGER'}">
-            <a class="button" href="?command=GoToAdminPage"><fmt:message key="admin_room"></fmt:message></a>
+            <a class="btn btn-info" href="?command=GoToAdminPage"><fmt:message key="admin_room"></fmt:message></a>
         </c:if>
 
-        <button class="button" type="button" name="back" onclick="history.forward()"><fmt:message key="next"></fmt:message></button>
+        <button class="btn btn-info" type="button" name="back" onclick="history.forward()"><fmt:message key="next"></fmt:message></button>
+<%--    </div>--%>
+<%--        <div class="right">--%>
+        <a class="btn btn-info" href="?command=SignOut"><fmt:message key="login_sign_out"></fmt:message></a>
+
+<%--    </div>--%>
+
+<%--    <div class="center">--%>
         </c:if>
     </div>
 </div>

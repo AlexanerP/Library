@@ -28,15 +28,12 @@ public class UpdateAuthorCommand implements Command {
             String name = req.getParameter(Constant.AUTHOR_NAME);
             req.getSession().removeAttribute(Constant.UPDATE_AUTHOR_ID);
             if (authorId != null && name != null) {
-                int resultOperation = authorService.update(authorId + "", name);
-                if (resultOperation == 1) {
+                boolean resultOperation = authorService.update(authorId + "", name);
+                if (resultOperation) {
                     req.getSession().setAttribute(Constant.MESSAGE_CODE_1002, Constant.MESSAGE_CODE_1002);
                     resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
-                } else if (resultOperation == 2){
-                    req.getSession().setAttribute(Constant.MESSAGE_ERROR_CODE_1006, Constant.MESSAGE_ERROR_CODE_1006);
-                    resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
-                }else if (resultOperation == 3){
-                    req.getSession().setAttribute(Constant.MESSAGE_ERROR_CODE_1007, Constant.MESSAGE_ERROR_CODE_1007);
+                } else {
+                    req.getSession().setAttribute(Constant.NEGATIVE_MESSAGE, Constant.NEGATIVE_MESSAGE);
                     resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
                 }
             } else {

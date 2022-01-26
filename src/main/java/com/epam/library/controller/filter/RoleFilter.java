@@ -29,6 +29,8 @@ public class RoleFilter implements Filter {
         commandsUser.put(CommandType.SEARCH_BOOKS, allUsers);
         commandsUser.put(CommandType.CHANGE_LOCALE, allUsers);
         commandsUser.put(CommandType.GO_TO_MESSAGE_PAGE, allUsers);
+        commandsUser.put(CommandType.ERROR_404, allUsers);
+        commandsUser.put(CommandType.ERROR_500, allUsers);
 
         commandsUser.put(CommandType.GO_TO_HOME, userAdminManager);
         commandsUser.put(CommandType.GO_TO_CATALOG, userAdminManager);

@@ -37,7 +37,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public int update(String authorId, String name) throws ServiceException {
+    public boolean update(String authorId, String name) throws ServiceException {
         try {
             AuthorDao authorDao = DaoFactory.getInstance().getAuthorDAO();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
@@ -49,12 +49,12 @@ public class AuthorServiceImpl implements AuthorService {
                             author.setAuthorId(Long.parseLong(authorId.trim()));
                             author.setName(name);
                             authorDao.update(author);
-                            return 1;
+                            return true;
                         } else {
-                            return 2;
+                            throw new ServiceException("The author is present in the system.");
                         }
                     } else {
-                        return 3;
+                        return false;
                     }
                 } else {
                     throw new ServiceException("Author ID value is not a number.");

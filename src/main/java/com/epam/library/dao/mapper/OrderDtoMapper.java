@@ -17,7 +17,6 @@ public class OrderDtoMapper implements RowMapper<OrderDto> {
         orderDto.setAdminId(resultSet.getLong(ColumnName.ORDER_ID_ADMIN));
         orderDto.setUserId(resultSet.getLong(ColumnName.ORDER_ID_USER));
         orderDto.setCityLibrary(resultSet.getString(ColumnName.LIBRARY_CITY));
-        orderDto.setEmail(resultSet.getString(ColumnName.USER_EMAIL));
         orderDto.setCountViolations(resultSet.getInt(ColumnName.USER_COUNT_VIOLATIONS));
         orderDto.setDate(resultSet.getDate(ColumnName.ORDER_DATE).toLocalDate());
         orderDto.setStatus(OrderStatus.valueOf(resultSet.getString(ColumnName.ORDER_STATUS_STATUS).toUpperCase()));

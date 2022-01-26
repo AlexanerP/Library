@@ -18,19 +18,19 @@
 </head>
 <body class="body">
 <jsp:include page="/WEB-INF/pages/common/header.jsp"></jsp:include>
-<br>
+<br><br>
 <div align="center"><h1><fmt:message key="user_menu_story_book_user"></fmt:message></h1></div>
 <div align="center"><h3><c:out value="${secondName} ${lastName}"></c:out></h3></div>
 <br><br><br>
     <div align="center">
         <form>
             <c:if test="${not empty loanCards}">
-            <table cellpadding="5">
-                <tr>
+            <table class="table table-hover">
+                <tr class="thead-dark">
                     <th>#</th>
-                    <th><fmt:message key="book_id"></fmt:message></th>
-                    <th><fmt:message key="book_title"></fmt:message></th>
-                    <th><fmt:message key="book_isbn"></fmt:message></th>
+                    <th><fmt:message key="book_id_for_row"></fmt:message></th>
+                    <th><fmt:message key="book_title_for_row"></fmt:message></th>
+                    <th><fmt:message key="book_isbn_for_row"></fmt:message></th>
                     <th><fmt:message key="loan_card_taking_date"></fmt:message></th>
                     <th><fmt:message key="loan_card_deadline"></fmt:message></th>
                     <th><fmt:message key="loan_card_return"></fmt:message></th>

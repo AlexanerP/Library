@@ -18,6 +18,7 @@
 </head>
 <body class="body">
 <jsp:include page="/WEB-INF/pages/common/header.jsp"></jsp:include>
+<br><br>
 <div align="center"><h1><fmt:message key="order_book"></fmt:message></h1></div>
 <form>
     <input type="hidden" name="command" value="OrderBook">

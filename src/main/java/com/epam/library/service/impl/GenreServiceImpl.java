@@ -53,7 +53,7 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public int update(String genreId, String category) throws ServiceException {
+    public boolean update(String genreId, String category) throws ServiceException {
         try {
             GenreDao genreDao = DaoFactory.getInstance().getGenreDAO();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
@@ -65,12 +65,12 @@ public class GenreServiceImpl implements GenreService {
                         genre.setGenreId(Long.parseLong(genreId.trim()));
                         genre.setCategory(category);
                         genreDao.update(genre);
-                        return 1;
+                        return true;
                     } else {
-                        return 2;
+                        throw new ServiceException("Genre not found.");
                     }
                 } else {
-                    return 3;
+                    return false;
                 }
             } else {
                 throw new ServiceException("Genre ID value is not a number.");

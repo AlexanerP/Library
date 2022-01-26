@@ -31,14 +31,11 @@ public class UpdateUserPasswordCommand implements Command {
             String newPassword = req.getParameter(Constant.USER_NEW_PASSWORD);
             if (email != "" && email != null && oldPassword != "" && oldPassword !=null
                     && newPassword != "" && newPassword != null) {
-                int flag = userService.updatePassword(newPassword, email, oldPassword);
-                if (flag == 1) {
+                boolean resultOperation = userService.updatePassword(newPassword, email, oldPassword);
+                if (resultOperation) {
                     session.setAttribute(Constant.MESSAGE_CODE_1001, Constant.MESSAGE_CODE_1001);
                     resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
-                } else if (flag == 2){
-                    session.setAttribute(Constant.MESSAGE_ERROR_CODE_1004, Constant.MESSAGE_ERROR_CODE_1004);
-                    resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
-                } else if (flag == 3){
+                } else {
                     session.setAttribute(Constant.MESSAGE_ERROR_CODE_1005, Constant.MESSAGE_ERROR_CODE_1005);
                     resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
                 }

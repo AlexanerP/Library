@@ -13,16 +13,14 @@
 <html>
 <head>
     <title><fmt:message key="registration"></fmt:message></title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
-<body class="body">
-<div class="container">
+<body>
+<div class=class="position-fixed">
     <div class="left">
-        <a class="button" href="?sessionLocale=en&command=ChangeLocale"><fmt:message key="language.en"/>  |</a>
-        <a class="button" href="?sessionLocale=ru&command=ChangeLocale"><fmt:message key="language.ru"/>  |</a>
-    </div>
-    <div class="center">
-        <button class="button" type="button" name="back" onclick="history.back()"><fmt:message key="back"></fmt:message></button>
+        <a class="btn btn-info" href="?sessionLocale=en&command=ChangeLocale"><fmt:message key="language.en"/>  |</a>
+        <a class="btn btn-info" href="?sessionLocale=ru&command=ChangeLocale"><fmt:message key="language.ru"/>  |</a>
+        <button class="btn btn-info" type="button" name="back" onclick="history.back()"><fmt:message key="back"></fmt:message></button>
     </div>
 </div>
 <br><br>

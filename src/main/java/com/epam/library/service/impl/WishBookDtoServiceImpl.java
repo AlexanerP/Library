@@ -25,9 +25,8 @@ public class WishBookDtoServiceImpl implements WishBookDtoService {
             if (validator.isNumber(userId)) {
                 return wishBookDtoDao.getBooks(Long.parseLong(userId.trim()));
             }else {
-                throw new ServiceException("Invalid ID");
+                throw new ServiceException("Invalid type value ID");
             }
-
         }catch (DaoException e) {
             logger.error("Error in services when retrieving selected user books.");
             throw new ServiceException("Error in services when retrieving selected user books.", e);
