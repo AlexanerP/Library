@@ -26,6 +26,32 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public boolean create(String title, String isbn, String publisher, String year, String quantity, String shelf,
+                          String description, String library) throws ServiceException {
+        try {
+            ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
+            BookDao bookDao = DaoFactory.getInstance().getBookDao();
+            if (validator.isLengthTitle(title) && validator.isLength(isbn) && validator.isLength(publisher) &&
+                validator.isLength(year) && validator.isLength(shelf) && validator.isNumber(quantity)) {
+                Book book = new Book();
+                book.setTitle(title);
+                book.setIsbn(isbn);
+                book.setPublisher(publisher);
+                book.setYear(year);
+                book.setShelf(shelf);
+                book.setQuantity(Integer.parseInt(quantity.trim()));
+                book.setCityLibrary(library);
+                return bookDao.create(book);
+            } else {
+                throw new ServiceException("Invalid data.");
+            }
+        } catch (DaoException e) {
+            logger.error("Error in services when adding a book.");
+            throw new ServiceException("Error in services when adding a book.", e);
+        }
+    }
+
+    @Override
     public boolean update(String bookId, Book book, String quantity,  String cityLibrary) throws ServiceException {
         try {
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
@@ -45,8 +71,8 @@ public class BookServiceImpl implements BookService {
                         optionalBook.get().getPublisher());
                 newBook.setYear(book.getYear() != "" ? book.getYear() : optionalBook.get().getYear());
                 newBook.setShelf(book.getShelf() != "" ? book.getShelf() : optionalBook.get().getShelf());
-                newBook.setLibraryId(cityLibrary != "" ? optionalLibrary.get().getLibraryId() :
-                        optionalBook.get().getLibraryId());
+                newBook.setCityLibrary(cityLibrary != "" ? optionalLibrary.get().getCity() :
+                        optionalBook.get().getCityLibrary());
                 newBook.setDescription(book.getDescription() != "" ? book.getDescription() :
                         optionalBook.get().getDescription());
                 if (validator.isNumber(quantity)) {

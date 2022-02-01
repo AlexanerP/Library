@@ -31,9 +31,8 @@ public class BookDtoDaoImpl extends DaoHelper implements BookDtoDao {
 
     private static final String ADD_BOOK_QUERY = String.format("INSERT INTO %s(%s, %s, %s, %s, %s, %s, %s, %s, %s) " +
                     "VALUES(?, ?, ?, ?, ?, ?, ?, ?, (SELECT %s FROM %s WHERE %s=?))", TableName.BOOK, ColumnName.BOOK_SHELF,
-            ColumnName.BOOK_TITLE,
-            ColumnName.BOOK_QUANTITY, ColumnName.BOOK_BORROW, ColumnName.BOOK_PUBLISHER, ColumnName.BOOK_DESCRIPTION,
-            ColumnName.BOOK_YEAR, ColumnName.BOOK_ISBN, ColumnName.BOOK_ID_LIBRARY,
+            ColumnName.BOOK_TITLE, ColumnName.BOOK_QUANTITY, ColumnName.BOOK_BORROW, ColumnName.BOOK_PUBLISHER,
+            ColumnName.BOOK_DESCRIPTION, ColumnName.BOOK_YEAR, ColumnName.BOOK_ISBN, ColumnName.BOOK_ID_LIBRARY,
             ColumnName.LIBRARY_ID_LIBRARY, TableName.LIBRARY, ColumnName.LIBRARY_CITY);
 
     private static final String UPDATE_BOOK_QUERY = String.format("UPDATE %s SET %s=?, %s=?, %s=?, %s=?, %s=?, " +
@@ -195,7 +194,6 @@ public class BookDtoDaoImpl extends DaoHelper implements BookDtoDao {
             if (bookDto.getAuthors() != null) {
                 if (!bookDto.getAuthors().isEmpty()) {
                     for (Author author : bookDto.getAuthors()) {
-                        authorDAO.create(author);
                         prStatement = createPreparedStatement(connection, ADD_AHB_QUERY, author.getName(), bookId);
                         prStatement.execute();
                     }
@@ -205,7 +203,6 @@ public class BookDtoDaoImpl extends DaoHelper implements BookDtoDao {
             if(bookDto.getGenres() != null) {
                 if (!bookDto.getGenres().isEmpty()) {
                     for (Genre genre : bookDto.getGenres()) {
-                        genreDAO.create(genre);
                         prStatement = createPreparedStatement(connection, ADD_GHB_QUERY, genre.getCategory(), bookId);
                         prStatement.execute();
                     }

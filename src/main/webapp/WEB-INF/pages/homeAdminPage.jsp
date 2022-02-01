@@ -16,7 +16,7 @@
     <title><fmt:message key="user_menu_admin_page"></fmt:message></title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="body">
+<body background="${pageContext.request.contextPath}/images/58652c1422b52.jpg" class="bg_img">
 <jsp:include page="/WEB-INF/pages/common/header.jsp"></jsp:include>
 <br><br>
 <div align="center">

@@ -1,5 +1,6 @@
 package com.epam.library.dao.impl;
 
+import com.epam.library.dao.DaoException;
 import com.epam.library.dao.GenreDao;
 import com.epam.library.entity.Genre;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -40,9 +40,14 @@ public class GenreDaoImplTest {
     @Test
     public void getGenres() {
         List<Genre> genres = genreDAO.getGenres();
-        for (Genre genre : genres) {
-            System.out.println(genre);
-        }
         assertFalse(genres.isEmpty());
+    }
+
+    @Test
+    public void getCountByGenre() throws DaoException {
+        long count = genreDAO.getCountBookByIdGenre(1);
+        System.out.println(count);
+        assertTrue(count > 0);
+
     }
 }

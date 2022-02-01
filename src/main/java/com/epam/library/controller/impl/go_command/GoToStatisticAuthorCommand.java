@@ -25,11 +25,10 @@ public class GoToStatisticAuthorCommand implements Command {
         try {
             req.getSession().setAttribute(Constant.URL, CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_STATISTIC_AUTHOR);
             AuthorService authorService = ServiceFactory.getInstance().getAuthorService();
-
             String authorId = req.getParameter(Constant.AUTHOR_ID);
             if (authorId != null) {
                 Author author = authorService.showAuthorById(authorId).orElse(new Author("-"));
-                long countBook = authorService.getCountBooksByAuthors(author.getName());
+                long countBook = authorService.getCountBooksByAuthor(authorId);
                 req.setAttribute(Constant.AUTHORS_STAT, author);
                 req.setAttribute(Constant.AUTHORS_COUNT_BOOKS, countBook);
             }

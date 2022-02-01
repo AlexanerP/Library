@@ -34,22 +34,26 @@ public class GenreServiceImpl implements GenreService {
         try {
             GenreDao genreDao = DaoFactory.getInstance().getGenreDAO();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
-            if (category != null) {
-                if (validator.isLength(category)) {
-                    Genre genre = new Genre();
-                    genre.setCategory(category);
-                    return genreDao.create(genre);
-                } else {
-                    throw new ServiceException("Error in services the category value is too much higher " +
-                            "than the specified one");
+            if (validator.isLength(category)) {
+                List<Genre> genres = genreDao.getGenres();
+                for (Genre genreFromDB : genres) {
+                    if (!category.equalsIgnoreCase(genreFromDB.getCategory())) {
+                        Genre genre = new Genre();
+                        genre.setCategory(category);
+                        return genreDao.create(genre);
+                    } else {
+                        return false;
+                    }
                 }
             } else {
-                throw new ServiceException("Services error category value is empty.");
+                throw new ServiceException("Error in services the category value is too much higher " +
+                        "than the specified one");
             }
         } catch (DaoException e) {
             logger.error("Error while creating category.");
             throw new ServiceException("Error while creating category.", e);
         }
+        return false;
     }
 
     @Override
@@ -93,10 +97,15 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public long getCountBooksByGenres(String category) throws ServiceException {
+    public long getCountBooksByGenres(String genreId) throws ServiceException {
         try {
             GenreDao genreDao = DaoFactory.getInstance().getGenreDAO();
-            return genreDao.getCountByGenre(category);
+            ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
+            if (validator.isNumber(genreId)) {
+                return genreDao.getCountBookByIdGenre(Integer.parseInt(genreId.trim()));
+            } else {
+                throw new ServiceException("Invalid ID genre");
+            }
         } catch (DaoException e) {
             logger.error("Error in services when getting the number of genres by category.");
             throw new ServiceException("Error in services when getting the number of genres by category.", e);

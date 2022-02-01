@@ -19,27 +19,23 @@ class WishBookServiceImplTest {
     }
 
     @Test
-    void addRightTest() {
-        try{
-            logger.info("Start. Adding favorite book to wish list.");
-            String userId = "1";
-            String bookId = "1";
-            boolean condition = wishBookService.add(userId, bookId);
-            logger.info("Result operation - " + condition);
-            assertTrue(condition);
-            logger.info("Finish test");
-        } catch (ServiceException e) {
-
-        }
+    void addRightTest() throws ServiceException {
+        logger.info("Start. Adding favorite book to wish list.");
+        String userId = "1";
+        String bookId = "1";
+        boolean condition = wishBookService.create(userId, bookId);
+        logger.info("Result operation - " + condition);
+        assertTrue(condition);
+        logger.info("Finish test");
     }
 
     @Test
-    void addWrongNotNumberIdTest() {
+    void addWrongNotNumberIdTest() throws ServiceException {
         logger.info("Start. Adding favorite book to wish list wish not right number ID.");
         String userId = "1l";
         String bookId = "1";
         ServiceException exception = assertThrows(ServiceException.class, () -> {
-            wishBookService.add(userId, bookId);
+            wishBookService.create(userId, bookId);
         });
         String expectedMessage = "Invalid ID values.";
         logger.info("Parameters: userId - {}, bookId - {}, exceptionMessage - {}", userId, bookId, expectedMessage);
@@ -51,22 +47,18 @@ class WishBookServiceImplTest {
     }
 
     @Test
-    void deleteRightTest() {
-        try {
-            logger.info("Start. Deleting favorite book from wish list.");
-            String wishBookId = "1";
-            boolean condition = wishBookService.delete(wishBookId);
-            logger.info("Parameters: wishBookId - {}", wishBookId);
-            logger.info("Result operation - " + condition);
-            assertTrue(condition);
-            logger.info("Finish test");
-        }catch (ServiceException e) {
-
-        }
+    void deleteRightTest() throws ServiceException {
+        logger.info("Start. Deleting favorite book from wish list.");
+        String wishBookId = "1";
+        boolean condition = wishBookService.delete(wishBookId);
+        logger.info("Parameters: wishBookId - {}", wishBookId);
+        logger.info("Result operation - " + condition);
+        assertTrue(condition);
+        logger.info("Finish test");
     }
 
     @Test
-    void deleteWrongNotNumberIdTest() {
+    void deleteWrongNotNumberIdTest() throws ServiceException {
         logger.info("Start. Deleting favorite book from wish list wish not right number ID.");
         String wishBookId = "1l";
         ServiceException exception = assertThrows(ServiceException.class, () -> {
@@ -82,15 +74,11 @@ class WishBookServiceImplTest {
     }
 
     @Test
-    void showCountBooks() {
-        try{
-            logger.info("Start. Getting count favorite books.");
-            long countBooks = wishBookService.showCountBooks();
-            logger.info("Result operation count books - " + countBooks);
-            assertTrue(countBooks > 0);
-            logger.info("Finish test");
-        } catch (ServiceException e) {
-
-        }
+    void showCountBooks() throws ServiceException {
+        logger.info("Start. Getting count favorite books.");
+        long countBooks = wishBookService.showCountBooks();
+        logger.info("Result operation count books - " + countBooks);
+        assertTrue(countBooks > 0);
+        logger.info("Finish test");
     }
 }

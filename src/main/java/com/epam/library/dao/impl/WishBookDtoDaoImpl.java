@@ -27,9 +27,6 @@ public class WishBookDtoDaoImpl extends DaoHelper implements WishBookDtoDao {
             TableName.BOOK, TableName.WISH_BOOK, ColumnName.WISH_BOOK_ID_BOOK, TableName.BOOK, ColumnName.BOOK_ID_BOOK,
             TableName.WISH_BOOK, ColumnName.WISH_BOOK_ID_USER, TableName.WISH_BOOK, ColumnName.WISH_BOOK_ADDED);
 
-    private static final String DELETE_WISH_BOOKS_QUERY = String.format("delete from %s where %s=? and %s=?",
-            TableName.WISH_BOOK, ColumnName.WISH_BOOK_ID_USER, ColumnName.WISH_BOOK_ID_BOOK);
-
     @Override
     public List<WishBookDto> getBooks(long userId) throws DaoException {
         logger.info("Getting wish books.");

@@ -31,6 +31,8 @@ public final class CommandProvider {
 
         commands.put(CommandType.CREATE_LIBRARY, new CreateLibraryCommand());
         commands.put(CommandType.CREATE_BOOK, new CreateBookCommand());
+        commands.put(CommandType.CREATE_AUTHOR, new CreateAuthorCommand());
+        commands.put(CommandType.CREATE_GENRE, new CreateGenreCommand());
 
         commands.put(CommandType.UPDATE_BOOK, new UpdateBookCommand());
         commands.put(CommandType.UPDATE_USER_PASSWORD, new UpdateUserPasswordCommand());
@@ -72,6 +74,7 @@ public final class CommandProvider {
 
         commands.put(CommandType.GO_TO_STATISTIC_AUTHOR, new GoToStatisticAuthorCommand());
         commands.put(CommandType.GO_TO_STATISTIC_GENRE, new GoToStatisticGenreCommand());
+        commands.put(CommandType.GO_TO_BOOK_DETAILS_PAGE, new GoToBookDetailsCommand());
 
     }
 

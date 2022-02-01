@@ -25,15 +25,15 @@
         <table>
             <tr>
                 <td><fmt:message key="user_email"></fmt:message></td>
-                <td><input type="text" name="email" placeholder="<fmt:message key="user_email"></fmt:message>"></td>
+                <td><input type="text" name="email" placeholder="<fmt:message key="user_email"></fmt:message>" maxlength="30"></td>
             </tr>
             <tr>
                 <td><fmt:message key="user_second_name"></fmt:message></td>
-                <td><input type="text" name="secondName" placeholder="<fmt:message key="user_second_name"></fmt:message>"></td>
+                <td><input type="text" name="secondName" placeholder="<fmt:message key="user_second_name"></fmt:message>" maxlength="30"></td>
             </tr>
             <tr>
                 <td><fmt:message key="user_last_name"></fmt:message></td>
-                <td><input type="text" name="lastName" placeholder="<fmt:message key="user_last_name"></fmt:message>"></td>
+                <td><input type="text" name="lastName" placeholder="<fmt:message key="user_last_name"></fmt:message>" maxlength="30"></td>
             </tr>
             <tr>
                 <td colspan="2" align="center"><input type="submit" value="<fmt:message key="button_update"></fmt:message>" name="updateUser"></td>
@@ -53,15 +53,15 @@
         <table>
             <tr>
                 <td><fmt:message key="user_email"></fmt:message></td>
-                <td><input type="text" name="email" placeholder="<fmt:message key="user_email"></fmt:message>"/></td>
+                <td><input type="text" name="email" placeholder="<fmt:message key="user_email"></fmt:message>" maxlength="30"></td>
             </tr>
             <tr>
                 <td><fmt:message key="old_password"></fmt:message></td>
-                <td><input type="password" name="old_password" placeholder="<fmt:message key="old_password"></fmt:message>"/></td>
+                <td><input type="password" name="old_password" placeholder="<fmt:message key="old_password"></fmt:message>" maxlength="30"></td>
             </tr>
             <tr>
                 <td><fmt:message key="new_password"></fmt:message></td>
-                <td><input type="password" name="new_password" placeholder="<fmt:message key="new_password"></fmt:message>"/></td>
+                <td><input type="password" name="new_password" placeholder="<fmt:message key="new_password"></fmt:message>" maxlength="30"></td>
             </tr>
             <tr>
                 <td colspan="2"> <i>

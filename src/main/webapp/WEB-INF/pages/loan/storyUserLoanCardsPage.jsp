@@ -24,13 +24,11 @@
 <br><br><br>
     <div align="center">
         <form>
-            <c:if test="${not empty loanCards}">
             <table class="table table-hover">
                 <tr class="thead-dark">
                     <th>#</th>
-                    <th><fmt:message key="book_id_for_row"></fmt:message></th>
-                    <th><fmt:message key="book_title_for_row"></fmt:message></th>
-                    <th><fmt:message key="book_isbn_for_row"></fmt:message></th>
+                    <th><fmt:message key="book_title"></fmt:message></th>
+                    <th><fmt:message key="book_isbn"></fmt:message></th>
                     <th><fmt:message key="loan_card_taking_date"></fmt:message></th>
                     <th><fmt:message key="loan_card_deadline"></fmt:message></th>
                     <th><fmt:message key="loan_card_return"></fmt:message></th>
@@ -38,18 +36,32 @@
                     <th><fmt:message key="loan_card_type_use"></fmt:message></th>
                     <th><fmt:message key="status"></fmt:message></th>
                 </tr>
+                <c:if test="${not empty loanCards}">
                     <c:forEach var="card" items="${loanCards}" varStatus="status">
                         <tr>
                             <td><c:out value="${status.index + 1}"></c:out></td>
-                            <td><c:out value="${card.bookId}"></c:out></td>
                             <td><c:out value="${card.title}"></c:out></td>
                             <td><c:out value="${card.isbn}"></c:out></td>
                             <td><c:out value="${card.takingBook}"></c:out></td>
                             <td><c:out value="${card.returnBook}"></c:out></td>
                             <td><c:out value="${card.deadline}"></c:out></td>
                             <td><c:out value="${card.cityLibrary}"></c:out></td>
-                            <td><c:out value="${card.typeUse}"></c:out></td>
-                            <td><c:out value="${card.status}"></c:out></td>
+                            <td>
+                                <c:if test="${card.typeUse eq 'READ_ROOM'}">
+                                    <fmt:message key="loan_card_type_use_library"></fmt:message>
+                                </c:if>
+                                <c:if test="${card.typeUse eq 'TAKE_HOME'}">
+                                    <fmt:message key="loan_card_type_use_home"></fmt:message>
+                                </c:if>
+                            </td>
+                            <td>
+                                <c:if test="${card.status eq 'OPEN'}">
+                                    <fmt:message key="loan_card_status_opened"></fmt:message>
+                                </c:if>
+                                <c:if test="${card.status eq 'CLOSED'}">
+                                    <fmt:message key="loan_card_status_closed"></fmt:message>
+                                </c:if>
+                            </td>
                         </tr>
                     </c:forEach>
                 </c:if>

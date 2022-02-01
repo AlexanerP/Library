@@ -76,11 +76,11 @@
                     </tr>
                     <tr>
                         <td><fmt:message key="enter_library_city"></fmt:message></td>
-                        <td><input type="text" name="city" placeholder="<fmt:message key="enter_library_city"></fmt:message>"></td>
+                        <td><input type="text" name="city" placeholder="<fmt:message key="enter_library_city"></fmt:message>" maxlength="30"></td>
                     </tr>
                     <tr>
                         <td><fmt:message key="enter_library_street"></fmt:message></td>
-                        <td><input type="text" name="street" placeholder="<fmt:message key="enter_library_street"></fmt:message>"></td>
+                        <td><input type="text" name="street" placeholder="<fmt:message key="enter_library_street"></fmt:message>" maxlength="30"></td>
                     </tr>
                     <tr><td><input type="submit" value="<fmt:message key="button_add"></fmt:message>"></tr></td>
                 </table>

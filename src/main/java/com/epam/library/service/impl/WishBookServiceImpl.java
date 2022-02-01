@@ -19,32 +19,27 @@ public class WishBookServiceImpl implements WishBookService {
     private static final Logger logger = LoggerFactory.getLogger(WishBookServiceImpl.class);
 
     @Override
-    public boolean add(String userId, String bookId) throws ServiceException {
+    public boolean create(String userId, String bookId) throws ServiceException {
         try {
             WishBookDao wishBookDao = DaoFactory.getInstance().getWishBookDao();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
-            if (userId != null && bookId != null) {
-                if (validator.isNumber(userId) && validator.isNumber(bookId)) {
-                    Optional<WishBook> optionalWishBook = wishBookDao
-                            .getWishBookByBookAndByUser(Long.parseLong(bookId.trim()), Long.parseLong(userId.trim()));
-                    if (optionalWishBook.isEmpty()) {
-                        WishBook wishBook = new WishBook();
-                        wishBook.setUserId(Long.parseLong(userId.trim()));
-                        wishBook.setBookId(Long.parseLong(bookId.trim()));
-                        wishBookDao.create(wishBook);
-                        return true;
-                    }
-                } else {
-                    throw new ServiceException("Invalid ID values.");
+            if (validator.isNumber(userId) && validator.isNumber(bookId)) {
+                Optional<WishBook> optionalWishBook = wishBookDao
+                        .getWishBookByBookAndByUser(Long.parseLong(bookId.trim()), Long.parseLong(userId.trim()));
+                if (optionalWishBook.isEmpty()) {
+                    WishBook wishBook = new WishBook();
+                    wishBook.setUserId(Long.parseLong(userId.trim()));
+                    wishBook.setBookId(Long.parseLong(bookId.trim()));
+                    wishBookDao.create(wishBook);
                 }
             } else {
-                throw new ServiceException("The user ID or the book ID value is empty.");
+                throw new ServiceException("Invalid ID values.");
             }
         } catch (DaoException e) {
             logger.error("Error adding book to favorites.");
             throw new ServiceException("Error adding book to favorites.", e);
         }
-        return false;
+        return true;
     }
 
     @Override
@@ -52,20 +47,16 @@ public class WishBookServiceImpl implements WishBookService {
         try {
             WishBookDao wishBookDao = DaoFactory.getInstance().getWishBookDao();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
-            if (wishBookId != null) {
-                if (validator.isNumber(wishBookId)) {
-                    Optional<WishBook> optionalWishBook = wishBookDao.getWishBookByID(Long.parseLong(wishBookId.trim()));
-                    if (optionalWishBook.isPresent()) {
-                        int result = wishBookDao.delete(Long.parseLong(wishBookId.trim()));
-                        if (result == 1) {
-                            return true;
-                        }
+            if (validator.isNumber(wishBookId)) {
+                Optional<WishBook> optionalWishBook = wishBookDao.getWishBookByID(Long.parseLong(wishBookId.trim()));
+                if (optionalWishBook.isPresent()) {
+                    int result = wishBookDao.delete(Long.parseLong(wishBookId.trim()));
+                    if (result == 1) {
+                        return true;
                     }
-                } else {
-                    throw new ServiceException("Invalid ID value.");
                 }
             } else {
-                throw new ServiceException("The wish book ID value is empty.");
+                throw new ServiceException("Invalid ID value.");
             }
         } catch (DaoException e) {
             logger.error("Error deleting book from favorites.");

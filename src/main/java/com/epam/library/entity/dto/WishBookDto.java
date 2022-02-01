@@ -16,9 +16,7 @@ public class WishBookDto implements Serializable {
     private String publisher;
     private String description;
     private String year;
-    private LocalDate added;
     private String isbn;
-    private String shelf;
 
     public WishBookDto() {
     }
@@ -95,28 +93,12 @@ public class WishBookDto implements Serializable {
         this.year = year;
     }
 
-    public LocalDate getAdded() {
-        return added;
-    }
-
-    public void setAdded(LocalDate added) {
-        this.added = added;
-    }
-
     public String getIsbn() {
         return isbn;
     }
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
-    }
-
-    public String getShelf() {
-        return shelf;
-    }
-
-    public void setShelf(String shelf) {
-        this.shelf = shelf;
     }
 
     @Override
@@ -128,42 +110,36 @@ public class WishBookDto implements Serializable {
             return false;
         }
 
-        WishBookDto that = (WishBookDto) obj;
+        WishBookDto book = (WishBookDto) obj;
 
-        if (wishBooksId != that.wishBooksId) {
+        if (wishBooksId != book.wishBooksId) {
             return false;
         }
-        if (bookId != that.bookId) {
+        if (bookId != book.bookId) {
             return false;
         }
-        if (userId != that.userId) {
+        if (userId != book.userId) {
             return false;
         }
-        if (quantity != that.quantity) {
+        if (quantity != book.quantity) {
             return false;
         }
-        if (borrow != that.borrow) {
+        if (borrow != book.borrow) {
             return false;
         }
-        if (title != null ? !title.equals(that.title) : that.title != null) {
+        if (title != null ? !title.equals(book.title) : book.title != null) {
             return false;
         }
-        if (publisher != null ? !publisher.equals(that.publisher) : that.publisher != null) {
+        if (publisher != null ? !publisher.equals(book.publisher) : book.publisher != null) {
             return false;
         }
-        if (description != null ? !description.equals(that.description) : that.description != null) {
+        if (description != null ? !description.equals(book.description) : book.description != null) {
             return false;
         }
-        if (year != null ? !year.equals(that.year) : that.year != null){
+        if (year != null ? !year.equals(book.year) : book.year != null) {
             return false;
         }
-        if (added != null ? !added.equals(that.added) : that.added != null) {
-            return false;
-        }
-        if (isbn != null ? !isbn.equals(that.isbn) : that.isbn != null) {
-            return false;
-        }
-        return shelf != null ? shelf.equals(that.shelf) : that.shelf == null;
+        return isbn != null ? isbn.equals(book.isbn) : book.isbn == null;
     }
 
     @Override
@@ -177,9 +153,7 @@ public class WishBookDto implements Serializable {
         result = 31 * result + (publisher != null ? publisher.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (year != null ? year.hashCode() : 0);
-        result = 31 * result + (added != null ? added.hashCode() : 0);
         result = 31 * result + (isbn != null ? isbn.hashCode() : 0);
-        result = 31 * result + (shelf != null ? shelf.hashCode() : 0);
         return result;
     }
 
@@ -195,9 +169,7 @@ public class WishBookDto implements Serializable {
                 .append("', quantity='").append(quantity)
                 .append("', borrow='").append(borrow)
                 .append("', year='").append(year)
-                .append("', shelf='").append(shelf)
-                .append("', description=").append(description)
-                .append("', added='").append(added).append('}');
+                .append("', description=").append(description).append('}');
         return line.toString();
     }
 }

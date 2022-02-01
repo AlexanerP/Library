@@ -5,10 +5,10 @@ import java.time.LocalDate;
 
 public class Book implements Serializable {
 
-    private static final long serialVersionUID = 766391284248913856L;
+    private static final long serialVersionUID = 1900551704855601119L;
 
     private long bookId;
-    private int libraryId;
+    private String cityLibrary;
     private String isbn;
     private String title;
     private int quantity;
@@ -30,12 +30,12 @@ public class Book implements Serializable {
         this.bookId = bookId;
     }
 
-    public int getLibraryId() {
-        return libraryId;
+    public String getCityLibrary() {
+        return cityLibrary;
     }
 
-    public void setLibraryId(int libraryId) {
-        this.libraryId = libraryId;
+    public void setCityLibrary(String cityLibrary) {
+        this.cityLibrary = cityLibrary;
     }
 
     public String getIsbn() {
@@ -130,34 +130,34 @@ public class Book implements Serializable {
         if (borrow != book.borrow) {
             return false;
         }
-        if (!isbn.equals(book.isbn)) {
+        if (cityLibrary != null ? !cityLibrary.equals(book.cityLibrary) : book.cityLibrary != null) {
             return false;
         }
-        if (!title.equals(book.title)) {
+        if (isbn != null ? !isbn.equals(book.isbn) : book.isbn != null) {
             return false;
         }
-        if (!publisher.equals(book.publisher)) {
+        if (title != null ? !title.equals(book.title) : book.title != null) {
             return false;
         }
-        if (!description.equals(book.description)) {
+        if (publisher != null ? !publisher.equals(book.publisher) : book.publisher != null) {
             return false;
         }
-        if (libraryId != book.libraryId) {
+        if (description != null ? !description.equals(book.description) : book.description != null) {
             return false;
         }
-        if (!year.equals(book.year)) {
+        if (year != null ? !year.equals(book.year) : book.year != null) {
             return false;
         }
-        if (!added.equals(book.added)) {
+        if (added != null ? !added.equals(book.added) : book.added != null) {
             return false;
         }
-        return shelf.equals(book.shelf);
+        return shelf != null ? shelf.equals(book.shelf) : book.shelf == null;
     }
 
     @Override
     public int hashCode() {
         int result = (int) (bookId ^ (bookId >>> 32));
-        result = 31 * result + libraryId;
+        result = 31 * result + (cityLibrary != null ? cityLibrary.hashCode() : 0);
         result = 31 * result + (isbn != null ? isbn.hashCode() : 0);
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + quantity;
@@ -174,7 +174,7 @@ public class Book implements Serializable {
     public String toString() {
         StringBuilder line = new StringBuilder();
         line.append("Book{").append("bookId='").append(bookId)
-                .append("', libraryId='").append(libraryId)
+                .append("', cityLibrary='").append(cityLibrary)
                 .append("', title='").append(title)
                 .append("', isbn='").append(isbn)
                 .append("', quantity='").append(quantity)

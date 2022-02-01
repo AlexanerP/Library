@@ -18,10 +18,10 @@
     <jsp:include page="/WEB-INF/pages/common/header.jsp"></jsp:include>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="body">
+<body background="${pageContext.request.contextPath}/images/155a15c2f3d4d6.jpg">
 <br><br>
 <c:if test="${user.role eq 'GUEST'}">
-    <form action="Controller" width="400" height="300" align="right" method="POST">
+    <form action="Controller" width="700" height="300" align="right" method="POST">
         <input type="hidden" name="command" value="SignIn">
         <p><input type="text" placeholder="<fmt:message key="enter_email"></fmt:message>" name="email"></p>
         <p><input type="password" placeholder="<fmt:message key="enter_password"></fmt:message>" name="password"></p>
@@ -51,7 +51,6 @@
     <form action="Controller">
         <input type="hidden" name="command" value="SearchBooks">
         <table>
-            <%--        <tbody>--%>
             <tr>
                 <td><fmt:message key="book_enter_title"></fmt:message></td>
                 <td><input type="text" placeholder="<fmt:message key="book_enter_title"></fmt:message>" name="title"></td>
@@ -73,7 +72,7 @@
 <table >
     <div align="center">
         <c:if test="${not empty books}">
-            <b><fmt:message key="message_count_found_result"></fmt:message><c:out value="${booksSize}"/></b>
+            <h3><b><fmt:message key="message_count_found_result"></fmt:message><c:out value="${booksSize}"/></b></h3>
         </c:if>
     </div>
     <c:if test="${not empty books}">
@@ -89,22 +88,22 @@
         <tr>
         <tr>
             <td>
-                <b>#</b> <c:out value="${status.index + 1}"></c:out>
+                <b># - </b> <c:out value="${status.index + 1}"></c:out>
             </td>
         </tr>
         <tr>
             <td>
-                <strong><fmt:message key="book_id"></fmt:message></strong> - <c:out value="${booksDTO.bookDtoId}"></c:out>
+                <b><fmt:message key="book_id"></fmt:message>:</b> <c:out value="${booksDTO.bookDtoId}"></c:out>
             </td>
         </tr>
         <tr>
             <td>
-                <strong><fmt:message key="book_isbn"></fmt:message></strong> - <c:out value="${booksDTO.isbn}"></c:out>
+                <b><fmt:message key="book_isbn"></fmt:message>:</b> <c:out value="${booksDTO.isbn}"></c:out>
             </td>
         </tr>
         <tr>
             <td>
-                <b><fmt:message key="book_author"></fmt:message></b>
+                <b><fmt:message key="book_author"></fmt:message>:</b>
                 <c:forEach var="author" items="${booksDTO.authors}">
                     <c:out value="${author.name}"></c:out>
                 </c:forEach>
@@ -112,7 +111,7 @@
         </tr>
         <tr>
             <td>
-                <b><fmt:message key="book_genre"></fmt:message></b>
+                <b><fmt:message key="book_genre"></fmt:message>:</b>
 
                 <c:forEach var="genre" items="${booksDTO.genres}">
                     <c:out value="${genre.category}"></c:out>
@@ -121,19 +120,19 @@
         </tr>
         <tr>
             <td>
-                <b><fmt:message key="book_publisher"></fmt:message></b> -
+                <b><fmt:message key="book_publisher"></fmt:message>:</b>
                 <c:out value="${booksDTO.publisher}"></c:out>
             </td>
         </tr>
         <tr>
             <td>
-                <b><fmt:message key="book_year"></fmt:message></b>
+                <b><fmt:message key="book_year"></fmt:message>:</b>
                 <c:out value="${booksDTO.year}"></c:out>
             </td>
         </tr>
         <tr>
             <td>
-                <b><fmt:message key="book_description"></fmt:message></b>
+                <b><fmt:message key="book_description"></fmt:message>:</b>
                 <c:out value="${booksDTO.description}"></c:out>
             </td>
 
@@ -154,7 +153,8 @@
     </c:forEach>
 </table>
 </c:if>
-<table>
+<br><br>
+<table width="30%">
     <em><fmt:message key="our_library"></fmt:message></em>
     <c:if test="${not empty libraries}">
         <c:forEach var="library" items="${libraries}">

@@ -25,42 +25,36 @@ public class LoanCardServiceImpl implements LoanCardService {
             OrderService orderService = ServiceFactory.getInstance().getOrderService();
             BookService bookService = ServiceFactory.getInstance().getBookService();
             Optional<Order> optionalOrder = orderService.showById(orderId);
-            if (orderId != null && typeUse != null) {
-                if (validator.isNumber(orderId)) {
-                    if (optionalOrder.isPresent()) {
-                        if (typeUse.equalsIgnoreCase(BookTypeUse.READ_ROOM.name())
-                                || typeUse.equalsIgnoreCase(BookTypeUse.TAKE_HOME.name())) {
-                            Optional<Book> optionalBook = bookService.showBookById(optionalOrder.get().getBookId() + "");
-                            if (optionalBook.isPresent() && optionalBook.get().getBorrow() < optionalBook.get().getQuantity()) {
-                                bookService.addBorrow(optionalBook.get().getBookId() + "");
-                                LoanCard loanCard = new LoanCard();
-                                loanCard.setBookId(optionalOrder.get().getBookId());
-                                loanCard.setUserId(optionalOrder.get().getUserId());
-                                loanCard.setCityLibrary(optionalOrder.get().getLibraryCity());
-                                loanCard.setTypeUse(BookTypeUse.valueOf(typeUse.toUpperCase()));
-                                loanCard.setTakingBook(LocalDate.now());
-                                loanCard.setStatus(LoanCardStatus.OPEN);
+            if (validator.isNumber(orderId)) {
+                if (optionalOrder.isPresent()) {
+                    if (typeUse.equalsIgnoreCase(BookTypeUse.READ_ROOM.name())
+                            || typeUse.equalsIgnoreCase(BookTypeUse.TAKE_HOME.name())) {
+                        Optional<Book> optionalBook = bookService.showBookById(optionalOrder.get().getBookId() + "");
+                        if (optionalBook.isPresent() && optionalBook.get().getBorrow() < optionalBook.get().getQuantity()) {
+                            LoanCard loanCard = new LoanCard();
+                            loanCard.setBookId(optionalOrder.get().getBookId());
+                            loanCard.setUserId(optionalOrder.get().getUserId());
+                            loanCard.setCityLibrary(optionalOrder.get().getLibraryCity());
+                            loanCard.setTypeUse(BookTypeUse.valueOf(typeUse.toUpperCase()));
+                            loanCard.setTakingBook(LocalDate.now());
+                            loanCard.setStatus(LoanCardStatus.OPEN);
 
-                                LocalDate deadline = LocalDate.now();
+                            LocalDate deadline = LocalDate.now();
 
-                                loanCard.setDeadline(deadline.plusMonths(MONTH_LOAN_BOOK));
-                                loanCard.setReturnBook("-");
-                                return loanCardDao.create(loanCard);
-                            } else {
-                                return false;
-                            }
+                            loanCard.setDeadline(deadline.plusMonths(MONTH_LOAN_BOOK));
+                            loanCard.setReturnBook("-");
+                            return loanCardDao.create(loanCard);
                         } else {
-                            throw new ServiceException("Invalid type use values");
+                            return false;
                         }
                     } else {
-                        throw new ServiceException("Order out of order by ID.");
+                        throw new ServiceException("Invalid type use values");
                     }
                 } else {
-                    throw new ServiceException("Invalid order ID values");
+                    throw new ServiceException("Order out of order by ID.");
                 }
-
-            }else {
-                throw new ServiceException("The order ID or the type use value is empty.");
+            } else {
+                throw new ServiceException("Invalid order ID values");
             }
         }catch (DaoException e) {
             logger.error("Error in services when creating an issue card.");
@@ -73,7 +67,6 @@ public class LoanCardServiceImpl implements LoanCardService {
         try {
             LoanCardDao loanCardDao = DaoFactory.getInstance().getLoanCardDao();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
-            if (cardId != null) {
             if (validator.isNumber(cardId)) {
                 Optional<LoanCard> optionalLoanCard = loanCardDao.getCardById(Long.parseLong(cardId.trim()));
                 if (optionalLoanCard.isPresent()) {
@@ -101,13 +94,10 @@ public class LoanCardServiceImpl implements LoanCardService {
                 } else {
                     throw new ServiceException("The card does not exist.");
                 }
-            }
-
         } catch (DaoException e) {
             logger.error("Error while updating the loan card.");
             throw new ServiceException("Error while updating the loan card.", e);
         }
-        return false;
     }
 
     @Override
@@ -116,31 +106,28 @@ public class LoanCardServiceImpl implements LoanCardService {
             LoanCardDao loanCardDao = DaoFactory.getInstance().getLoanCardDao();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
             BookService bookService = ServiceFactory.getInstance().getBookService();
-            if (cardId != null) {
-                if (validator.isNumber(cardId)) {
-                    Optional<LoanCard> optionalLoanCard = loanCardDao.getCardById(Long.parseLong(cardId.trim()));
-                    if (optionalLoanCard.isPresent()) {
-                        if (optionalLoanCard.get().getStatus() == LoanCardStatus.OPEN) {
-                            bookService.deleteBorrow(optionalLoanCard.get().getBookId() + "");
-                            LoanCard loanCard = optionalLoanCard.get();
-                            loanCard.setStatus(LoanCardStatus.CLOSED);
-                            loanCard.setReturnBook(LocalDate.now().toString());
-                            return loanCardDao.update(loanCard);
-                        } else {
-                            throw new ServiceException("Loan card closed.");
-                        }
+            if (validator.isNumber(cardId)) {
+                Optional<LoanCard> optionalLoanCard = loanCardDao.getCardById(Long.parseLong(cardId.trim()));
+                if (optionalLoanCard.isPresent()) {
+                    if (optionalLoanCard.get().getStatus() == LoanCardStatus.OPEN) {
+                        bookService.deleteBorrow(optionalLoanCard.get().getBookId() + "");
+                        LoanCard loanCard = optionalLoanCard.get();
+                        loanCard.setStatus(LoanCardStatus.CLOSED);
+                        loanCard.setReturnBook(LocalDate.now().toString());
+                        return loanCardDao.update(loanCard);
                     } else {
-                        throw new ServiceException("The card does not exist.");
+                        throw new ServiceException("Loan card closed.");
                     }
+                } else {
+                    throw new ServiceException("The card does not exist.");
                 }
             } else {
-                throw new ServiceException("The loan card ID value is empty.");
+                throw new ServiceException("The loan card ID value not valid.");
             }
         } catch (DaoException e) {
             logger.error("Error in services when closing the loan card.");
             throw new ServiceException("Error in services when closing the loan card.", e);
         }
-        return false;
     }
 
     @Override
@@ -149,14 +136,15 @@ public class LoanCardServiceImpl implements LoanCardService {
             LoanCardDao loanCardDao = DaoFactory.getInstance().getLoanCardDao();
             UserService userService = ServiceFactory.getInstance().getUserService();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
+            OrderService orderService = ServiceFactory.getInstance().getOrderService();
             BookService bookService = ServiceFactory.getInstance().getBookService();
             if (cardId != null) {
                 if (validator.isNumber(cardId)) {
                     Optional<LoanCard> optionalLoanCard = loanCardDao.getCardById(Long.parseLong(cardId.trim()));
                     if (optionalLoanCard.isPresent()) {
                         if (optionalLoanCard.get().getStatus() == LoanCardStatus.OPEN) {
-                            bookService.deleteBorrow(optionalLoanCard.get().getBookId() + "");
                             LoanCard loanCard = optionalLoanCard.get();
+
                             loanCard.setStatus(LoanCardStatus.CLOSED);
                             loanCard.setReturnBook(LocalDate.now().toString());
                             userService.addViolation(optionalLoanCard.get().getUserId() + "");

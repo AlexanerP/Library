@@ -32,25 +32,22 @@ public class BookDtoDaoImplTest {
     public void create() {
         logger.info("Start of the bookDto creation test");
         BookDto bookDto = new BookDto();
-        bookDto.setTitle("Hobbit");
+        bookDto.setTitle("Гарри Поттер");
         bookDto.setQuantity(5);
         bookDto.setBorrow(0);
-        bookDto.setPublisher("Test 1 publisher");
+        bookDto.setPublisher("Росмен");
         bookDto.setYear("2000");
         bookDto.setShelf("S1-F");
 
-        bookDto.setIsbn("test ISBN");
-        bookDto.setCityLibrary("Minsk");
+        bookDto.setIsbn("ISBN");
+        bookDto.setCityLibrary("Минск");
 
         List<Author> authors = new ArrayList<>();
-        authors.add(new Author("Ronald"));
-        authors.add(new Author("Test author 222"));
-//        authors.add(new Author("Test author 333"));
+        authors.add(new Author("Роулинг"));
 
         List<Genre> genres = new ArrayList<>();
-        genres.add(new Genre("Detectiv"));
-        genres.add(new Genre("Trip"));
-//        genres.add(new Genre("Test genre 33"));
+
+        genres.add(new Genre("Фантастика"));
 
         bookDto.setAuthors(authors);
         bookDto.setGenres(genres);
@@ -119,7 +116,7 @@ public class BookDtoDaoImplTest {
     public void getBooks() {
         List<BookDto> books = bookDtoDao.getBooks();
         output(books);
-        assertTrue(!books.isEmpty());
+        assertNotNull(books);
     }
 
     //check

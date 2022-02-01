@@ -25,7 +25,7 @@ public class LibraryDaoImplTest {
     @Test
     public void create() {
         Library library = new Library();
-        library.setCity("Minsk");
+        library.setCity("Могилёв");
         library.setStreet("STREET");
         library.setStatus(LibraryStatus.OPENED);
         boolean condition = libraryDAO.create(library);
@@ -48,9 +48,6 @@ public class LibraryDaoImplTest {
     public void getLibraries() {
         List<Library> libraries;
         libraries = libraryDAO.getLibraries();
-        for(Library library : libraries) {
-            System.out.println(library);
-        }
         assertFalse(libraries.isEmpty());
     }
 
@@ -58,9 +55,6 @@ public class LibraryDaoImplTest {
     public void getLibrariesByStatus() {
         List<Library> libraries;
         libraries = libraryDAO.getLibrariesByStatus(LibraryStatus.OPENED);
-        for(Library library : libraries) {
-            System.out.println(library);
-        }
         assertFalse(libraries.isEmpty());
     }
 
@@ -68,23 +62,17 @@ public class LibraryDaoImplTest {
     public void getLibrariesById() {
         long libraryId = 1;
         Optional<Library> libraryOptional = libraryDAO.getLibraryById(libraryId);
-
-        System.out.println(libraryOptional.toString());
-
         assertTrue(libraryOptional.isPresent());
     }
 
     @Test
     public void getLibraryByCity() {
-        String city = "city";
+        String city = "Брест";
         Library libraryExpected = new Library();
-        libraryExpected.setLibraryId(1);
-        libraryExpected.setStreet("street");
         libraryExpected.setCity(city);
         Optional<Library> libraryOptional = libraryDAO.getLibraryByCity(city);
         if (libraryOptional.isPresent()) {
-            System.out.println(libraryExpected.equals(libraryOptional.get()));
-            assertEquals(libraryExpected, libraryOptional.get());
+            assertEquals(libraryExpected.getCity(), libraryOptional.get().getCity());
         }
     }
 }

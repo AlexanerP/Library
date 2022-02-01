@@ -32,12 +32,12 @@ public class LoanCardDaoImpl extends DaoHelper implements LoanCardDao {
             ColumnName.CARD_STATUS_STATUS, ColumnName.LIBRARY_ID_LIBRARY, TableName.LIBRARY, ColumnName.LIBRARY_CITY);
 
     private final static String UPDATE_LOAN_CARD_QUERY = String.format("Update %s SET  %s=?, %s=(SELECT %s from %s " +
-                    "where %s=?), %s=?, %s=?, %s=?, %s=?, %s=(SELECT %s from %s where %s=?) where %s=?",
+                    "where %s=?), %s=?, %s=?, %s=?, %s=?, %s=(SELECT %s from %s where %s=?), %s=? where %s=?",
             TableName.LOAN_CARDS, ColumnName.LOAN_CARD_ID_USER, ColumnName.LOAN_CARD_ID_STATUS,
             ColumnName.CARD_STATUS_ID_STATUS, TableName.LOAN_CARDS_STATUS, ColumnName.CARD_STATUS_STATUS,
             ColumnName.LOAN_CARD_TAKING_BOOK, ColumnName.LOAN_DEADLINE, ColumnName.LOAN_CARD_TYPE_USE,
             ColumnName.LOAN_CARD_ID_BOOK, ColumnName.LOAN_CARD_ID_LIBRARY, ColumnName.LIBRARY_ID_LIBRARY,
-            TableName.LIBRARY, ColumnName.LIBRARY_CITY, ColumnName.LOAN_CARD_ID_CARD);
+            TableName.LIBRARY, ColumnName.LIBRARY_CITY, ColumnName.LOAN_CARD_RETURN_BOOK, ColumnName.LOAN_CARD_ID_CARD);
 
     private final static String GET_COUNT_BY_STATUS_QUERY = String.format("select count(%s) from %s where %s.%s=" +
                     "(SELECT %s from %s where %s=?)", ColumnName.LOAN_CARD_ID_USER, TableName.LOAN_CARDS,
@@ -93,7 +93,6 @@ public class LoanCardDaoImpl extends DaoHelper implements LoanCardDao {
             } else {
                 throw new DaoException("Find more 1 loan card.");
             }
-
         } catch (SQLException sqlE) {
             logger.error("Error while retrieving loan card from database.");
             throw new DaoException("Error while retrieving loan card from database.", sqlE);
@@ -110,8 +109,7 @@ public class LoanCardDaoImpl extends DaoHelper implements LoanCardDao {
         try(Connection connection = ConnectionPool.INSTANCE.getConnection()) {
             prStatement = createPreparedStatement(connection, UPDATE_LOAN_CARD_QUERY, card.getUserId(),
                     card.getStatus().name(), card.getTakingBook(), card.getDeadline(), card.getTypeUse().name(),
-                    card.getBookId(), card.getCityLibrary(), card.getLoanCardId());
-
+                    card.getBookId(), card.getCityLibrary(), card.getReturnBook(), card.getLoanCardId());
             prStatement.executeUpdate();
             return true;
         } catch (SQLException sqlE) {

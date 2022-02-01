@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface WishBookService {
 
-    boolean add(String userId, String bookId) throws ServiceException;
+    boolean create(String userId, String bookId) throws ServiceException;
 
     boolean delete(String wishBookId) throws ServiceException;
 

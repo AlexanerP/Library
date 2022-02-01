@@ -2,7 +2,7 @@ package com.epam.library.service;
 
 public class ServiceValidator {
 
-    private static final int MAX_LENGTH = 20;
+    private static final int MAX_LENGTH = 30;
     private static final int MAX_LENGTH_TITLE = 70;
     private static final int MAX_LENGTH_STREET = 50;
     private static final String REGEX_EMAIL = "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}\\b";

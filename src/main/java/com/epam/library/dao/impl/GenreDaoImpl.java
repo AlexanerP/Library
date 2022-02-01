@@ -49,9 +49,8 @@ public class GenreDaoImpl extends DaoHelper implements GenreDao {
     private final static String GET_COUNT_QUERY = String.format("select count(%s) from %s", ColumnName.GENRES_GENRE,
             TableName.GENRES);
 
-    private final static String GET_COUNT_BOOKS_BY_GENRE_QUERY = String.format("select count(%s) where %s=(SELECT" +
-                    " * FROM %s WHERE %s=?)", TableName.G_H_B, ColumnName.GHB_ID_BOOK, ColumnName.GHB_ID_GENRES,
-            ColumnName.GENRES_ID_GENRE, TableName.GENRES, ColumnName.GENRES_GENRE);
+    private final static String GET_COUNT_BOOKS_BY_GENRE_QUERY = String.format("select count(%s) from %s where %s=?",
+            ColumnName.GHB_ID_BOOK, TableName.G_H_B, ColumnName.GHB_ID_GENRES);
 
     private static final String DELETE_GENRES_QUERY = String.format("delete from %s where %s=?",
             TableName.G_H_B, ColumnName.GHB_ID_BOOK);
@@ -166,30 +165,6 @@ public class GenreDaoImpl extends DaoHelper implements GenreDao {
     }
 
     @Override
-    public List<Genre> getGenresByIdBook(long bookId) throws DaoException {
-        logger.info("Receiving a genre by bookId.");
-        PreparedStatement prStatement = null;
-        ResultSet resultSet = null;
-        GenreMapper mapper = new GenreMapper();
-        List<Genre> genres = new ArrayList<>();
-        try(Connection connection = ConnectionPool.INSTANCE.getConnection()) {
-            prStatement = createPreparedStatement(connection, GET_GENRES_BY_ID_BOOK_QUERY, bookId);
-            resultSet = prStatement.executeQuery();
-            while (resultSet.next()) {
-                genres.add(mapper.map(resultSet));
-            }
-
-        } catch (SQLException sqlE) {
-            logger.error("Find more 1 author by bookId. ");
-            throw new DaoException(sqlE);
-        } finally {
-            closeResultSet(resultSet);
-            closePreparedStatement(prStatement);
-        }
-        return genres;
-    }
-
-    @Override
     public List<Genre> getGenres() throws DaoException {
         logger.info("Getting a list of genres.");
         List<Genre> genres = new ArrayList<>();
@@ -235,12 +210,12 @@ public class GenreDaoImpl extends DaoHelper implements GenreDao {
     }
 
     @Override
-    public long getCountByGenre(String genre) throws DaoException {
+    public long getCountBookByIdGenre(int genreId) throws DaoException {
         PreparedStatement prStatement = null;
         ResultSet resultSet = null;
         int countGenres = 0;
         try (Connection connection = ConnectionPool.INSTANCE.getConnection()){
-            prStatement = createPreparedStatement(connection, GET_COUNT_BOOKS_BY_GENRE_QUERY, genre);
+            prStatement = createPreparedStatement(connection, GET_COUNT_BOOKS_BY_GENRE_QUERY, genreId);
             resultSet = prStatement.executeQuery();
             while (resultSet.next()) {
                 countGenres = resultSet.getInt(1);

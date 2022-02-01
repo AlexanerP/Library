@@ -51,6 +51,8 @@ public final class CommandType {
     public static final String LOAN_CARD_CATALOG = "LoanCardCatalog";
     public static final String GO_TO_UPDATE_GENRE = "GoToUpdateGenre";
     public static final String GO_TO_UPDATE_AUTHOR = "GoToUpdateAuthor";
+    public static final String CREATE_AUTHOR = "CreateAuthor";
+    public static final String CREATE_GENRE = "CreateGenre";
     public static final String UPDATE_GENRE = "UpdateGenre";
     public static final String UPDATE_AUTHOR = "UpdateAuthor";
     public static final String CATALOG_AUTHOR = "CatalogAuthor";
@@ -58,5 +60,6 @@ public final class CommandType {
     public static final String GO_TO_STATISTIC_AUTHOR = "GoToStatisticAuthor";
     public static final String GO_TO_STATISTIC_GENRE = "GoToStatisticGenre";
     public static final String GO_TO_CATALOG_BY_PAGE = "GoToCatalogByPage";
+    public static final String GO_TO_BOOK_DETAILS_PAGE = "GoToBookDetails";
     public static final String CREATE_LIBRARY = "CreateLibrary";
 }

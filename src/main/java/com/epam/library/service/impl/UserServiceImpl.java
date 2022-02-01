@@ -67,9 +67,11 @@ public class UserServiceImpl implements UserService {
                 if (validator.isLength(secondName) && validator.isLength(lastName)) {
                     boolean flag = true;
                     List<User> users = userDAO.getUserByEmail(email);
-                    for (User user : users) {
-                        if (user.getStatus() == UserStatus.ACTIVE || user.getStatus() == UserStatus.BLOCKED) {
-                           flag = false;
+                    if (users != null) {
+                        for (User user : users) {
+                            if (user.getStatus() == UserStatus.ACTIVE || user.getStatus() == UserStatus.BLOCKED) {
+                                flag = false;
+                            }
                         }
                     }
                     if (flag) {
@@ -320,7 +322,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean addViolation(String userId) throws ServiceException {
         try {
-            System.out.println("addViolation-" + userId);
             UserDao userDAO = DaoFactory.getInstance().getUserDAO();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
             if (validator.isNumber(userId)) {
@@ -372,5 +373,26 @@ public class UserServiceImpl implements UserService {
             logger.error("Error while deleting violation.");
             throw new ServiceException("Error while deleting violation.", e);
         }
+    }
+
+    @Override
+    public boolean isFreeEmail(String email) throws ServiceException {
+        try {
+            UserDao userDao = DaoFactory.getInstance().getUserDAO();
+            List<User> users = userDao.getUserByEmail(email);
+            if (!users.isEmpty()) {
+                for (User user : users) {
+                    if (user.getStatus().equals(UserStatus.ACTIVE)
+                            || user.getStatus().equals(UserStatus.BLOCKED)) {
+                        return false;
+                    }
+                }
+            } else {
+                return true;
+            }
+        } catch (DaoException e) {
+            logger.error("Error while checking if email exists in the system.", e);
+        }
+        return true;
     }
 }

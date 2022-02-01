@@ -33,22 +33,22 @@
             </tr>
             <tr>
                 <td><fmt:message key="id"></fmt:message></td>
-                <td><c:out value="${book.bookDtoId}"></c:out></td>
+                <td><c:out value="${books.bookDtoId}"></c:out></td>
                 <td>${book.bookDtoId}</td>
             </tr>
             <tr>
                 <td><fmt:message key="book_title"></fmt:message></td>
-                <td><c:out value="${book.title}"></c:out></td>
+                <td><c:out value="${books.title}"></c:out></td>
                 <td><input type="text" name="title" placeholder="<fmt:message key="book_title"></fmt:message>"></td>
             </tr>
             <tr>
                 <td><fmt:message key="book_isbn"></fmt:message></td>
-                <td><c:out value="${book.isbn}"></c:out></td>
+                <td><c:out value="${books.isbn}"></c:out></td>
                 <td><input type="text" name="isbn" placeholder="<fmt:message key="book_isbn"></fmt:message>"></td>
             </tr>
             <tr>
                 <td><fmt:message key="library_city"></fmt:message></td>
-                <td><c:out value="${book.cityLibrary}"></c:out></td>
+                <td><c:out value="${books.cityLibrary}"></c:out></td>
                 <td>
                     <select name="city">
                         <c:forEach var="libraries" items="${libraries}">
@@ -60,7 +60,7 @@
             <tr>
                 <td><fmt:message key="author_name"></fmt:message></td>
                 <td>
-                    <c:forEach var="author" items="${book.authors}">
+                    <c:forEach var="author" items="${books.authors}">
                         <c:out value="${author.name}"></c:out>
                     </c:forEach>
                 </td>
@@ -69,7 +69,7 @@
             <tr>
                 <td><fmt:message key="genre_category"></fmt:message></td>
                 <td>
-                    <c:forEach var="genre" items="${book.genres}">
+                    <c:forEach var="genre" items="${books.genres}">
                         <c:out value="${genre.category}"></c:out>
                     </c:forEach>
                 </td>
@@ -77,27 +77,27 @@
             </tr>
             <tr>
                 <td><fmt:message key="book_publisher"></fmt:message></td>
-                <td><c:out value="${book.publisher}"></c:out></td>
+                <td><c:out value="${books.publisher}"></c:out></td>
                 <td><input type="text" name="publisher" placeholder="<fmt:message key="book_publisher"></fmt:message>"></td>
             </tr>
             <tr>
                 <td><fmt:message key="book_year"></fmt:message></td>
-                <td><c:out value="${book.year}"></c:out></td>
+                <td><c:out value="${books.year}"></c:out></td>
                 <td><input type="text" name="year" placeholder="<fmt:message key="book_year"></fmt:message>"></td>
             </tr>
             <tr>
                 <td><fmt:message key="book_shelf"></fmt:message></td>
-                <td><c:out value="${book.shelf}"></c:out></td>
+                <td><c:out value="${books.shelf}"></c:out></td>
                 <td><input type="text" name="shelf" placeholder="<fmt:message key="book_shelf"></fmt:message>"></td>
             </tr>
             <tr>
                 <td><fmt:message key="book_quantity"></fmt:message></td>
-                <td><c:out value="${book.quantity}"></c:out></td>
+                <td><c:out value="${books.quantity}"></c:out></td>
                 <td><input type="number" name="quantity" min="1" placeholder="<fmt:message key="book_quantity"></fmt:message>"></td>
             </tr>
             <tr>
                 <td><fmt:message key="book_description"></fmt:message></td>
-                <td><c:out value="${book.description}"></c:out></td>
+                <td><c:out value="${books.description}"></c:out></td>
                 <td><textarea rows="5" cols="50" name="description" placeholder="<fmt:message key="book_description"></fmt:message>"></textarea></td>
             </tr>
             <td colspan="3">

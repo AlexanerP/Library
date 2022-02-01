@@ -31,13 +31,12 @@ public class ActionWishBookCommand implements Command {
             String actionAdd = req.getParameter(Constant.WISH_BOOK_ADD);
             String actionDelete = req.getParameter(Constant.WISH_BOOK_DELETE);
             String wishBookId = req.getParameter(Constant.WISH_BOOK_ID);
-            if(bookId != null && actionAdd != null && actionDelete != null) {
+            if(bookId != null && actionAdd != null || actionDelete != null) {
                 if (actionAdd != null) {
-                    wishBookService.add(user.getUserId() + "", bookId);
+                    wishBookService.create(user.getUserId() + "", bookId);
                 } else if (actionDelete != null){
                     wishBookService.delete(wishBookId);
                 }
-                resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
             }
             resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.WISH_BOOKS_USER_PAGE);
         }catch (ServiceException e) {

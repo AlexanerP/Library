@@ -45,8 +45,7 @@ public class WishBookDaoImpl extends DaoHelper implements WishBookDao {
         try(Connection connection = ConnectionPool.INSTANCE.getConnection()) {
             prStatement = createPreparedStatement(connection, ADD_WISH_BOOKS_QUERY, wishBook.getBookId(),
                     wishBook.getUserId());
-            prStatement.execute();
-            return true;
+            return prStatement.execute();
         }catch (SQLException e) {
             logger.error("Error adding favorite book to list.");
             throw new DaoException("Error adding favorite book to list.", e);

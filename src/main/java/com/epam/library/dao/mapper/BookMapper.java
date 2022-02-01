@@ -12,7 +12,7 @@ public class BookMapper implements RowMapper<Book>{
     public Book map(ResultSet resultSet) throws SQLException {
         Book book = new Book();
         book.setBookId(resultSet.getLong(ColumnName.BOOK_ID_BOOK));
-        book.setLibraryId(resultSet.getInt(ColumnName.BOOK_ID_LIBRARY));
+        book.setCityLibrary(resultSet.getString(ColumnName.LIBRARY_CITY));
         book.setIsbn(resultSet.getString(ColumnName.BOOK_ISBN));
         book.setTitle(resultSet.getString(ColumnName.BOOK_TITLE));
         book.setQuantity(resultSet.getInt(ColumnName.BOOK_QUANTITY));

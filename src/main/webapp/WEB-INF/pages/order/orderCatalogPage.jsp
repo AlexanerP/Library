@@ -180,7 +180,22 @@
                 </tr>
                 <tr>
                     <td>
-                       <b><fmt:message key="status"></fmt:message>:</b> <c:out value="${orders.status}"></c:out>
+                       <b><fmt:message key="status"></fmt:message>:</b>
+                        <c:if test="${orders.status eq 'OPENED'}">
+                            <fmt:message key="order_status_opened"></fmt:message>
+                        </c:if>
+                        <c:if test="${orders.status eq 'APPROVED'}">
+                            <fmt:message key="order_status_approved"></fmt:message>
+                        </c:if>
+                        <c:if test="${orders.status eq 'ARRIVED'}">
+                            <fmt:message key="order_status_arrived"></fmt:message>
+                        </c:if>
+                        <c:if test="${orders.status eq 'REJECTED'}">
+                            <fmt:message key="order_status_rejected"></fmt:message>
+                        </c:if>
+                        <c:if test="${orders.status eq 'CLOSED'}">
+                            <fmt:message key="order_status_closed"></fmt:message>
+                        </c:if>
                     </td>
                 </tr>
                 <tr>
@@ -191,10 +206,15 @@
                 <tr>
                     <td>
                         <b><fmt:message key="change_status"></fmt:message>:</b>
-                        <a class="btn btn-success" href="?command=ActionOrder&orderId=${orders.orderDtoId}&status=approved"><fmt:message key="order_status_approved"></fmt:message></a>
-                        <a class="btn btn-danger" href="?command=ActionOrder&orderId=${orders.orderDtoId}&status=rejected"><fmt:message key="order_status_rejected"></fmt:message></a>
-                        <a class="btn btn-primary" href="?command=ActionOrder&orderId=${orders.orderDtoId}&status=arrived"><fmt:message key="order_status_arrived"></fmt:message></a>
-                        <a class="btn btn-light" href="?command=ActionOrder&orderId=${orders.orderDtoId}&status=closed"><fmt:message key="order_status_closed"></fmt:message></a>
+                        <c:if test="${orders.status eq 'OPENED'}">
+                            <a class="btn btn-success" href="?command=ActionOrder&orderId=${orders.orderDtoId}&status=approved"><fmt:message key="order_status_approved"></fmt:message></a>
+                            <a class="btn btn-danger" href="?command=ActionOrder&orderId=${orders.orderDtoId}&status=rejected"><fmt:message key="order_status_rejected"></fmt:message></a>
+                        </c:if>
+                        <c:if test="${orders.status != 'OPENED'}">
+                            <a class="btn btn-light" href="?command=ActionOrder&orderId=${orders.orderDtoId}&status=opened"><fmt:message key="order_status_opened"></fmt:message></a>
+                            <a class="btn btn-primary" href="?command=ActionOrder&orderId=${orders.orderDtoId}&status=arrived"><fmt:message key="order_status_arrived"></fmt:message></a>
+                            <a class="btn btn-light" href="?command=ActionOrder&orderId=${orders.orderDtoId}&status=closed"><fmt:message key="order_status_closed"></fmt:message></a>
+                        </c:if>
                     </td>
                 </tr>
             </tr>

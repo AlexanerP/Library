@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Optional;
 
 public class UpdateUserCommand implements Command {
 
@@ -35,6 +36,19 @@ public class UpdateUserCommand implements Command {
             if (email != null && email != "" || secondName != null && secondName != ""
                     || lastName != null && lastName != "") {
                 boolean resultOperation = userService.update(email, secondName, lastName, user.getUserId() + "");
+                Optional<User> newDataUser = userService.showUserById(user.getUserId() + "");
+                if (newDataUser.isPresent()) {
+                    User newUser = new User();
+                    newUser.setUserId(newDataUser.get().getUserId());
+                    newUser.setRole(newDataUser.get().getRole());
+                    newUser.setSecondName(newDataUser.get().getSecondName());
+                    newUser.setLastName(newDataUser.get().getLastName());
+                    newUser.setStatus(newDataUser.get().getStatus());
+                    req.getSession().setAttribute(Constant.USER, newUser);
+                } else {
+                    session.invalidate();
+                    resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.ERROR_500);
+                }
                 if (resultOperation) {
                     session.setAttribute(Constant.MESSAGE_CODE_1019, Constant.MESSAGE_CODE_1019);
                     resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);

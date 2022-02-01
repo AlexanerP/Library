@@ -17,12 +17,10 @@ public interface GenreDao {
 
     boolean deleteGenreByBookId(long bookId) throws DaoException;
 
-    List<Genre> getGenresByIdBook(long bookId) throws DaoException;
-
     List<Genre> getGenres() throws DaoException;
 
     long getCount() throws DaoException;
 
-    long getCountByGenre(String genre) throws DaoException;
+    long getCountBookByIdGenre(int genreId) throws DaoException;
 
 }

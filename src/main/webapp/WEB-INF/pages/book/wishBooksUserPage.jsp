@@ -5,7 +5,7 @@
   Time: 12:21
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" errorPage="/WEB-INF/pages/error500.jsp" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" errorPage="/WEB-INF/pages/error500.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
@@ -26,9 +26,8 @@
     <table class="table table-hover">
         <tr class="thead-dark">
             <th>#</th>
-            <th><fmt:message key="book_id"></fmt:message></th>
+            <th><fmt:message key="details"></fmt:message></th>
             <th><fmt:message key="book_title"></fmt:message></th>
-            <th><fmt:message key="book_author"></fmt:message></th>
             <th><fmt:message key="book_isbn"></fmt:message></th>
             <th><fmt:message key="book_publisher"></fmt:message></th>
             <th><fmt:message key="book_year"></fmt:message></th>
@@ -38,19 +37,20 @@
         <c:forEach var="wishBook" items="${books}" varStatus="status">
             <tr>
                 <td><c:out value="${status.index + 1}"></c:out></td>
-                <td><c:out value="${wishBook.bookId}"></c:out></td>
-                <td><c:out value="${wishBook.title}"></c:out></td>
                 <td>
-                    <c:forEach var="author" items="${wishBook.authors}">
-                        <c:out value="${author.name}"></c:out>
-                    </c:forEach>
+                    <a class="btn btn-info" href="?command=GoToBookDetails&bookId=${wishBook.bookId}"><fmt:message key="details"></fmt:message></a>
                 </td>
+                <td><c:out value="${wishBook.title}"></c:out></td>
                 <td><c:out value="${wishBook.isbn}"></c:out></td>
                 <td><c:out value="${wishBook.publisher}"></c:out></td>
                 <td><c:out value="${wishBook.year}"></c:out></td>
-                <td><c:if test="${wishBook.borrow < wishBook.quantity and user.status != 'BLOCKED'}">
-                    <a class="btn btn-primary" href="?command=GoToOrder&bookId=${wishBook.bookId}"><fmt:message key="order_command"></fmt:message></a>
-                </c:if></td>
+                <td><c:if test="${wishBook.borrow < wishBook.quantity}">
+                        <c:if test="${user.role != 'BLOCKED'}">
+                            <a class="btn btn-primary" href="?command=GoToOrder&bookId=${wishBook.bookId}"><fmt:message key="order_command"></fmt:message></a>
+
+                        </c:if>
+                    </c:if>
+                </td>
                 <td><a class="btn btn-danger" href="?command=ActionWishBook&wish_book_id=${wishBook.wishBooksId}&delete=delete"><fmt:message key="delete_command"></fmt:message></a></td>
             </tr>
         </c:forEach>

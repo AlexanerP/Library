@@ -18,9 +18,7 @@ public class WishBookDtoMapper implements RowMapper<WishBookDto>{
         wishBook.setPublisher(resultSet.getString(ColumnName.BOOK_PUBLISHER));
         wishBook.setDescription(resultSet.getString(ColumnName.BOOK_DESCRIPTION));
         wishBook.setYear(resultSet.getString(ColumnName.BOOK_YEAR));
-        wishBook.setAdded(resultSet.getDate(ColumnName.WISH_BOOK_ADDED).toLocalDate());
         wishBook.setIsbn(resultSet.getString(ColumnName.BOOK_ISBN));
-        wishBook.setShelf(resultSet.getString(ColumnName.BOOK_SHELF));
 
         return wishBook;
     }

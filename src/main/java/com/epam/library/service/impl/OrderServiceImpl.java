@@ -3,6 +3,7 @@ package com.epam.library.service.impl;
 import com.epam.library.dao.DaoException;
 import com.epam.library.dao.DaoFactory;
 import com.epam.library.dao.OrderDao;
+import com.epam.library.entity.Book;
 import com.epam.library.entity.Library;
 import com.epam.library.entity.Order;
 import com.epam.library.entity.OrderStatus;
@@ -25,7 +26,9 @@ public class OrderServiceImpl implements OrderService {
             if (validator.isNumber(bookId) && validator.isNumber(userId)) {
                 Optional<Library> optionalLibrary = libraryService.showByCity(city);
                 if (optionalLibrary.isPresent()) {
-
+                    BookService bookService = ServiceFactory.getInstance().getBookService();
+                    Optional<Book> optionalBook = bookService.showBookById(bookId);
+                    bookService.addBorrow(optionalBook.get().getBookId() + "");
                     Order order = new Order();
                     order.setBookId(Long.parseLong(bookId.trim()));
                     order.setAdminId(0);
@@ -63,6 +66,13 @@ public class OrderServiceImpl implements OrderService {
                         order.setAdminId(Long.parseLong(adminId.trim()));
                         order.setStatus(OrderStatus.valueOf(status.toUpperCase()));
                         orderDao.update(order);
+
+                        if (status.equalsIgnoreCase(OrderStatus.REJECTED.name()) ||
+                                status.equalsIgnoreCase(OrderStatus.CLOSED.name())) {
+                            BookService bookService = ServiceFactory.getInstance().getBookService();
+                            Optional<Book> optionalBook = bookService.showBookById(order.getBookId() + "");
+                            bookService.deleteBorrow(optionalBook.get().getBookId() + "");
+                        }
                         return true;
                     } else {
                         throw new ServiceException("Error in services when updating order status. The order does not exist.");
@@ -121,6 +131,10 @@ public class OrderServiceImpl implements OrderService {
                     if (optionalOrder.get().getStatus().equals(OrderStatus.OPENED) ||
                             optionalOrder.get().getStatus().equals(OrderStatus.CLOSED)) {
                         orderDao.delete(Long.parseLong(orderId.trim()));
+                        if (optionalOrder.get().getStatus().equals(OrderStatus.OPENED)) {
+                            BookService bookService = ServiceFactory.getInstance().getBookService();
+                            bookService.deleteBorrow(optionalOrder.get().getBookId() + "");
+                        }
                         return true;
                     } else {
                         throw new ServiceException("The order cannot be deleted because it must be open or closed.");

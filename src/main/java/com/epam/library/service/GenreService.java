@@ -15,7 +15,7 @@ public interface GenreService {
 
     long getCountGenres() throws ServiceException;
 
-    long getCountBooksByGenres(String category) throws ServiceException;
+    long getCountBooksByGenres(String genreId) throws ServiceException;
 
     Optional<Genre> showGenreByCategory(String category) throws ServiceException;
 

@@ -67,7 +67,7 @@ public class OrderDaoImpl extends DaoHelper implements OrderDao {
         try (Connection connection = ConnectionPool.INSTANCE.getConnection()) {
             prStatement = createPreparedStatement(connection, ADD_ORDER_QUERY, order.getBookId(),
                     order.getUserId(), order.getAdminId(), order.getComment(), order.getLibraryCity(),
-                    order.getStatus());
+                    order.getStatus().name());
             prStatement.execute();
             return true;
         } catch (SQLException sqlE) {
@@ -84,7 +84,8 @@ public class OrderDaoImpl extends DaoHelper implements OrderDao {
         PreparedStatement prStatement = null;
         try (Connection connection = ConnectionPool.INSTANCE.getConnection()){
             prStatement = createPreparedStatement(connection, UPDATE_ORDER_QUERY, order.getBookId(), order.getUserId(),
-                    order.getAdminId(), order.getLibraryCity(), order.getComment(), order.getOrderId());
+                    order.getAdminId(), order.getComment(), order.getLibraryCity(), order.getStatus().name(),
+                    order.getOrderId());
             return prStatement.executeUpdate();
         } catch (SQLException sqlE) {
             logger.error("Failed to update order.order - {}", order.toString());

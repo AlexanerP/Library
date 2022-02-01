@@ -36,7 +36,7 @@
         <tr>
             <td><fmt:message key="order_show_by_city"></fmt:message></td>
             <td>
-                <select name="library">
+                <select name="city">
                     <c:forEach var="libraries" items="${libraries}">
                         <option value="${libraries.city}"><c:out value="${libraries.city}"></c:out></option>
                     </c:forEach>
@@ -62,7 +62,6 @@
                 <select name="status">
                     <option value="opened"><fmt:message key="order_status_opened"></fmt:message></option>
                     <option value="approved"><fmt:message key="order_status_approved"></fmt:message></option>
-                    <option value="rejected"><fmt:message key="order_status_rejected"></fmt:message></option>
                     <option value="arrived"><fmt:message key="order_status_arrived"></fmt:message></option>
                     <option value="closed"><fmt:message key="order_status_closed"></fmt:message></option>
                 </select>
@@ -162,7 +161,21 @@
                         <tr>
                             <td>
                                 <b><fmt:message key="status"></fmt:message>:</b>
-                                <c:out value="${orders.status}"></c:out>
+                                <c:if test="${orders.status eq 'OPENED'}">
+                                    <fmt:message key="order_status_opened"></fmt:message>
+                                </c:if>
+                                <c:if test="${orders.status eq 'APPROVED'}">
+                                    <fmt:message key="order_status_approved"></fmt:message>
+                                </c:if>
+                                <c:if test="${orders.status eq 'ARRIVED'}">
+                                    <fmt:message key="order_status_arrived"></fmt:message>
+                                </c:if>
+                                <c:if test="${orders.status eq 'REJECTED'}">
+                                    <fmt:message key="order_status_rejected"></fmt:message>
+                                </c:if>
+                                <c:if test="${orders.status eq 'CLOSED'}">
+                                    <fmt:message key="order_status_closed"></fmt:message>
+                                </c:if>
                             </td>
                         </tr>
                         <tr>

@@ -39,4 +39,6 @@ public interface UserService {
     boolean addViolation(String userId) throws ServiceException;
 
     boolean removeViolation(String userId) throws ServiceException;
+
+    boolean isFreeEmail(String email) throws ServiceException;
 }

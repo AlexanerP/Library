@@ -27,11 +27,11 @@
         <table class="table table-hover">
             <tr class="thead-dark">
                 <th>#</th>
-                <th><fmt:message key="order_id_for_row"></fmt:message></th>
-                <th><fmt:message key="book_id_for_row"></fmt:message></th>
-                <th><fmt:message key="book_title_for_row"></fmt:message></th>
-                <th><fmt:message key="book_isbn_for_row"></fmt:message></th>
-                <th><fmt:message key="book_year_for_row"></fmt:message></th>
+                <th><fmt:message key="order_id"></fmt:message></th>
+                <th><fmt:message key="book_id"></fmt:message></th>
+                <th><fmt:message key="book_title"></fmt:message></th>
+                <th><fmt:message key="book_isbn"></fmt:message></th>
+                <th><fmt:message key="book_year"></fmt:message></th>
                 <th><fmt:message key="order_date"></fmt:message></th>
                 <th><fmt:message key="library_city"></fmt:message></th>
                 <th><fmt:message key="order_comment"></fmt:message></th>
@@ -42,14 +42,32 @@
                 <tr>
                     <td><c:out value="${status.index + 1}"></c:out></td>
                     <td><c:out value="${orders.orderDtoId}"></c:out></td>
-                    <td><c:out value="${orders.bookId}"></c:out></td></td>
+                    <td><c:out value="${orders.bookId}"></c:out>
+                        <a class="btn btn-info" href="?command=GoToBookDetails&bookId=${orders.bookId}"><fmt:message key="details"></fmt:message></a>
+                    </td>
                     <td><c:out value="${orders.title}"></c:out></td>
                     <td><c:out value="${orders.isbn}"></c:out></td>
                     <td><c:out value="${orders.year}"></c:out></td>
                     <td><c:out value="${orders.date}"></c:out></td>
                     <td><c:out value="${orders.cityLibrary}"></c:out></td>
                     <td><c:out value="${orders.comment}"></c:out></td>
-                    <td><c:out value="${orders.status}"></c:out></td>
+                    <td>
+                        <c:if test="${orders.status eq 'OPENED'}">
+                            <fmt:message key="order_status_opened"></fmt:message>
+                        </c:if>
+                        <c:if test="${orders.status eq 'APPROVED'}">
+                            <fmt:message key="order_status_approved"></fmt:message>
+                        </c:if>
+                        <c:if test="${orders.status eq 'ARRIVED'}">
+                            <fmt:message key="order_status_arrived"></fmt:message>
+                        </c:if>
+                        <c:if test="${orders.status eq 'REJECTED'}">
+                            <fmt:message key="order_status_rejected"></fmt:message>
+                        </c:if>
+                        <c:if test="${orders.status eq 'CLOSED'}">
+                            <fmt:message key="order_status_closed"></fmt:message>
+                        </c:if>
+                    </td>
                     <td>
                         <c:if test="${orders.status eq 'OPENED'}">
                             <a class="btn btn-danger" href="?command=ActionUserOrder&orderUserId=${orders.orderDtoId}&action=remove"><fmt:message key="delete_command"></fmt:message></a> </td>

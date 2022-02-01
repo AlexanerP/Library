@@ -22,76 +22,49 @@ class LibraryServiceImplTest {
     }
 
     @Test
-    void create() {
-        try {
-            String city = "Brest";
-            String street = "Main street";
+    void create() throws ServiceException  {
+        String city = "Brest";
+        String street = "Main street";
 
-            boolean condition = libraryService.create(city, street);
-            assertTrue(condition);
-        }catch (ServiceException e) {
-            e.printStackTrace();
-        }
+        boolean condition = libraryService.create(city, street);
+        assertTrue(condition);
     }
 
     @Test
-    void showAll() {
-        try {
-            List<Library> libraries = libraryService.showAll();
-            outPut(libraries);
-            assertFalse(libraries.isEmpty());
-        }catch (ServiceException e) {
-            e.printStackTrace();
-        }
+    void showAll() throws ServiceException  {
+        List<Library> libraries = libraryService.showAll();
+        assertNotNull(libraries);
     }
 
     @Test
-    void updateStatus() {
-        try {
-            String status = "opened";
-            String libraryId = "1 ";
-            boolean condition = libraryService.updateStatus(libraryId, status);
-            assertTrue(condition);
-        } catch (ServiceException e) {
-            e.printStackTrace();
-        }
+    void updateStatus() throws ServiceException  {
+        String status = "opened";
+        String libraryId = "1 ";
+        boolean condition = libraryService.updateStatus(libraryId, status);
+        assertTrue(condition);
     }
 
     @Test
-    void update() {
-        try {
-            String city = "city";
-            String street = "street";
-            String libraryId = "1 ";
-            boolean condition = libraryService.update(libraryId, city, street);
-            assertTrue(condition);
-        } catch (ServiceException e) {
-            e.printStackTrace();
-        }
+    void update() throws ServiceException {
+        String city = "city";
+        String street = "street";
+        String libraryId = "1 ";
+        boolean condition = libraryService.update(libraryId, city, street);
+        assertTrue(condition);
     }
 
     @Test
-    void showById() {
-        try {
-            String libraryId ="1 ";
-            Optional<Library> optionalLibrary = libraryService.showById(libraryId);
-            System.out.println(optionalLibrary.toString());
-            assertTrue(optionalLibrary.isPresent());
-        } catch (ServiceException e) {
-            e.printStackTrace();
-        }
+    void showById() throws ServiceException  {
+        String libraryId ="1 ";
+        Optional<Library> optionalLibrary = libraryService.showById(libraryId);
+        assertTrue(optionalLibrary.isPresent());
     }
 
     @Test
-    void showByCity() {
-        try {
-            String city = "Минск";
-            Optional<Library> optionalLibrary = libraryService.showByCity(city);
-//            System.out.println(optionalLibrary.toString());
-            assertTrue(optionalLibrary.isPresent());
-        } catch (ServiceException e) {
-            e.printStackTrace();
-        }
+    void showByCity() throws ServiceException {
+        String city = "Минск";
+        Optional<Library> optionalLibrary = libraryService.showByCity(city);
+        assertTrue(optionalLibrary.isPresent());
     }
 
     @Test
@@ -100,13 +73,6 @@ class LibraryServiceImplTest {
         LibraryService libraryService = ServiceFactory.getInstance().getLibraryService();
         String status = "opened";
         libraries = libraryService.showByStatus(status);
-        outPut(libraries);
-        assertTrue(!libraries.isEmpty());
-    }
-
-    private void outPut(List<Library> list) {
-        for (Library library : list) {
-            System.out.println(library);
-        }
+        assertNotNull(libraries);
     }
 }

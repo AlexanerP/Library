@@ -46,7 +46,7 @@ public class UserDaoImpl extends DaoHelper implements UserDao {
             "NATURAL JOIN %s WHERE %s=?;", TableName.USER, TableName.ROLE, TableName.USER_STATUS,
             ColumnName.USER_ID_USERS);
 
-    private final static String GET_USER_BY_EMAIL_QUERY = String.format("SELECT %s FROM %s NATURAL JOIN %s NATURAL" +
+    private final static String GET_USER_BY_EMAIL_QUERY = String.format("SELECT * FROM %s NATURAL JOIN %s NATURAL" +
             " JOIN %s WHERE %s=?", TableName.USER, TableName.ROLE, TableName.USER_STATUS,
             ColumnName.USER_EMAIL);
 
@@ -218,6 +218,7 @@ public class UserDaoImpl extends DaoHelper implements UserDao {
     @Override
     public int delete(User user) throws DaoException {
         logger.info("Start the removal process.");
+        user.setStatus(UserStatus.DELETE);
         return update(user);
     }
 

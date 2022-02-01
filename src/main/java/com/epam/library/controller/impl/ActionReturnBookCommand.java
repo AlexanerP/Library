@@ -49,6 +49,7 @@ public class ActionReturnBookCommand implements Command {
             }
         }catch (ServiceException e) {
             logger.error("Error closing the issue book.", e);
+            e.printStackTrace();
             resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.ERROR_500);
         }
     }

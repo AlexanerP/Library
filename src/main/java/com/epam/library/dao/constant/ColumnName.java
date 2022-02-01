@@ -98,22 +98,6 @@ public final class ColumnName {
     public static final String GENRES_ID_GENRE = "id_genres";
     public static final String GENRES_GENRE = "genre";
 
-    //Book_has_loan_cards
-    public static final String BHLC_ID_BOOK = "id_book";
-    public static final String BHLC_ID_CARD = "id_loan_card";
-
-    //Loan_card_users
-    public static final String LCHU_ID_USER = "id_users";
-    public static final String LCHU_ID_CARD = "id_loan_card";
-
-    //Library_loan_cards
-    public static final String LHLC_ID_LIBRARY = "id_library";
-    public static final String LHLC_ID_CARD = "id_loan_card";
-
-    //Status
-    public static final String STATUS_ID_STATUS = "id_status";
-    public static final String STATUS_STATUS = "status";
-
     //Order status
     public static final String ORDER_STATUS_ID_STATUS = "id_status";
     public static final String ORDER_STATUS_STATUS = "status";
@@ -129,7 +113,5 @@ public final class ColumnName {
     //Chair
     public static final String CHAR_PERCENT = "%";
     public static final String CHAR_HATCH = "'";
-
-
 
 }

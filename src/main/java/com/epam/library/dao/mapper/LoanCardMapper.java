@@ -15,7 +15,7 @@ public class LoanCardMapper implements RowMapper<LoanCard>{
         LoanCard loanCard = new LoanCard();
         loanCard.setLoanCardId(resultSet.getLong(ColumnName.LOAN_CARD_ID_CARD));
         loanCard.setUserId(resultSet.getLong(ColumnName.USER_ID_USERS));
-        loanCard.setBookId(resultSet.getLong(ColumnName.BOOK_ID_BOOK));
+        loanCard.setBookId(resultSet.getLong(ColumnName.LOAN_CARD_ID_BOOK));
         loanCard.setCityLibrary(resultSet.getString(ColumnName.LIBRARY_CITY));
         loanCard.setTakingBook(resultSet.getDate(ColumnName.LOAN_CARD_TAKING_BOOK).toLocalDate());
         loanCard.setReturnBook(resultSet.getString(ColumnName.LOAN_CARD_RETURN_BOOK));

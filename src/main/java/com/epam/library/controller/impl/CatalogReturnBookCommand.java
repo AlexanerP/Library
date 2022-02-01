@@ -37,7 +37,6 @@ public class CatalogReturnBookCommand implements Command {
             String bookId = req.getParameter(Constant.BOOK_ID);
             String library = req.getParameter(Constant.LIBRARY_CITY);
             String allOpenLoanCard = req.getParameter(Constant.RETURN_BOOK_ALL);
-
             if (loanCardId != null && loanCardId != "") {
                 loanCards.add(loanCardDtoService.showCardsById(loanCardId).orElse(new LoanCardDto()));
             } else if (userId != null && userId != "") {

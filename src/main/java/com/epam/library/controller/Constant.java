@@ -121,7 +121,9 @@ public class Constant {
     //Successful messages
     public static final String MESSAGE_CODE_1001 = "MESSAGE_CODE_1001";
     public static final String MESSAGE_CODE_1002 = "MESSAGE_CODE_1002";
+    public static final String MESSAGE_CODE_10021 = "MESSAGE_CODE_10021";
     public static final String MESSAGE_CODE_1003 = "MESSAGE_CODE_1003";
+    public static final String MESSAGE_CODE_10031 = "MESSAGE_CODE_10031";
     public static final String MESSAGE_CODE_1004 = "MESSAGE_CODE_1004";
     public static final String MESSAGE_CODE_1005 = "MESSAGE_CODE_1005";
     public static final String MESSAGE_CODE_1006 = "MESSAGE_CODE_1006";
@@ -171,7 +173,9 @@ public class Constant {
     //Message decryption
     public static final String MESSAGE_CODE_1001 = "Password changed.";
     public static final String MESSAGE_CODE_1002 = "The author's information has been changed.";
+    public static final String MESSAGE_CODE_10021 = "The author has been added to the system.";
     public static final String MESSAGE_CODE_1003 = "The genre information has been changed.";
+    public static final String MESSAGE_CODE_10031 = "The genre has been added to the system.";
     public static final String MESSAGE_CODE_1004 = "The book has been added to the system.";
     public static final String MESSAGE_CODE_1005 = "The library has been added to the system.";
     public static final String MESSAGE_CODE_1006 = "Order is processed. Wait for administrator confirmation.";

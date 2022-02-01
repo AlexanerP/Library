@@ -80,7 +80,7 @@
             </tr>
             <tr>
                 <td><fmt:message key="order_comment"></fmt:message></td>
-                <td> <p><textarea rows="5" cols="30" name="comment" placeholder="Комментарий"></textarea></p></td>
+                <td> <p><textarea rows="5" cols="50" name="comment" placeholder="Комментарий"></textarea></p></td>
             </tr>
             <tr>
                 <td><input type="submit" value="<fmt:message key="order_command"></fmt:message>"></td>

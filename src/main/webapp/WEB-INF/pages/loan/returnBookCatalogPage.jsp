@@ -149,13 +149,23 @@
                         <tr>
                             <td>
                                 <b><fmt:message key="loan_card_type_use"></fmt:message>:</b>
-                                <c:out value="${card.typeUse}"></c:out>
+                                <c:if test="${card.typeUse eq 'READ_ROOM'}">
+                                    <fmt:message key="loan_card_type_use_library"></fmt:message>
+                                </c:if>
+                                <c:if test="${card.typeUse eq 'TAKE_HOME'}">
+                                    <fmt:message key="loan_card_type_use_home"></fmt:message>
+                                </c:if>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <b><fmt:message key="status"></fmt:message>:</b>
-                                <c:out value="${card.status}"></c:out>
+                                <c:if test="${card.status eq 'OPEN'}">
+                                    <fmt:message key="loan_card_status_opened"></fmt:message>
+                                </c:if>
+                                <c:if test="${card.status eq 'CLOSED'}">
+                                    <fmt:message key="loan_card_status_closed"></fmt:message>
+                                </c:if>
                             </td>
                         </tr>
                         <tr>

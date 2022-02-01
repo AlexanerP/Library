@@ -26,7 +26,7 @@ public class GoToStatisticGenreCommand implements Command {
             String genreId = req.getParameter(Constant.GENRE_ID);
             if (genreId != null) {
                 Genre genre = genreService.showGenreById(genreId).orElse(new Genre("-"));
-                long countBook = genreService.getCountBooksByGenres(genre.getCategory());
+                long countBook = genreService.getCountBooksByGenres(genreId);
                 req.setAttribute(Constant.GENRE_STAT, genre);
                 req.setAttribute(Constant.GENRE_COUNT_BOOKS, countBook);
             }

@@ -34,9 +34,17 @@
             <fmt:message key="message_code_1002"></fmt:message>
             <c:remove var="MESSAGE_CODE_1002" scope="session" />
         </c:if>
+        <c:if test="${not empty sessionScope.MESSAGE_CODE_10021}">
+            <fmt:message key="message_code_10021"></fmt:message>
+            <c:remove var="MESSAGE_CODE_10021" scope="session" />
+        </c:if>
         <c:if test="${not empty sessionScope.MESSAGE_CODE_1003}">
             <fmt:message key="message_code_1003"></fmt:message>
             <c:remove var="MESSAGE_CODE_1003" scope="session" />
+        </c:if>
+        <c:if test="${not empty sessionScope.MESSAGE_CODE_10031}">
+            <fmt:message key="message_code_10031"></fmt:message>
+            <c:remove var="MESSAGE_CODE_10031" scope="session" />
         </c:if>
         <c:if test="${not empty sessionScope.MESSAGE_CODE_1004}">
             <fmt:message key="message_code_1004"></fmt:message>

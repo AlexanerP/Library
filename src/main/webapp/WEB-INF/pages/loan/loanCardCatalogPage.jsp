@@ -151,8 +151,22 @@
                         <td><c:out value="${loanCards.takingBook}"></c:out></td>
                         <td><c:out value="${loanCards.deadline}"></c:out></td>
                         <td><c:out value="${loanCards.returnBook}"></c:out></td>
-                        <td><c:out value="${loanCards.typeUse}"></c:out></td>
-                        <td><c:out value="${loanCards.status}"></c:out></td>
+                        <td>
+                            <c:if test="${loanCards.typeUse eq 'READ_ROOM'}">
+                                <fmt:message key="loan_card_type_use_library"></fmt:message>
+                            </c:if>
+                            <c:if test="${loanCards.typeUse eq 'TAKE_HOME'}">
+                                <fmt:message key="loan_card_type_use_home"></fmt:message>
+                            </c:if>
+                        </td>
+                        <td>
+                            <c:if test="${loanCards.status eq 'OPEN'}">
+                                <fmt:message key="loan_card_status_opened"></fmt:message>
+                            </c:if>
+                            <c:if test="${loanCards.status eq 'CLOSED'}">
+                                <fmt:message key="loan_card_status_closed"></fmt:message>
+                            </c:if>
+                        </td>
                     </tr>
                 </c:forEach>
             </table>

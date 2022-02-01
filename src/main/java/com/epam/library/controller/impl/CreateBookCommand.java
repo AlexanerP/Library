@@ -5,6 +5,7 @@ import com.epam.library.controller.CommandType;
 import com.epam.library.controller.Constant;
 import com.epam.library.controller.PathJsp;
 import com.epam.library.service.BookDtoService;
+import com.epam.library.service.BookService;
 import com.epam.library.service.ServiceException;
 import com.epam.library.service.ServiceFactory;
 import org.slf4j.Logger;
@@ -35,11 +36,16 @@ public class CreateBookCommand implements Command {
             String description = req.getParameter(Constant.BOOK_DESCRIPTION);
 
             if (title != "" && title != null && isbn != "" && isbn != null && publisher != "" && publisher != null
-                    && year != "" && year != null && count != "" && count != null && shelf != "" && shelf != null
-            && author != "" && author != null && category != "" && category != null) {
+                    && year != "" && year != null && count != "" && count != null && shelf != "" && shelf != null) {
                 BookDtoService bookDtoService = ServiceFactory.getInstance().getBookDtoService();
-                boolean resultOperation = bookDtoService.create(title, isbn, publisher, year, count, city, shelf,
-                        author, category,description);
+                BookService bookService = ServiceFactory.getInstance().getBookService();
+                boolean resultOperation;
+                if (author != "" || category != "") {
+                    resultOperation = bookDtoService.create(title, isbn, publisher, year, count, city, shelf,
+                            author, category,description);
+                } else {
+                    resultOperation = bookService.create(title, isbn, publisher, year, count, shelf, description, city);
+                }
                 if (resultOperation) {
                     req.getSession().setAttribute(Constant.MESSAGE_CODE_1004, Constant.MESSAGE_CODE_1004);
                     resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.GO_TO_MESSAGE_PAGE);
@@ -52,6 +58,7 @@ public class CreateBookCommand implements Command {
             }
         } catch (ServiceException e) {
             logger.error("Error while creating book.", e);
+            e.printStackTrace();
             resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.ERROR_500);
         }
     }

@@ -21,15 +21,11 @@ public class LoanCardDtoServiceImpl implements LoanCardDtoService {
     public List<LoanCardDto> showCardsByStatus(String status) throws ServiceException {
         try {
             LoanCardDtoDao loanCardDtoDao = DaoFactory.getInstance().getLoanCardDtoDao();
-            if (status != null) {
-                if (status.equalsIgnoreCase(LoanCardStatus.OPEN.name())
-                        || status.equalsIgnoreCase(LoanCardStatus.CLOSED.name())) {
-                    return loanCardDtoDao.getCardsByStatusCard(LoanCardStatus.valueOf(status.toUpperCase()));
-                } else {
-                    throw new ServiceException("Invalid status values");
-                }
-            }else {
-                throw new ServiceException("The status value is empty.");
+            if (status.equalsIgnoreCase(LoanCardStatus.OPEN.name())
+                    || status.equalsIgnoreCase(LoanCardStatus.CLOSED.name())) {
+                return loanCardDtoDao.getCardsByStatusCard(LoanCardStatus.valueOf(status.toUpperCase()));
+            } else {
+                throw new ServiceException("Invalid status values");
             }
         } catch (DaoException e) {
             logger.error("Error in services when receiving loan cards by status.");
@@ -42,14 +38,10 @@ public class LoanCardDtoServiceImpl implements LoanCardDtoService {
         try {
             LoanCardDtoDao loanCardDtoDao = DaoFactory.getInstance().getLoanCardDtoDao();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
-            if (userId != null) {
-                if (validator.isNumber(userId)) {
-                    return loanCardDtoDao.getCardsByIdUser(Long.parseLong(userId));
-                } else {
-                    throw new ServiceException("Invalid user ID value.");
-                }
-            }else {
-                throw new ServiceException("The user ID value is empty.");
+            if (validator.isNumber(userId)) {
+                return loanCardDtoDao.getCardsByIdUser(Long.parseLong(userId));
+            } else {
+                throw new ServiceException("Invalid user ID value.");
             }
         } catch (DaoException e) {
             logger.error("Error in services when receiving loan cards by user ID.");
@@ -62,14 +54,10 @@ public class LoanCardDtoServiceImpl implements LoanCardDtoService {
         try {
             LoanCardDtoDao loanCardDtoDao = DaoFactory.getInstance().getLoanCardDtoDao();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
-            if (bookId != null) {
-                if (validator.isNumber(bookId)) {
-                    return loanCardDtoDao.getCardsByIdBook(Long.parseLong(bookId));
-                } else {
-                    throw new ServiceException("Invalid book ID value.");
-                }
-            }else {
-                throw new ServiceException("The book ID value is empty.");
+            if (validator.isNumber(bookId)) {
+                return loanCardDtoDao.getCardsByIdBook(Long.parseLong(bookId));
+            } else {
+                throw new ServiceException("Invalid book ID value.");
             }
         } catch (DaoException e) {
             logger.error("Error in services when receiving loan cards by book ID.");
@@ -84,16 +72,12 @@ public class LoanCardDtoServiceImpl implements LoanCardDtoService {
             LibraryService libraryService = ServiceFactory.getInstance().getLibraryService();
             Optional<Library> optionalLibrary = libraryService.showByCity(city);
             if (optionalLibrary.isPresent()) {
-                if (status != null) {
-                    if (status.equalsIgnoreCase(LoanCardStatus.OPEN.name())
-                            || status.equalsIgnoreCase(LoanCardStatus.CLOSED.name())) {
-                        return loanCardDtoDao.getCardsByCityAndStatus(optionalLibrary.get().getCity(),
-                                LoanCardStatus.valueOf(status.toUpperCase()));
-                    } else {
-                        throw new ServiceException("Invalid status values");
-                    }
+                if (status.equalsIgnoreCase(LoanCardStatus.OPEN.name())
+                        || status.equalsIgnoreCase(LoanCardStatus.CLOSED.name())) {
+                    return loanCardDtoDao.getCardsByCityAndStatus(optionalLibrary.get().getCity(),
+                            LoanCardStatus.valueOf(status.toUpperCase()));
                 } else {
-                    throw new ServiceException("The value is empty.");
+                    throw new ServiceException("Invalid status values");
                 }
             } else {
                 throw new ServiceException("The city does not exist.");
@@ -137,14 +121,10 @@ public class LoanCardDtoServiceImpl implements LoanCardDtoService {
         try {
             LoanCardDtoDao loanCardDtoDao = DaoFactory.getInstance().getLoanCardDtoDao();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
-            if (loanCardId != null) {
-                if (validator.isNumber(loanCardId)) {
-                    return loanCardDtoDao.getCardsById(Long.parseLong(loanCardId.trim()));
-                } else {
-                    throw new ServiceException("Invalid loan card ID value");
-                }
+            if (validator.isNumber(loanCardId)) {
+                return loanCardDtoDao.getCardsById(Long.parseLong(loanCardId.trim()));
             } else {
-                throw new ServiceException("The loan card ID value is empty.");
+                throw new ServiceException("Invalid loan card ID value");
             }
         } catch (DaoException e) {
             logger.error("Services error while getting all loan cards.");

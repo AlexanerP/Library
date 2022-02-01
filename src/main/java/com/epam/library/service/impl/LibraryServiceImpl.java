@@ -144,9 +144,7 @@ public class LibraryServiceImpl implements LibraryService {
             LibraryDao libraryDao = DaoFactory.getInstance().getLibraryDAO();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
             Optional<Library> optionalLibrary = Optional.empty();
-            if (validator.isLength(city)) {
-                optionalLibrary = libraryDao.getLibraryByCity(city);
-            }
+            optionalLibrary = libraryDao.getLibraryByCity(city);
             return optionalLibrary;
         }catch (DaoException e) {
             logger.error("Error in services when getting a library around the city.");

@@ -38,9 +38,8 @@ public class AuthorDaoImpl extends DaoHelper implements AuthorDao {
     private final static String GET_BY_PART_NAME_QUERY = String.format("SELECT * FROM %s WHERE %s LIKE ",
             TableName.AUTHORS, ColumnName.AUTHOR_NAME);
 
-    private final static String GET_COUNT_BOOKS_BY_AUTHOR_QUERY = String.format("select count(%s) where %s=(SELECT" +
-                    " * FROM %s WHERE %s=?)", TableName.A_H_B, ColumnName.AHB_ID_BOOK, ColumnName.AHB_ID_AUTHORS,
-            ColumnName.AUTHOR_ID_AUTHOR, TableName.AUTHORS, ColumnName.AUTHOR_NAME);
+    private final static String GET_COUNT_BOOKS_BY_AUTHOR_QUERY = String.format("select count(%s) from %s where %s=?",
+            ColumnName.AHB_ID_BOOK, TableName.A_H_B, ColumnName.AHB_ID_AUTHORS);
 
     private final static String GET_COUNT_QUERY = String.format("select count(%s) from %s", ColumnName.AUTHOR_NAME,
             TableName.AUTHORS);
@@ -183,12 +182,12 @@ public class AuthorDaoImpl extends DaoHelper implements AuthorDao {
     }
 
     @Override
-    public int getCountBooksByAuthor(String author) throws DaoException {
+    public int getCountBooksByAuthor(int authorId) throws DaoException {
         PreparedStatement prStatement = null;
         ResultSet resultSet = null;
         int countAuthors = 0;
         try (Connection connection = ConnectionPool.INSTANCE.getConnection()){
-            prStatement = createPreparedStatement(connection, GET_COUNT_BOOKS_BY_AUTHOR_QUERY, author);
+            prStatement = createPreparedStatement(connection, GET_COUNT_BOOKS_BY_AUTHOR_QUERY, authorId);
             resultSet = prStatement.executeQuery();
             while (resultSet.next()) {
                 countAuthors = resultSet.getInt(1);

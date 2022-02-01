@@ -350,7 +350,7 @@
 
     <c:if test="${not empty statGenre}">
     <h2><fmt:message key="title_genre_statistic"></fmt:message></h2>
-    <table class="table table-hover">
+    <table class="table table-hover" width="50%">
         <tr class="thead-dark">
             <th><fmt:message key="id"></fmt:message></th>
             <th><fmt:message key="genre_category"></fmt:message></th>

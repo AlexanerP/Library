@@ -18,7 +18,7 @@
     <jsp:include page="/WEB-INF/pages/common/header.jsp"></jsp:include>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="body">
+<body background="${pageContext.request.contextPath}/images/58850edb6895f.jpg" class="bg_img">
 <br><br>
 <div align="center">
     <h1><fmt:message key="title_welcome"></fmt:message> ${user.secondName} ${user.lastName}</h1>
@@ -27,7 +27,7 @@
     <div color="red"><h1><fmt:message key="message_blocked_user"></fmt:message></h1></div>
 </c:if>
 <br>
-    <table border="1" cellpadding="5">
+    <table border="1" cellpadding="5" class="table_color">
         <c:if test="${not empty user.role and user.role eq 'ADMIN' or user.role eq 'MANAGER'}">
             <p>
                 <tr>

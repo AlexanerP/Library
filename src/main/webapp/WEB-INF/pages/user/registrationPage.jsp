@@ -13,14 +13,17 @@
 <html>
 <head>
     <title><fmt:message key="registration"></fmt:message></title>
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
 </head>
-<body>
-<div class=class="position-fixed">
+<body background="${pageContext.request.contextPath}/images/61d9d03789b309.300990841.jpg" class="bg_img">
+<div class="position-fixed">
     <div class="left">
         <a class="btn btn-info" href="?sessionLocale=en&command=ChangeLocale"><fmt:message key="language.en"/>  |</a>
         <a class="btn btn-info" href="?sessionLocale=ru&command=ChangeLocale"><fmt:message key="language.ru"/>  |</a>
         <button class="btn btn-info" type="button" name="back" onclick="history.back()"><fmt:message key="back"></fmt:message></button>
+        <a class="btn btn-info" href="Controller?command=GoToMainPage"><fmt:message key="main_page"></fmt:message></a>
     </div>
 </div>
 <br><br>
@@ -31,11 +34,11 @@
         <table>
             <tr>
                 <td><fmt:message key="user_email"></fmt:message></td>
-                <td><input type="text" name="email" placeholder="<fmt:message key="user_email"></fmt:message>"></td>
+                <td><input type="text" name="email" placeholder="<fmt:message key="user_email"></fmt:message>" maxlength="30"></td>
             </tr>
             <tr>
                 <td><fmt:message key="password_user"></fmt:message></td>
-                <td><input type="password" name="password" placeholder="<fmt:message key="password_user"></fmt:message>" /></td>
+                <td><input type="password" name="password" placeholder="<fmt:message key="password_user"></fmt:message>" maxlength="30"></td>
             </tr>
             <tr>
                 <td colspan="2"> <i>
@@ -45,11 +48,11 @@
             </tr>
             <tr>
                 <td><fmt:message key="user_second_name"></fmt:message></td>
-                <td><input type="text" name="secondName" placeholder="<fmt:message key="user_second_name"></fmt:message>"></td>
+                <td><input type="text" name="secondName" placeholder="<fmt:message key="user_second_name"></fmt:message>" maxlength="30"></td>
             </tr>
             <tr>
                 <td><fmt:message key="user_last_name"></fmt:message></td>
-                <td><input type="text" name="lastName" placeholder="<fmt:message key="user_last_name"></fmt:message>"></td>
+                <td><input type="text" name="lastName" placeholder="<fmt:message key="user_last_name"></fmt:message>"maxlength="30"></td>
             </tr>
             <tr>
                 <td colspan="2" align="center"><input type="submit" value="<fmt:message key="registration"></fmt:message>"></td>

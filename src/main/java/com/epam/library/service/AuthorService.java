@@ -13,7 +13,7 @@ public interface AuthorService {
 
     int getCountAuthors() throws ServiceException;
 
-    int getCountBooksByAuthors(String name) throws ServiceException;
+    int getCountBooksByAuthor(String authorId) throws ServiceException;
 
     Optional<Author> showAuthorByName(String name) throws ServiceException;
 

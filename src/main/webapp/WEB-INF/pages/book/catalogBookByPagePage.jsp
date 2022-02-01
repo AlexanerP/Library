@@ -37,7 +37,7 @@
             <th><fmt:message key="order_command"></fmt:message></th>
             <th><fmt:message key="wish_command"></fmt:message></th>
         </tr>
-        <c:forEach var="bookDTO" items="${books}">
+        <c:forEach var="bookDTO" items="${books}" varStatus="status">
             <tr>
                 <td><c:out value="${status.index + 1}"></c:out></td>
                 <td><c:out value="${bookDTO.title}"></c:out></td>
@@ -63,19 +63,20 @@
         </c:forEach>
         <tr>
             <th colspan="10">
-                <p align="center">"Page"</p>
-                <c:out value="${pageCatalog}"></c:out>
+                <p align="center"><fmt:message key="page"></fmt:message> <c:out value="${pageCatalog}"></c:out></p>
             </th>
         </tr>
         <tfoot>
         <tr>
-            <th align="center">
+            <th>
                 <a href="?command=CatalogBookByPage&pageCatalog=${pageCatalog}&back=back"><input type="button" value="<fmt:message key="back"></fmt:message>"></a>
             </th>
-            <th colspan="8" align="center">
-                <input type="number" name="jumpPage" value="jump" placeholder="<fmt:message key="page"></fmt:message>" min="1"><input type="submit" value="<fmt:message key="button_go"></fmt:message>">
+            <th colspan="7">
+                <div align="center">
+                    <input type="number" name="jumpPage" value="jump" placeholder="<fmt:message key="page"></fmt:message>" min="1"><input type="submit" value="<fmt:message key="button_go"></fmt:message>">
+                </div>
             </th>
-            <th align="center">
+            <th>
                 <a href="?command=CatalogBookByPage&pageCatalog=${pageCatalog}&next=next"><input type="button" value="<fmt:message key="next"></fmt:message>"></a>
             </th>
         </tr>

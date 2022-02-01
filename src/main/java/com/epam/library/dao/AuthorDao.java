@@ -19,7 +19,7 @@ public interface AuthorDao {
 
     int getCountAuthors() throws DaoException;
 
-    int getCountBooksByAuthor(String author) throws DaoException;
+    int getCountBooksByAuthor(int authorId) throws DaoException;
 
     List<Author> getAuthors() throws DaoException;
 

@@ -46,6 +46,7 @@ public class RoleFilter implements Filter {
         commandsUser.put(CommandType.SIGN_OUT, userAdminManager);
         commandsUser.put(CommandType.ACTION_WISH_BOOK, userAdminManager);
         commandsUser.put(CommandType.GO_TO_CATALOG_BY_PAGE, userAdminManager);
+        commandsUser.put(CommandType.GO_TO_BOOK_DETAILS_PAGE, userAdminManager);
 
         commandsUser.put(CommandType.MANAGER_CATALOG, manager);
         commandsUser.put(CommandType.ACTION_ADMIN_COMMAND, manager);
@@ -75,6 +76,9 @@ public class RoleFilter implements Filter {
         commandsUser.put(CommandType.CREATE_BOOK, adminManager);
         commandsUser.put(CommandType.ACTION_ORDER, adminManager);
         commandsUser.put(CommandType.GO_TO_STATISTICS, adminManager);
+        commandsUser.put(CommandType.CREATE_AUTHOR, adminManager);
+        commandsUser.put(CommandType.CREATE_GENRE, adminManager);
+
     }
 
     @Override

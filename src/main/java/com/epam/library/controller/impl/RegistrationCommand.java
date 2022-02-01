@@ -38,7 +38,7 @@ public class RegistrationCommand implements Command {
             String lastName = req.getParameter(Constant.USER_LAST_NAME);
             if (email != null && email != "" && password != null && password != ""
                     && secondName != null && secondName != "" && lastName != null && lastName != ""){
-                if (isFreeEmail(email)) {
+                if (userService.isFreeEmail(email)) {
                     boolean flagRegistration = userService.create(email, password, secondName, lastName);
                     if(flagRegistration) {
                         Optional<User> optionalUser = userService.verification(email, password);
@@ -65,25 +65,5 @@ public class RegistrationCommand implements Command {
             logger.error("An error occured during registration. ", e);
             resp.sendRedirect(CommandType.CONTROLLER_COMMAND + CommandType.ERROR_500);
         }
-    }
-
-    private boolean isFreeEmail(String email) {
-        try {
-            UserService userService = ServiceFactory.getInstance().getUserService();
-            List<User> users = userService.showUserByEmail(email);
-            if (users != null) {
-                for (User user : users) {
-                    if (user.getStatus().equals(UserStatus.ACTIVE)
-                            || user.getStatus().equals(UserStatus.BLOCKED)) {
-                        return false;
-                    }
-                }
-            } else {
-                return true;
-            }
-        } catch (ServiceException e) {
-        logger.error("Error while checking if email exists in the system.", e);
-        }
-        return false;
     }
 }

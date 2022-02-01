@@ -24,9 +24,14 @@ public class AuthorServiceImpl implements AuthorService {
             AuthorDao authorDao = DaoFactory.getInstance().getAuthorDAO();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
             if (validator.isLength(name)) {
-                Author author = new Author();
-                author.setName(name);
-                return authorDao.create(author);
+                List<Author> authors = authorDao.getAuthors();
+                for (Author authorFromDB : authors) {
+                    if (name.equalsIgnoreCase(authorFromDB.getName())) {
+                        Author author = new Author();
+                        author.setName(name);
+                        return authorDao.create(author);
+                    } 
+                }
             } else {
                 throw new ServiceException("Author name value is longer than specified.");
             }
@@ -77,18 +82,19 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public int getCountBooksByAuthors(String name) throws ServiceException {
+    public int getCountBooksByAuthor(String authorId) throws ServiceException {
         try {
             AuthorDao authorDao = DaoFactory.getInstance().getAuthorDAO();
-            Optional<Author> optionalAuthor = authorDao.getAuthorByName(name);
-            if (optionalAuthor.isPresent()) {
-                return authorDao.getCountBooksByAuthor(optionalAuthor.get().getName());
+            ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
+            if (validator.isNumber(authorId)) {
+                return authorDao.getCountBooksByAuthor(Integer.parseInt(authorId.trim()));
+            } else {
+                throw new ServiceException("Invalid author ID.");
             }
         } catch (DaoException e) {
             logger.error("An error occurred while getting the number of author's books.");
             throw new ServiceException("An error occurred while getting the number of author's books.", e);
         }
-        return 0;
     }
 
     @Override
