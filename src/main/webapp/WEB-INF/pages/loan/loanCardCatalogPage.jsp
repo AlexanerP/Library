@@ -123,9 +123,9 @@
                 <tr class="thead-dark">
                     <th>#</th>
                     <th><fmt:message key="loan_card_id"></fmt:message></th>
-                    <th><fmt:message key="user_id_for_row"></fmt:message></th>
-                    <th><fmt:message key="book_id_for_row"></fmt:message></th>
-                    <th><fmt:message key="book_title_for_row"></fmt:message></th>
+                    <th><fmt:message key="user_id"></fmt:message></th>
+                    <th><fmt:message key="book_id"></fmt:message></th>
+                    <th><fmt:message key="book_title"></fmt:message></th>
                     <th><fmt:message key="library_city"></fmt:message></th>
                     <th><fmt:message key="loan_card_taking_date"></fmt:message></th>
                     <th><fmt:message key="loan_card_deadline"></fmt:message></th>

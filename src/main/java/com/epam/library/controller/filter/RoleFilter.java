@@ -35,7 +35,9 @@ public class RoleFilter implements Filter {
         commandsUser.put(CommandType.GO_TO_HOME, userAdminManager);
         commandsUser.put(CommandType.GO_TO_CATALOG, userAdminManager);
         commandsUser.put(CommandType.GO_TO_ORDER, userAdminManager);
+        commandsUser.put(CommandType.GO_TO_UPDATE_ORDER, userAdminManager);
         commandsUser.put(CommandType.ORDER_BOOK, userAdminManager);
+        commandsUser.put(CommandType.UPDATE_ORDER, userAdminManager);
         commandsUser.put(CommandType.SHOW_CATALOG_BY_PAGE, userAdminManager);
         commandsUser.put(CommandType.LOAN_CARD_USER, userAdminManager);
         commandsUser.put(CommandType.UPDATE_USER, userAdminManager);
@@ -93,7 +95,7 @@ public class RoleFilter implements Filter {
             UserRole userRole = user.getRole();
             List<UserRole> roles = commandsUser.get(command);
             if (roles != null && !roles.contains(userRole)) {
-                request.getRequestDispatcher(PathJsp.INDEX_PAGE).forward(request, servletResponse);
+                request.getRequestDispatcher(PathJsp.ERROR_404_PAGE).forward(request, servletResponse);
                 return;
             }
         }

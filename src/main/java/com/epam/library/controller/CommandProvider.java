@@ -40,6 +40,7 @@ public final class CommandProvider {
         commands.put(CommandType.UPDATE_LIBRARY, new UpdateLibraryCommand());
         commands.put(CommandType.UPDATE_AUTHOR, new UpdateAuthorCommand());
         commands.put(CommandType.UPDATE_GENRE, new UpdateGenreCommand());
+        commands.put(CommandType.UPDATE_ORDER, new UpdateOrderCommand());
 
         commands.put(CommandType.ADMIN_PAGE, new AdminPageCommand());
 
@@ -66,6 +67,7 @@ public final class CommandProvider {
         commands.put(CommandType.GO_TO_MESSAGE_PAGE, new GoToMessagePageCommand());
         commands.put(CommandType.GO_TO_ADMIN_PAGE, new GoToAdminPageCommand());
         commands.put(CommandType.GO_TO_UPDATE_BOOK, new GoToUpdateBookCommand());
+        commands.put(CommandType.GO_TO_UPDATE_ORDER, new GoToUpdateOrderCommand());
         commands.put(CommandType.GO_TO_STATISTICS, new GoToStatisticLibraryCommand());
         commands.put(CommandType.GO_TO_UPDATE_LIBRARY, new GoToUpdateLibraryCommand());
         commands.put(CommandType.GIVE_OUT_BOOK_USER, new CatalogGiveOutBookCommand());

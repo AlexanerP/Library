@@ -22,6 +22,8 @@ public class UserServiceImpl implements UserService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
+    private static final String adminId = "1";
+
     @Override
     public Optional<User> verification(String email, String password) throws ServiceException {
         try {
@@ -40,16 +42,20 @@ public class UserServiceImpl implements UserService {
         try {
             UserDao userDao = DaoFactory.getInstance().getUserDAO();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
-            if (validator.isNumber(userId.trim())) {
-                Optional<User> optionalUser = userDao.getUserById(Long.parseLong(userId.trim()));
-                if (optionalUser.isPresent()) {
-                    userDao.delete(optionalUser.get());
-                    return true;
+            if (!userId.equals(adminId)) {
+                if (validator.isNumber(userId.trim())) {
+                    Optional<User> optionalUser = userDao.getUserById(Long.parseLong(userId.trim()));
+                    if (optionalUser.isPresent()) {
+                        userDao.delete(optionalUser.get());
+                        return true;
+                    } else {
+                        throw new ServiceException("User in not found.");
+                    }
                 } else {
-                    throw new ServiceException("User in not found.");
+                    throw new ServiceException("Trying to get a user by an ID that is not a number.");
                 }
             } else {
-                throw new ServiceException("Trying to get a user by an ID that is not a number.");
+                throw new ServiceException("Attempted to remove the main administrator.");
             }
         }catch (DaoException e) {
             logger.error("Error when deleting a user.");
@@ -230,28 +236,31 @@ public class UserServiceImpl implements UserService {
         try {
             UserDao userDAO = DaoFactory.getInstance().getUserDAO();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
-            if (validator.isNumber(userId)) {
-                if (status.equalsIgnoreCase(UserStatus.ACTIVE.name()) || status.equalsIgnoreCase(UserStatus.BLOCKED.name())
-                    || status.equalsIgnoreCase(UserStatus.DELETE.name())) {
-                    Optional<User> optionalUser = userDAO.getUserById(Long.parseLong(userId.trim()));
-                    if (optionalUser.isPresent()) {
-                        User user = optionalUser.get();
-                        user.setStatus(UserStatus.valueOf(status.toUpperCase()));
-                        int result = userDAO.update(user);
-                        if (result == 1) {
-                            return true;
+            if (!userId.equals(adminId)) {
+                if (validator.isNumber(userId)) {
+                    if (status.equalsIgnoreCase(UserStatus.ACTIVE.name()) || status.equalsIgnoreCase(UserStatus.BLOCKED.name())
+                            || status.equalsIgnoreCase(UserStatus.DELETE.name())) {
+                        Optional<User> optionalUser = userDAO.getUserById(Long.parseLong(userId.trim()));
+                        if (optionalUser.isPresent()) {
+                            User user = optionalUser.get();
+                            user.setStatus(UserStatus.valueOf(status.toUpperCase()));
+                            int result = userDAO.update(user);
+                            if (result == 1) {
+                                return true;
+                            }
+                        } else {
+                            throw new ServiceException("User by ID not found");
                         }
+
                     } else {
-                        throw new ServiceException("User by ID not found");
+                        throw new ServiceException("Unknown user status.");
                     }
-
-                } else {
-                    throw new ServiceException("Unknown user status.");
+                }else {
+                    throw new ServiceException("Invalid ID value.");
                 }
-            }else {
-                throw new ServiceException("Invalid ID value.");
+            } else {
+                throw new ServiceException("Attempted to change the status of the main administrator.");
             }
-
         }catch (DaoException e) {
             logger.error("Error in status update services.");
             throw new ServiceException("Error in status update services.", e);
@@ -290,28 +299,31 @@ public class UserServiceImpl implements UserService {
         try {
             UserDao userDAO = DaoFactory.getInstance().getUserDAO();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
-            if (validator.isNumber(userId)) {
-                if (role.equalsIgnoreCase(UserRole.USER.name()) || role.equalsIgnoreCase(UserRole.ADMIN.name())
-                        || role.equalsIgnoreCase(UserRole.MANAGER.name())) {
-                    Optional<User> optionalUser = userDAO.getUserById(Long.parseLong(userId.trim()));
-                    if (optionalUser.isPresent()) {
-                        User user = optionalUser.get();
-                        user.setRole(UserRole.valueOf(role.toUpperCase()));
-                        int result = userDAO.update(user);
-                        if (result == 1) {
-                            return true;
+            if (!userId.equals(adminId)){
+                if (validator.isNumber(userId)) {
+                    if (role.equalsIgnoreCase(UserRole.USER.name()) || role.equalsIgnoreCase(UserRole.ADMIN.name())
+                            || role.equalsIgnoreCase(UserRole.MANAGER.name())) {
+                        Optional<User> optionalUser = userDAO.getUserById(Long.parseLong(userId.trim()));
+                        if (optionalUser.isPresent()) {
+                            User user = optionalUser.get();
+                            user.setRole(UserRole.valueOf(role.toUpperCase()));
+                            int result = userDAO.update(user);
+                            if (result == 1) {
+                                return true;
+                            }
+                        } else {
+                            throw new ServiceException("User by ID not found");
                         }
+
                     } else {
-                        throw new ServiceException("User by ID not found");
+                        throw new ServiceException("Unknown user role.");
                     }
-
-                } else {
-                    throw new ServiceException("Unknown user role.");
+                }else {
+                    throw new ServiceException("Invalid ID value.");
                 }
-            }else {
-                throw new ServiceException("Invalid ID value.");
+            } else {
+                throw new ServiceException("Attempted to change the role of the main administrator.");
             }
-
         }catch (DaoException e) {
             logger.error("Error in status update services.");
             throw new ServiceException("Error in status update services.", e);

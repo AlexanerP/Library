@@ -110,6 +110,10 @@
             <fmt:message key="message_code_1019"></fmt:message>
             <c:remove var="MESSAGE_CODE_1019" scope="session" />
         </c:if>
+        <c:if test="${not empty sessionScope.MESSAGE_CODE_1020}">
+            <fmt:message key="message_code_1020"></fmt:message>
+            <c:remove var="MESSAGE_CODE_1020" scope="session" />
+        </c:if>
         <c:if test="${not empty sessionScope.successfulMessage}">
                 <fmt:message key="successful_message"></fmt:message>
             <c:remove var="successfulMessage" scope="session" />
@@ -213,6 +217,10 @@
         <c:if test="${not empty MESSAGE_ERROR_CODE_1024}">
             <fmt:message key="message_error_code_1024"></fmt:message>
             <c:remove var="MESSAGE_ERROR_CODE_1024" scope="session" />
+        </c:if>
+        <c:if test="${not empty MESSAGE_ERROR_CODE_1025}">
+            <fmt:message key="message_error_code_1025"></fmt:message>
+            <c:remove var="MESSAGE_ERROR_CODE_1025" scope="session" />
         </c:if>
         <c:if test="${not empty negativeMessage}">
             <fmt:message key="negative_message"></fmt:message>

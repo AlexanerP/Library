@@ -44,10 +44,10 @@
                 <td><c:out value="${wishBook.isbn}"></c:out></td>
                 <td><c:out value="${wishBook.publisher}"></c:out></td>
                 <td><c:out value="${wishBook.year}"></c:out></td>
-                <td><c:if test="${wishBook.borrow < wishBook.quantity}">
-                        <c:if test="${user.role != 'BLOCKED'}">
+                <td>
+                    <c:if test="${wishBook.borrow < wishBook.quantity}">
+                        <c:if test="${user.status eq 'ACTIVE'}">
                             <a class="btn btn-primary" href="?command=GoToOrder&bookId=${wishBook.bookId}"><fmt:message key="order_command"></fmt:message></a>
-
                         </c:if>
                     </c:if>
                 </td>

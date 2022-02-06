@@ -35,6 +35,8 @@ public final class CommandType {
     public static final String ACTION_ADMIN_COMMAND = "ActionAdminCommand";
     public static final String GO_TO_UPDATE_BOOK = "GoToUpdateBook";
     public static final String UPDATE_BOOK = "UpdateBook";
+    public static final String UPDATE_ORDER = "UpdateOrder";
+    public static final String GO_TO_UPDATE_ORDER = "GoToUpdateOrder";
     public static final String SIGN_OUT = "SignOut";
     public static final String GO_TO_STATISTICS = "GoToStatistics";
     public static final String ACTION_ORDER = "ActionOrder";

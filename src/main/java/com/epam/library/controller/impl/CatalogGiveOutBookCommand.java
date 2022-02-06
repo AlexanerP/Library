@@ -31,7 +31,6 @@ public class CatalogGiveOutBookCommand implements Command {
             String city = req.getParameter(Constant.LIBRARY_CITY);
             String status = req.getParameter(Constant.STATUS);
             String all = req.getParameter(Constant.ORDER_ALL);
-            System.out.println("library/" + city + ", status/" + status );
             if (orderId != null && orderId != "") {
                 orders.add(orderDtoService.showOrderById(orderId).orElse(new OrderDto()));
             } else if (city != null && status == null) {

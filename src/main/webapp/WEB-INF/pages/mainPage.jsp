@@ -33,16 +33,16 @@
 </c:if>
 <table>
     <tr>
-        <td><fmt:message key="message_count_book_library"></fmt:message></td>
-        <td>${countBooks}</td>
+        <td><fmt:message key="message_count_book_library"></fmt:message> - ${countBooks}</td>
+<%--        <td>${countBooks}</td>--%>
     </tr>
     <tr>
-        <td><fmt:message key="message_count_author_library"></fmt:message></td>
-        <td>${countAuthors}</td>
+        <td><fmt:message key="message_count_author_library"></fmt:message> - ${countAuthors}</td>
+<%--        <td>${countAuthors}</td>--%>
     </tr>
     <tr>
-        <td><fmt:message key="message_count_genre_library"></fmt:message></td>
-        <td>${countGenres}</td>
+        <td><fmt:message key="message_count_genre_library"></fmt:message> - ${countGenres}</td>
+<%--        <td>${countGenres}</td>--%>
     </tr>
 </table>
 <br><br>
@@ -141,7 +141,7 @@
             <div align="center">
                 <c:if test="${user.role != 'GUEST'}">
                     <td>
-                        <c:if test="${user.status != 'BLOCKED'}">
+                        <c:if test="${user.status eq 'ACTIVE'}">
                             <a class="btn btn-dark" href="?command=GoToOrder&bookId=${booksDTO.bookDtoId}"><fmt:message key="order_command"></fmt:message></a>
                         </c:if>
                         <a class="btn btn-primary" href="?command=ActionWishBook&bookId=${booksDTO.bookDtoId}&add=add"><fmt:message key="wish_command"></fmt:message></a>

@@ -36,8 +36,7 @@ public class UserCatalogCommand implements Command {
             UserService userService = ServiceFactory.getInstance().getUserService();
             List<User> users = new ArrayList<>();
             if (userRole !="" && userRole != null) {
-               users = userService.showUserByRole(UserRole.ADMIN.name());
-               users.addAll(userService.showUserByRole(UserRole.MANAGER.name()));
+               users = userService.showUserByRole(userRole);
             } else if (showAll != "" && showAll != null) {
                 users = userService.getUsers();
             }else if (userId != "" && userId != null) {

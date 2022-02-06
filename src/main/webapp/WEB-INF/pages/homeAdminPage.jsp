@@ -25,8 +25,7 @@
 <br>
 <table>
     <tr>
-        <th><fmt:message key="message_count_new_order"></fmt:message></th>
-        <td>${ordersSize}</td>
+        <h3><fmt:message key="message_count_new_order"></fmt:message> - ${ordersSize}</h3>
     </tr>
 </table>
 <div align="center">

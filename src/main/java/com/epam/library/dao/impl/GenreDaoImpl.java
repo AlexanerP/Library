@@ -25,12 +25,6 @@ public class GenreDaoImpl extends DaoHelper implements GenreDao {
 
     private static final Logger logger = LoggerFactory.getLogger(GenreDaoImpl.class);
 
-    private final static String GET_GENRES_BY_ID_BOOK_QUERY = String.format("SELECT %s.%s, %s.%s, %s.%s FROM %s " +
-                    "INNER JOIN %s USING(%s) INNER JOIN %s USING(%s) WHERE %s.%s=?", TableName.G_H_B,
-            ColumnName.GHB_ID_GENRES, TableName.G_H_B, ColumnName.GHB_ID_BOOK, TableName.GENRES,
-            ColumnName.GENRES_GENRE, TableName.BOOK, TableName.G_H_B, ColumnName.GHB_ID_BOOK, TableName.GENRES,
-            ColumnName.GENRES_ID_GENRE, TableName.BOOK, ColumnName.BOOK_ID_BOOK);
-
     private static final String ADD_GENRE_QUERY = String.format("INSERT IGNORE INTO %s(%s) VALUES(?)",
             TableName.GENRES, ColumnName.GENRES_GENRE);
 

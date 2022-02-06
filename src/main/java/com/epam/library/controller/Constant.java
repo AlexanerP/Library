@@ -140,6 +140,7 @@ public class Constant {
     public static final String MESSAGE_CODE_1017 = "MESSAGE_CODE_1017";
     public static final String MESSAGE_CODE_1018 = "MESSAGE_CODE_1018";
     public static final String MESSAGE_CODE_1019 = "MESSAGE_CODE_1019";
+    public static final String MESSAGE_CODE_1020 = "MESSAGE_CODE_1020";
 
 
     //Unsuccessful messages
@@ -167,6 +168,7 @@ public class Constant {
     public static final String MESSAGE_ERROR_CODE_1022 = "MESSAGE_ERROR_CODE_1022";
     public static final String MESSAGE_ERROR_CODE_1023 = "MESSAGE_ERROR_CODE_1023";
     public static final String MESSAGE_ERROR_CODE_1024 = "MESSAGE_ERROR_CODE_1024";
+    public static final String MESSAGE_ERROR_CODE_1025 = "MESSAGE_ERROR_CODE_1025";
 
 
     /*
@@ -192,6 +194,7 @@ public class Constant {
     public static final String MESSAGE_CODE_1017 = "The book has been updated.";
     public static final String MESSAGE_CODE_1018 = "The library data has been changed.";
     public static final String MESSAGE_CODE_1019 = "The user data has been updated.";
+    public static final String MESSAGE_CODE_1020 = "The order has been changed.";
 
 
     public static final String MESSAGE_ERROR_CODE_1001 = "Email busy.";
@@ -223,6 +226,7 @@ public class Constant {
     public static final String MESSAGE_ERROR_CODE_1022 = The library has not been updated.";
     public static final String MESSAGE_ERROR_CODE_1023 = "User is not found.";
     public static final String MESSAGE_ERROR_CODE_1024 = "Invalid email.";
+    public static final String MESSAGE_ERROR_CODE_1025 = "The order has not been changed.";
      */
 
 }

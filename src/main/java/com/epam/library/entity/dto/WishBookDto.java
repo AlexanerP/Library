@@ -1,7 +1,6 @@
 package com.epam.library.entity.dto;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 public class WishBookDto implements Serializable {
 
@@ -14,7 +13,6 @@ public class WishBookDto implements Serializable {
     private int quantity;
     private int borrow;
     private String publisher;
-    private String description;
     private String year;
     private String isbn;
 
@@ -77,14 +75,6 @@ public class WishBookDto implements Serializable {
         this.publisher = publisher;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getYear() {
         return year;
     }
@@ -133,9 +123,6 @@ public class WishBookDto implements Serializable {
         if (publisher != null ? !publisher.equals(book.publisher) : book.publisher != null) {
             return false;
         }
-        if (description != null ? !description.equals(book.description) : book.description != null) {
-            return false;
-        }
         if (year != null ? !year.equals(book.year) : book.year != null) {
             return false;
         }
@@ -151,7 +138,6 @@ public class WishBookDto implements Serializable {
         result = 31 * result + quantity;
         result = 31 * result + borrow;
         result = 31 * result + (publisher != null ? publisher.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (year != null ? year.hashCode() : 0);
         result = 31 * result + (isbn != null ? isbn.hashCode() : 0);
         return result;
@@ -168,8 +154,7 @@ public class WishBookDto implements Serializable {
                 .append("', publisher='").append(publisher)
                 .append("', quantity='").append(quantity)
                 .append("', borrow='").append(borrow)
-                .append("', year='").append(year)
-                .append("', description=").append(description).append('}');
+                .append("', year='").append(year).append('}');
         return line.toString();
     }
 }

@@ -125,9 +125,9 @@
                 <c:out value="${users.status}"></c:out>
             </td>
             <td>
-                <a class="btn btn-success" href="?command=ActionUser&userId=${user.userId}&status=active"><fmt:message key="user_status_active"></fmt:message></a>
-                <a class="btn btn-warning" href="?command=ActionUser&userId=${user.userId}&status=blocked"><fmt:message key="block_command"></fmt:message></a>
-                <a class="btn btn-danger" href="?command=ActionUser&userId=${user.userId}&status=delete"><fmt:message key="delete_command"></fmt:message></a>
+                <a class="btn btn-success" href="?command=ActionUser&userId=${users.userId}&status=active"><fmt:message key="user_status_active"></fmt:message></a>
+                <a class="btn btn-warning" href="?command=ActionUser&userId=${users.userId}&status=blocked"><fmt:message key="block_command"></fmt:message></a>
+                <a class="btn btn-danger" href="?command=ActionUser&userId=${users.userId}&status=delete"><fmt:message key="delete_command"></fmt:message></a>
             </td>
         </tr>
     </tr>

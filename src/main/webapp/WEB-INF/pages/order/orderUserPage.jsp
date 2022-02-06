@@ -36,7 +36,7 @@
                 <th><fmt:message key="library_city"></fmt:message></th>
                 <th><fmt:message key="order_comment"></fmt:message></th>
                 <th><fmt:message key="status"></fmt:message></th>
-                <th><fmt:message key="delete_command"></fmt:message></th>
+                <th><fmt:message key="action"></fmt:message></th>
             </tr>
             <c:forEach var="orders" items="${orders}" varStatus="status">
                 <tr>
@@ -70,8 +70,10 @@
                     </td>
                     <td>
                         <c:if test="${orders.status eq 'OPENED'}">
-                            <a class="btn btn-danger" href="?command=ActionUserOrder&orderUserId=${orders.orderDtoId}&action=remove"><fmt:message key="delete_command"></fmt:message></a> </td>
+                            <a class="btn btn-danger" href="?command=ActionUserOrder&orderUserId=${orders.orderDtoId}&action=remove"><fmt:message key="delete_command"></fmt:message></a>
+                            <a class="btn btn-success" href="?command=GoToUpdateOrder&orderId=${orders.orderDtoId}"><fmt:message key="update_command"></fmt:message></a>
                         </c:if>
+                    </td>
                 </tr>
             </c:forEach>
         </table>

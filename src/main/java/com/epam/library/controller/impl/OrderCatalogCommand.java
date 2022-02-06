@@ -33,7 +33,6 @@ public class OrderCatalogCommand implements Command {
             String status = req.getParameter(Constant.STATUS);
             String allOrders = req.getParameter(Constant.ORDER_ALL);
             List<OrderDto> orders = new ArrayList<>();
-            System.out.println("userId - " + userId);
             if (userId != null && userId !="") {
                 orders = orderDtoService.showOrdersUser(userId);
             }else if (orderId != null && orderId != "") {

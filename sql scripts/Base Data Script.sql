@@ -11,3 +11,15 @@ INSERT INTO library.libraries(city, street, id_status)
 		  ('Брест', 'ул. Героев обороны Брестской крепости 60', 2);
 
 INSERT INTO library.card_statuses(status) VALUES('open'),('closed');
+
+INSERT INTO library.books(shelf, title, quantity, borrow, publisher, year, isbn, id_library, description)
+    VALUES('1-S4', 'История Рима от основания города Т1', 8, 0, 'Наука', 1989, '5-02-008995-8', 1,
+           'Основное произведение Тита Ливия, один из самых известных и фундаментальных трудов по истории Древнего Рима. Охватывает периоды от разрушения Трои до 9 года до н. э. (до смерти Друза Старшего включительно).');
+
+INSERT INTO library.authors(name) VALUES('Тит Ливий');
+
+INSERT INTO library.genres(genre) VALUES('Исторические'), ('Фантастика'), ('Детектив'), ('Приключения'), ('Научная');
+
+INSERT INTO library.genres_has_book(id_genre, id_book) VALUES((SELECT id_genres FROM genres WHERE genre='Исторические'), 1);
+
+INSERT INTO library.authors_has_book(id_author, id_book) VALUES((SELECT id_authors FROM authors WHERE name='Тит Ливий'), 1);

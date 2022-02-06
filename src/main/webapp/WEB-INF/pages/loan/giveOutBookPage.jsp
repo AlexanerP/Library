@@ -74,7 +74,7 @@
     <input type="hidden" name="command" value="GiveOutBookUser">
     <table>
         <tr>
-            <input type="submit" value="<fmt:message key="order_show_all_approved"></fmt:message>" name="getAll">
+            <input type="submit" value="<fmt:message key="order_show_all_arrived"></fmt:message>" name="getAll">
         </tr>
     </table>
 </form>

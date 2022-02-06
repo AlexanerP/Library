@@ -7,6 +7,7 @@ public class PathJsp {
     public static final String BOOK_DETAILS = "WEB-INF/pages/book/bookDetailsPage.jsp";
     public static final String WISH_BOOK_PAGE = "WEB-INF/pages/book/wishBooksUserPage.jsp";
     public static final String ORDER_PAGE = "WEB-INF/pages/order/orderPage.jsp";
+    public static final String UPDATE_ORDER_PAGE = "WEB-INF/pages/order/orderUpdatePage.jsp";
 
     public static final String BOOK_CATALOG_BY_PAGE = "WEB-INF/pages/book/catalogBookByPagePage.jsp";
     public static final String BOOK_CATALOG_PAGE = "WEB-INF/pages/book/catalogBookPage.jsp";
