@@ -18,6 +18,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * This class is an implementation of a {@link com.epam.library.controller.Command} interface and
+ * is used for actions with issuing books to the user.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class ActionGiveOutBookCommand implements Command {
 
     private static final Logger logger = LoggerFactory.getLogger(ActionGiveOutBookCommand.class);

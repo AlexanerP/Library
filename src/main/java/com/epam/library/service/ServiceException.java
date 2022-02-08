@@ -1,5 +1,13 @@
 package com.epam.library.service;
 
+/**
+ * The class {@code ServiceException} is subclass of {@code Exception}. Class
+ * represent an exception that may occur on a Service layer of the application
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class ServiceException extends Exception {
 
     public ServiceException() {

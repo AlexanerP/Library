@@ -19,6 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class {@link BookDaoImpl} is an implementation of the 'BookDao' interface.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class BookDaoImpl extends DaoHelper implements BookDao {
 
     private static final Logger logger = LoggerFactory.getLogger(BookDaoImpl.class);

@@ -18,6 +18,14 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class {@link UserServiceImpl} is service class which provide operations the user
+ * part of application.
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class UserServiceImpl implements UserService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);

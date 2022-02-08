@@ -17,6 +17,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
 
+/**
+ * This class is an implementation of a {@link com.epam.library.controller.Command} interface and
+ * is used to prepare the display for updating the genre.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class GoToUpdateGenreCommand implements Command {
 
     private static final Logger logger = LoggerFactory.getLogger(GoToUpdateGenreCommand.class);

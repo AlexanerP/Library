@@ -6,6 +6,13 @@ import com.epam.library.entity.LoanCardStatus;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+/**
+ * Class {@link LoanCardDto} is an entity that represents the ability to compose multiple 'Book', 'Library', 'User' table entities.
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class LoanCardDto implements Serializable {
 
     private static final long serialVersionUID = -7940112002348591926L;

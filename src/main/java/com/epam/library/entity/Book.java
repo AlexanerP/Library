@@ -3,6 +3,13 @@ package com.epam.library.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+/**
+ * Class {@link Book} is an entity that represents concrete records from 'Book' table.
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class Book implements Serializable {
 
     private static final long serialVersionUID = 1900551704855601119L;

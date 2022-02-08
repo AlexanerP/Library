@@ -105,14 +105,6 @@ public class BookDtoDaoImplTest {
     }
 
     @Test
-    public void delete() {
-        Long bookId = 7L;
-        int expected = bookDtoDao.delete(bookId);
-        int actual = 1;
-        assertEquals(expected, actual);
-    }
-
-    @Test
     public void getBooks() {
         List<BookDto> books = bookDtoDao.getBooks();
         output(books);

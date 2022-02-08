@@ -5,6 +5,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * This class is an implementation of a {@link Filter} interface and
+ * is used to set the locale.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class SessionLocaleFilter implements Filter {
 
     private final static String SESSION_LOCALE = "sessionLocale";
@@ -21,7 +28,6 @@ public class SessionLocaleFilter implements Filter {
 
         if (req.getParameter(SESSION_LOCALE) != null) {
             req.getSession().setAttribute(LANGUAGE, req.getParameter(SESSION_LOCALE));
-
         }
         filterChain.doFilter(servletRequest, servletResponse);
     }

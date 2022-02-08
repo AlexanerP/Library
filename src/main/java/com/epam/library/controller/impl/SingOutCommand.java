@@ -9,6 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * This class is an implementation of a {@link com.epam.library.controller.Command} interface and
+ * is used to log the user out of the account and end the session.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class SingOutCommand implements Command {
 
     @Override

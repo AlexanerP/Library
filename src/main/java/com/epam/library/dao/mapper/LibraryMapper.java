@@ -7,6 +7,13 @@ import com.epam.library.entity.LibraryStatus;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class {@link LibraryMapper} builds the entity 'Library'.
+ *
+ *
+ * @author Alexander Pishchala
+ */
+
 public class LibraryMapper implements RowMapper<Library> {
 
     @Override

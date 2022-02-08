@@ -21,6 +21,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class {@link OrderDaoImpl} is an implementation of the 'OrderDao' interface.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class OrderDaoImpl extends DaoHelper implements OrderDao {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderDaoImpl.class);

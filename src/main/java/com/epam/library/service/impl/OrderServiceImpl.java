@@ -13,6 +13,14 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
+/**
+ * Class {@link OrderServiceImpl} is service class which provide operations an order
+ * part of application.
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class OrderServiceImpl implements OrderService {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);

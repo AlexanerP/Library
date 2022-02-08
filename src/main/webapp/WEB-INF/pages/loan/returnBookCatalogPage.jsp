@@ -70,7 +70,7 @@
     <input type="hidden" name="command" value="ReturnBookCatalog">
     <table>
         <tr>
-            <input type="submit" value="<fmt:message key="loan_card_show_all_open_positions"></fmt:message>" name="getAll">
+            <input type="submit" value="<fmt:message key="loan_card_show_all_loan_books"></fmt:message>" name="getAll">
         </tr>
     </table>
 </form>

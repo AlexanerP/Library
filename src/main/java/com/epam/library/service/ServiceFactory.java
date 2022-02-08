@@ -2,6 +2,13 @@ package com.epam.library.service;
 
 import com.epam.library.service.impl.*;
 
+/**
+ * Class {@link ServiceFactory}. Factory class for service's.
+ *
+ *
+ * @author Alexander Pishchala
+ */
+
 public class ServiceFactory {
 
     private ServiceFactory() {

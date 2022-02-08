@@ -18,6 +18,13 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Optional;
 
+/**
+ * This class is an implementation of a {@link com.epam.library.controller.Command} interface and
+ * is used to update user data.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class UpdateUserCommand implements Command {
 
     private static final Logger logger = LoggerFactory.getLogger(UpdateUserCommand.class);

@@ -19,6 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class {@link UserDaoImpl} is an implementation of the 'UserDao' interface.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class UserDaoImpl extends DaoHelper implements UserDao {
 
     private final static Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
@@ -215,6 +221,14 @@ public class UserDaoImpl extends DaoHelper implements UserDao {
         }
     }
 
+    /**
+     * The method deletes specified record in database table.
+     *
+     * @param user User status will be changed to deleted and updated in the table.
+     * @return count row if row in database table corresponding to the entity was updated successfully.
+     * @throws DaoException if method has catched {@link java.sql.SQLException
+     *                      SQLException}
+     */
     @Override
     public int delete(User user) throws DaoException {
         logger.info("Start the removal process.");

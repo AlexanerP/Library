@@ -17,6 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class {@link BookDtoDaoImpl} is an implementation of the 'BookDtoDao' interface.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class BookDtoDaoImpl extends DaoHelper implements BookDtoDao {
 
     private static final Logger logger = LoggerFactory.getLogger(BookDtoDaoImpl.class);
@@ -145,16 +151,6 @@ public class BookDtoDaoImpl extends DaoHelper implements BookDtoDao {
 
     private static final String DELETE_BOOK_BY_ID_QUERY = String.format("DELETE FROM %s where %s=?;", TableName.BOOK,
             ColumnName.BOOK_ID_BOOK);
-
-    private final static String GET_BOOKS_ADDED_BY_PERIOD_QUERY = String.format("Select *, group_concat(Distinct %s " +
-                    "order by %s SEPARATOR', ') AS %s, group_concat(distinct %s order by %s SEPARATOR', ') " +
-                    "AS %s from %s join %s using(%s) join %s using(%s) join %s using(%s) join %s using(%s) JOIN %s " +
-                    "where %s.%s between ? and ? group by %s", ColumnName.AUTHOR_NAME, ColumnName.AUTHOR_NAME,
-            ColumnName.BOOK_UNION_AUTHORS, ColumnName.GENRES_GENRE, ColumnName.GENRES_GENRE,
-            ColumnName.BOOK_UNION_GENRES, TableName.BOOK, TableName.A_H_B,
-            ColumnName.BOOK_ID_BOOK, TableName.AUTHORS, ColumnName.AHB_ID_AUTHORS, TableName.G_H_B,
-            ColumnName.BOOK_ID_BOOK, TableName.GENRES, ColumnName.GENRES_ID_GENRE, TableName.LIBRARY, TableName.BOOK,
-            ColumnName.BOOK_ADDED, ColumnName.BOOK_ID_BOOK);
 
     private final static String GROUP_BY_ELEMENT = "group by ";
 
@@ -338,21 +334,6 @@ public class BookDtoDaoImpl extends DaoHelper implements BookDtoDao {
             throw new DaoException("Error while receiving a book by ID.", sqlE);
         } finally {
             closeResultSet(resultSet);
-            closePreparedStatement(prStatement);
-        }
-    }
-
-    @Override
-    public int delete(long id) throws DaoException {
-        logger.info("Delete book. Id - {}", id);
-        PreparedStatement prStatement = null;
-        try (Connection connection = ConnectionPool.INSTANCE.getConnection()){
-            prStatement = createPreparedStatement(connection, DELETE_BOOK_BY_ID_QUERY, id);
-            return  prStatement.executeUpdate();
-        } catch (SQLException sqlE) {
-            logger.error("Error when deleting book.");
-            throw new DaoException("Error when deleting book.", sqlE);
-        } finally {
             closePreparedStatement(prStatement);
         }
     }

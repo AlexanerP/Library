@@ -6,6 +6,13 @@ import com.epam.library.entity.Genre;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class {@link GenreMapper} builds the entity 'Genre'.
+ *
+ *
+ * @author Alexander Pishchala
+ */
+
 public class GenreMapper implements RowMapper<Genre> {
     @Override
     public Genre map(ResultSet resultSet) throws SQLException {

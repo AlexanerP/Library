@@ -10,6 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * This class is an implementation of a {@link com.epam.library.controller.Command} interface and
+ * is used to display a message about the operation.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class GoToMessagePageCommand implements Command {
 
     @Override

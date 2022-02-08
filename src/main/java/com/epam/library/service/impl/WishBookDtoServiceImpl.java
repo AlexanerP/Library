@@ -13,6 +13,14 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+/**
+ * Class {@link WishBookDtoServiceImpl} is service class which provide operations the wish book
+ * part of application.
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class WishBookDtoServiceImpl implements WishBookDtoService {
 
     private static final Logger logger = LoggerFactory.getLogger(WishBookDtoServiceImpl.class);

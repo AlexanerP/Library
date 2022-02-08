@@ -16,6 +16,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is an implementation of a {@link com.epam.library.controller.Command} interface and
+ * is used to search for books.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class SearchBookCommand implements Command {
 
     private static final Logger logger = LoggerFactory.getLogger(SearchBookCommand.class);

@@ -13,6 +13,14 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class {@link OrderDtoServiceImpl} is service class which provide operations an order
+ * part of application.
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class OrderDtoServiceImpl implements OrderDtoService {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderDtoServiceImpl.class);

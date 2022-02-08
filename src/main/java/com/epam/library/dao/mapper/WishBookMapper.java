@@ -6,6 +6,13 @@ import com.epam.library.entity.WishBook;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class {@link WishBookMapper} builds the entity 'WishBook'.
+ *
+ *
+ * @author Alexander Pishchala
+ */
+
 public class WishBookMapper implements RowMapper<WishBook> {
 
     @Override

@@ -6,6 +6,13 @@ import com.epam.library.entity.dto.WishBookDto;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class {@link WishBookDtoMapper} builds the entity 'WishBookDto'.
+ *
+ *
+ * @author Alexander Pishchala
+ */
+
 public class WishBookDtoMapper implements RowMapper<WishBookDto>{
 
     @Override

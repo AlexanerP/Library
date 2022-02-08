@@ -1,5 +1,9 @@
 package com.epam.library.entity;
-
+/**
+ *
+ * @author Alexander Pishchala
+ *
+ */
 public enum OrderStatus {
 
     OPENED,

@@ -3,6 +3,13 @@ package com.epam.library.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+/**
+ * Class {@link Order} is an entity that represents concrete records from 'Order' table.
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class Order implements Serializable {
 
     private static final long serialVersionUID = -6704147301500964288L;

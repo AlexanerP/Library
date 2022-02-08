@@ -5,7 +5,6 @@ import com.epam.library.controller.CommandType;
 import com.epam.library.controller.Constant;
 import com.epam.library.controller.PathJsp;
 import com.epam.library.entity.User;
-import com.epam.library.entity.UserRole;
 import com.epam.library.service.ServiceException;
 import com.epam.library.service.ServiceFactory;
 import com.epam.library.service.UserService;
@@ -20,6 +19,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * This class is an implementation of a {@link com.epam.library.controller.Command} interface and
+ * is used to display the user directory.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class UserCatalogCommand implements Command {
 
     private static final Logger logger = LoggerFactory.getLogger(UserCatalogCommand.class);
@@ -27,7 +33,7 @@ public class UserCatalogCommand implements Command {
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try{
-            req.getSession().setAttribute(Constant.URL, "Controller?command=" + CommandType.USER_CATALOG);
+            req.getSession().setAttribute(Constant.URL, CommandType.CONTROLLER_COMMAND + CommandType.USER_CATALOG);
             String showAll = req.getParameter(Constant.USER_ALL);
             String userRole = req.getParameter(Constant.USER_ROLE);
             String userStatus = req.getParameter(Constant.STATUS);
@@ -40,7 +46,7 @@ public class UserCatalogCommand implements Command {
             } else if (showAll != "" && showAll != null) {
                 users = userService.getUsers();
             }else if (userId != "" && userId != null) {
-                Optional<User> userOptional = Optional.of(userService.showUserById(userId).orElse(new User("-", "-")));
+                Optional<User> userOptional = Optional.of(userService.showUserById(userId).orElse(new User("-")));
                 users.add(userOptional.get());
             }else if(email != "" && email != null) {
                 users.addAll(userService.showUserByEmail(email));

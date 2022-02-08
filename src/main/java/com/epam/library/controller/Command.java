@@ -8,6 +8,12 @@ import java.io.IOException;
 
 import java.io.IOException;
 
+/**
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public interface Command {
 
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException;

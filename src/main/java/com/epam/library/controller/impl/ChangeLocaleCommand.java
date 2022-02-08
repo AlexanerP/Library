@@ -9,6 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * This class is an implementation of a {@link com.epam.library.controller.Command} interface and
+ * is used to change the locale of a website.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class ChangeLocaleCommand implements Command {
 
     @Override

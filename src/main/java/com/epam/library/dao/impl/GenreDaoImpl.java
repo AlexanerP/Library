@@ -21,6 +21,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class {@link GenreDaoImpl} is an implementation of the 'GenreDao' interface.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class GenreDaoImpl extends DaoHelper implements GenreDao {
 
     private static final Logger logger = LoggerFactory.getLogger(GenreDaoImpl.class);

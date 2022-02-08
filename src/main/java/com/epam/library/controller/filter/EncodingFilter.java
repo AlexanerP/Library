@@ -3,6 +3,13 @@ package com.epam.library.controller.filter;
 import javax.servlet.*;
 import java.io.IOException;
 
+/**
+ * This class is an implementation of a {@link Filter} interface and
+ * is used to check the encoding.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class EncodingFilter implements Filter {
 
     private String encoding;

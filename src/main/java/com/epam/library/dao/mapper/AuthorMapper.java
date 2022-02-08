@@ -6,6 +6,13 @@ import com.epam.library.entity.Author;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class {@link AuthorMapper} builds the entity 'Author'.
+ *
+ *
+ * @author Alexander Pishchala
+ */
+
 public class AuthorMapper implements RowMapper<Author> {
 
     @Override

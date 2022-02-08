@@ -18,6 +18,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class {@link OrderDtoDaoImpl} is an implementation of the 'OrderDtoDao' interface.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class OrderDtoDaoImpl extends DaoHelper implements OrderDtoDao {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderDtoDaoImpl.class);
@@ -77,7 +83,7 @@ public class OrderDtoDaoImpl extends DaoHelper implements OrderDtoDao {
 
 
     @Override
-    public Optional<OrderDto> getOrderById(Long id) throws DaoException {
+    public Optional<OrderDto> getOrderById(long id) throws DaoException {
         logger.info("Receiving a order by id.");
         OrderDtoMapper mapper = new OrderDtoMapper();
         PreparedStatement prStatement = null;

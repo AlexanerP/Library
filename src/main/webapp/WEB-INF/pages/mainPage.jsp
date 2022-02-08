@@ -34,15 +34,12 @@
 <table>
     <tr>
         <td><fmt:message key="message_count_book_library"></fmt:message> - ${countBooks}</td>
-<%--        <td>${countBooks}</td>--%>
     </tr>
     <tr>
         <td><fmt:message key="message_count_author_library"></fmt:message> - ${countAuthors}</td>
-<%--        <td>${countAuthors}</td>--%>
     </tr>
     <tr>
         <td><fmt:message key="message_count_genre_library"></fmt:message> - ${countGenres}</td>
-<%--        <td>${countGenres}</td>--%>
     </tr>
 </table>
 <br><br>

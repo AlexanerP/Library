@@ -19,6 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class {@link LibraryDaoImpl} is an implementation of the 'LibraryDao' interface.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class LibraryDaoImpl extends DaoHelper implements LibraryDao {
 
     private static final Logger logger = LoggerFactory.getLogger(LibraryDaoImpl.class);

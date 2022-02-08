@@ -16,6 +16,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is an implementation of a {@link com.epam.library.controller.Command} interface and
+ * is used to display the catalog of genres.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class CatalogGenreCommand implements Command {
 
     private static final Logger logger = LoggerFactory.getLogger(CatalogGenreCommand.class);

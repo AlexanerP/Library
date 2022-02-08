@@ -6,6 +6,13 @@ import com.epam.library.entity.Book;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class {@link BookMapper} builds the entity 'Book'.
+ *
+ *
+ * @author Alexander Pishchala
+ */
+
 public class BookMapper implements RowMapper<Book>{
 
     @Override

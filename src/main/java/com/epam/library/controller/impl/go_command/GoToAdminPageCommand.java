@@ -14,6 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * This class is an implementation of a {@link com.epam.library.controller.Command} interface and
+ * is used to prepare for going to the admin page.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class GoToAdminPageCommand implements Command {
 
     private static final Logger logger = LoggerFactory.getLogger(GoToAdminPageCommand.class);

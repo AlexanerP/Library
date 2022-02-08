@@ -15,6 +15,14 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class {@link LibraryServiceImpl} is service class which provide operations a library
+ * part of application.
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class LibraryServiceImpl implements LibraryService {
 
     private static final Logger logger = LoggerFactory.getLogger(LibraryServiceImpl.class);

@@ -19,6 +19,13 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * This class is an implementation of a {@link com.epam.library.controller.Command} interface and
+ * is used to view the user's issuing card history.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class LoanCardUserCommand implements Command {
 
     private static final Logger logger = LoggerFactory.getLogger(LoanCardUserCommand.class);

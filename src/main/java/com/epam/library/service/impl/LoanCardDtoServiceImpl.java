@@ -13,6 +13,14 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class {@link LoanCardDtoServiceImpl} is service class which provide operations a loan card
+ * part of application.
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class LoanCardDtoServiceImpl implements LoanCardDtoService {
 
     private static final Logger logger = LoggerFactory.getLogger(LoanCardDtoServiceImpl.class);

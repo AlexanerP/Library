@@ -1,5 +1,11 @@
 package com.epam.library.controller;
 
+/**
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class Constant {
 
     public static final String URL = "url";

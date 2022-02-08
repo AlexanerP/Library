@@ -10,6 +10,14 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
+/**
+ * Class {@link BookServiceImpl} is service class which provide operations a book
+ * part of application.
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class BookServiceImpl implements BookService {
 
     private static final Logger logger = LoggerFactory.getLogger(BookServiceImpl.class);

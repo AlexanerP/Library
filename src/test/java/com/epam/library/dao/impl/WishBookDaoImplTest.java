@@ -21,15 +21,15 @@ public class WishBookDaoImplTest {
     @Test
     public void create() {
         WishBook wishBook = new WishBook();
-        wishBook.setBookId(2);
-        wishBook.setUserId(2);
+        wishBook.setBookId(1);
+        wishBook.setUserId(1);
         boolean condition = wishBookDao.create(wishBook);
         assertTrue(condition);
     }
 
     @Test
     public void delete() {
-        long wishBookId = 3;
+        long wishBookId = 1;
         int expected = 1;
         int actual =  wishBookDao.delete(wishBookId);
         assertEquals(expected, actual);

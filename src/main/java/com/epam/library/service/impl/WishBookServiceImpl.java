@@ -13,6 +13,13 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
+/**
+ * Class {@link WishBookService} is service class which provide operations the wish book
+ * part of application.
+ *
+ * @author Alexander Pishchala
+ *
+ */
 
 public class WishBookServiceImpl implements WishBookService {
 
@@ -48,7 +55,7 @@ public class WishBookServiceImpl implements WishBookService {
             WishBookDao wishBookDao = DaoFactory.getInstance().getWishBookDao();
             ServiceValidator validator = ServiceFactory.getInstance().getServiceValidator();
             if (validator.isNumber(wishBookId)) {
-                Optional<WishBook> optionalWishBook = wishBookDao.getWishBookByID(Long.parseLong(wishBookId.trim()));
+                Optional<WishBook> optionalWishBook = wishBookDao.getWishBookById(Long.parseLong(wishBookId.trim()));
                 if (optionalWishBook.isPresent()) {
                     int result = wishBookDao.delete(Long.parseLong(wishBookId.trim()));
                     if (result == 1) {

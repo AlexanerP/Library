@@ -1,5 +1,11 @@
 package com.epam.library.dao.connection;
 
+/**
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class ConnectionException extends RuntimeException {
 
 

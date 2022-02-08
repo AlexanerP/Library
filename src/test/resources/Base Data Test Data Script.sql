@@ -1,10 +1,18 @@
 INSERT INTO library_test.role(role) VALUES('user'),('admin'),('manager');
 INSERT INTO library_test.user_statuses(status) VALUES('active'),('blocked'),('delete');
-INSERT INTO library_test.users(id_status, id_role, password, second_name, last_name, email, count_violations) VALUES(3, 1, 'F662834B04A38856A3F36BD7BA99E5C3', 'General', 'Manager', 'admin_library@gmail.com', 0);
+INSERT INTO library_test.users(id_status, id_role, password, second_name, last_name, email, count_violations)
+VALUES(3, 1, 'F662834B04A38856A3F36BD7BA99E5C3', 'Ворочник', 'Дима', 'admin_library@gmail.com', 0);
+
+INSERT INTO library_test.users(id_status, id_role, password, second_name, last_name, email, count_violations)
+VALUES(3, 1, 'F662834B04A38856A3F36BD7BA99E5C3', 'Петоченко', 'Марина', 'admin_library@gmail.com', 0);
+
+INSERT INTO library_test.users(id_status, id_role, password, second_name, last_name, email, count_violations)
+VALUES(3, 1, 'F662834B04A38856A3F36BD7BA99E5C3', 'Акатов', 'Саша', 'admin_library@gmail.com', 0);
 
 INSERT INTO library_test.order_statuses(status) VALUES('opened'),('approved'),('rejected'),('arrived'),('closed');
 
 INSERT INTO library_test.library_statuses(status) VALUES('opened'),('closed');
+
 INSERT INTO library_test.libraries(city, street, id_status)
 VALUES('Минск', 'пр. Независимости 116', 1),
       ('Гомель', 'пл. Ленина 1', 1),
@@ -81,3 +89,29 @@ INSERT INTO library_test.genres_has_book(id_genre, id_book) VALUES((SELECT id_ge
 INSERT INTO library_test.genres_has_book(id_genre, id_book) VALUES((SELECT id_genres FROM genres WHERE genre='Фантастика'), 6);
 
 INSERT INTO library_test.genres_has_book(id_genre, id_book) VALUES((SELECT id_genres FROM genres WHERE genre='Фантастика'), 7);
+
+insert into library_test.wish_books(id_books, id_users) values(1, 1);
+
+insert into library_test.wish_books(id_books, id_users) values(2, 1);
+
+insert into library_test.wish_books(id_books, id_users) values(3, 1);
+
+insert into library_test.wish_books(id_books, id_users) values(4, 1);
+
+INSERT INTO library_test.orders(id_book, id_user, id_admin, comment, id_library, id_status)
+values(1, 1, 0, '-', (SELECT id_library from libraries where city='Минск'), (SELECT id_status from order_statuses where status='opened'));
+
+INSERT INTO library_test.orders(id_book, id_user, id_admin, comment, id_library, id_status)
+values(2, 2, 1, '-', (SELECT id_library from libraries where city='Минск'), (SELECT id_status from order_statuses where status='opened'));
+
+INSERT INTO library_test.orders(id_book, id_user, id_admin, comment, id_library, id_status)
+values(3, 1, 0, '-', (SELECT id_library from libraries where city='Минск'), (SELECT id_status from order_statuses where status='opened'));
+
+INSERT INTO loan_cards(id_users, taking_book, deadline, type_use, id_book, id_status, id_library)
+values(1, '2022-01-01', '2022-02-02', 'at home', 1, (SELECT id_status FROM card_statuses WHERE status='open'), (SELECT id_library FROM libraries WHERE city='Минск'));
+
+INSERT INTO loan_cards(id_users, taking_book, deadline, type_use, id_book, id_status, id_library)
+values(1, '2022-01-01', '2022-02-02', 'at home', 2, (SELECT id_status FROM card_statuses WHERE status='open'), (SELECT id_library FROM libraries WHERE city='Минск'));
+
+INSERT INTO loan_cards(id_users, taking_book, deadline, type_use, id_book, id_status, id_library)
+values(1, '2022-01-01', '2022-02-02', 'at home', 3, (SELECT id_status FROM card_statuses WHERE status='open'), (SELECT id_library FROM libraries WHERE city='Минск'));

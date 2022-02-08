@@ -14,6 +14,14 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class {@link GenreServiceImpl} is service class which provide operations a genre
+ * part of application.
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class GenreServiceImpl implements GenreService {
 
     private static final Logger logger = LoggerFactory.getLogger(GenreServiceImpl.class);

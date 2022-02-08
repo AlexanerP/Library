@@ -8,6 +8,13 @@ import com.epam.library.entity.UserStatus;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class {@link UserMapper} builds the entity 'User'.
+ *
+ *
+ * @author Alexander Pishchala
+ */
+
 public class UserMapper implements RowMapper<User> {
 
     @Override

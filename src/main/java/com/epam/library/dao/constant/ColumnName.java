@@ -1,5 +1,11 @@
 package com.epam.library.dao.constant;
 
+/**
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public final class ColumnName {
     private ColumnName() {}
 
@@ -70,11 +76,9 @@ public final class ColumnName {
     public static final String LOAN_CARD_TYPE_USE = "type_use";
     public static final String LOAN_CARD_ID_STATUS = "id_status";
 
-
     //Wish_book_has_users
     public static final String WB_H_U_ID_USER = "id_user";
     public static final String WB_H_U_ID_WB = "id_wish_book";
-
 
     //Wish_book
     public static final String WISH_BOOK_ID = "id_wish_books";

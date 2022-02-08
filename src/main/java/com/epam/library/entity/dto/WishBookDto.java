@@ -2,6 +2,13 @@ package com.epam.library.entity.dto;
 
 import java.io.Serializable;
 
+/**
+ * Class {@link WishBookDto} is an entity that represents the ability to compose multiple 'Book', 'User' table entities.
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class WishBookDto implements Serializable {
 
     private static final long serialVersionUID = 5207396389975261002L;

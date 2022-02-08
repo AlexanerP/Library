@@ -8,6 +8,13 @@ import com.epam.library.entity.LoanCardStatus;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class {@link LoanCardMapper} builds the entity 'LoanCard'.
+ *
+ *
+ * @author Alexander Pishchala
+ */
+
 public class LoanCardMapper implements RowMapper<LoanCard>{
 
     @Override

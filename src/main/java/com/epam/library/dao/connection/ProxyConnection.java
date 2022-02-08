@@ -8,6 +8,12 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
+/**
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class ProxyConnection implements Connection {
 
     private final static Logger logger = LoggerFactory.getLogger(ProxyConnection.class);

@@ -3,6 +3,13 @@ package com.epam.library.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+/**
+ * Class {@link WishBook} is an entity that represents concrete records from 'WishBook' table.
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class WishBook implements Serializable {
 
     private static final long serialVersionUID = 4876598467912932060L;

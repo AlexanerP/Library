@@ -14,6 +14,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This class is an implementation of a {@link Filter} interface and
+ * is used to check the user's access to the requested resource.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class RoleFilter implements Filter {
 
     private final static Map<String, List<UserRole>> commandsUser = new HashMap<>();

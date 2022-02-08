@@ -7,6 +7,13 @@ import com.epam.library.entity.OrderStatus;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class {@link OrderDtoMapper} builds the entity 'OrderDto'.
+ *
+ *
+ * @author Alexander Pishchala
+ */
+
 public class OrderDtoMapper implements RowMapper<OrderDto> {
 
     @Override

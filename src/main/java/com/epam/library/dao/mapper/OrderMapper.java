@@ -7,6 +7,13 @@ import com.epam.library.entity.OrderStatus;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class {@link OrderMapper} builds the entity 'Order'.
+ *
+ *
+ * @author Alexander Pishchala
+ */
+
 public class OrderMapper implements RowMapper<Order> {
 
     @Override

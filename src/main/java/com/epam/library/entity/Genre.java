@@ -2,6 +2,13 @@ package com.epam.library.entity;
 
 import java.io.Serializable;
 
+/**
+ * Class {@link Genre} is an entity that represents concrete records from 'Genre' table.
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class Genre implements Serializable {
 
     private static final long serialVersionUID = -9218508141768679758L;

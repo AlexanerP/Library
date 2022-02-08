@@ -31,20 +31,16 @@
                     </tr>
                     </thead>
                     <tr>
-                        <td><fmt:message key="statistic_user_count"></fmt:message></td>
-                        <td>${countUsers}</td>
+                        <td><fmt:message key="statistic_user_count"></fmt:message> - ${countUsers}</td>
                     </tr>
                     <tr>
-                        <td><fmt:message key="statistic_user_count_active"></fmt:message></td>
-                        <td>${countUsersActive}</td>
+                        <td><fmt:message key="statistic_user_count_active"></fmt:message> - ${countUsersActive}</td>
                     </tr>
                     <tr>
-                        <td><fmt:message key="statistic_user_count_blocked"></fmt:message></td>
-                        <td>${countUsersBlocked}</td>
+                        <td><fmt:message key="statistic_user_count_blocked"></fmt:message> - ${countUsersBlocked}</td>
                     </tr>
                     <tr>
-                        <td><fmt:message key="statistic_user_count_count_delete"></fmt:message></td>
-                        <td>${countUsersDelete}</td>
+                        <td><fmt:message key="statistic_user_count_count_delete"></fmt:message> - ${countUsersDelete}</td>
                     </tr>
                 </table>
             </td>
@@ -56,8 +52,7 @@
                     </tr>
                     </thead>
                     <tr>
-                        <td><fmt:message key="statistic_book_count"></fmt:message></td>
-                        <td>${countBooks}</td>
+                        <td><fmt:message key="statistic_book_count"></fmt:message> - ${countBooks}</td>
                     </tr>
                 </table>
             </td>
@@ -71,12 +66,10 @@
                     </tr>
                     </thead>
                     <tr>
-                        <td><fmt:message key="statistic_loan_card_count_all_time"></fmt:message></td>
-                        <td>${countLoanCard}</td>
+                        <td><fmt:message key="statistic_loan_card_count_all_time"></fmt:message> - ${countLoanCard}</td>
                     </tr>
                     <tr>
-                        <td><fmt:message key="statistic_loan_card_count_active"></fmt:message></td>
-                        <td>${countLoanCardOpen}</td>
+                        <td><fmt:message key="statistic_loan_card_count_active"></fmt:message> - ${countLoanCardOpen}</td>
                     </tr>
                 </table>
             </td>
@@ -88,24 +81,19 @@
                     </tr>
                     </thead>
                     <tr>
-                        <td><fmt:message key="statistic_orders_count_open"></fmt:message></td>
-                        <td>${ordersOpen}</td>
+                        <td><fmt:message key="statistic_orders_count_open"></fmt:message> - ${ordersOpen}</td>
                     </tr>
                     <tr>
-                        <td><fmt:message key="statistic_orders_count_approved"></fmt:message></td>
-                        <td>${ordersApproved}</td>
+                        <td><fmt:message key="statistic_orders_count_approved"></fmt:message> - ${ordersApproved}</td>
                     </tr>
                     <tr>
-                        <td><fmt:message key="statistic_orders_count_rejected"></fmt:message></td>
-                        <td>${ordersRejected}</td>
+                        <td><fmt:message key="statistic_orders_count_rejected"></fmt:message> - ${ordersRejected}</td>
                     </tr>
                     <tr>
-                        <td><fmt:message key="statistic_orders_count_arrived"></fmt:message></td>
-                        <td>${ordersArrived}</td>
+                        <td><fmt:message key="statistic_orders_count_arrived"></fmt:message> - ${ordersArrived}</td>
                     </tr>
                     <tr>
-                        <td><fmt:message key="statistic_orders_count_closed"></fmt:message></td>
-                        <td>${ordersClosed}</td>
+                        <td><fmt:message key="statistic_orders_count_closed"></fmt:message> - ${ordersClosed}</td>
                     </tr>
                 </table>
             </td>
@@ -119,8 +107,7 @@
                     </tr>
                     </thead>
                     <tr>
-                        <td><fmt:message key="statistic_author_count"></fmt:message></td>
-                        <td>${countAuthors}</td>
+                        <td><fmt:message key="statistic_author_count"></fmt:message> - ${countAuthors}</td>
                     </tr>
                 </table>
             </td>
@@ -132,8 +119,7 @@
                         </tr>
                     </thead>
                     <tr>
-                        <td><fmt:message key="statistic_genres_count"></fmt:message></td>
-                        <td>${countGenres}</td>
+                        <td><fmt:message key="statistic_genres_count"></fmt:message> - ${countGenres}</td>
                     </tr>
                 </table>
             </td>

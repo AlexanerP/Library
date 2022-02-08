@@ -18,6 +18,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class {@link WishBookDtoDaoImpl} is an implementation of the 'WishBookDtoDao' interface.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class WishBookDtoDaoImpl extends DaoHelper implements WishBookDtoDao {
 
     private static final Logger logger = LoggerFactory.getLogger(WishBookDtoDaoImpl.class);

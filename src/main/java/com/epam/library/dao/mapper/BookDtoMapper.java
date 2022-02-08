@@ -11,6 +11,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Class {@link BookDtoMapper} builds the entity 'BookDto'.
+ *
+ *
+ * @author Alexander Pishchala
+ */
+
 public class BookDtoMapper implements RowMapper<BookDto> {
 
     @Override

@@ -5,6 +5,13 @@ import com.epam.library.entity.OrderStatus;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+/**
+ * Class {@link OrderDto} is an entity that represents the ability to compose multiple 'Book', 'Library', 'User' table entities.
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class OrderDto implements Serializable {
 
     private static final long serialVersionUID = 9099702526178990582L;

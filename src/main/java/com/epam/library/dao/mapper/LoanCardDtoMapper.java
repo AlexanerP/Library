@@ -8,6 +8,13 @@ import com.epam.library.entity.LoanCardStatus;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class {@link LoanCardDtoMapper} builds the entity 'LoanCardDto'.
+ *
+ *
+ * @author Alexander Pishchala
+ */
+
 public class LoanCardDtoMapper implements RowMapper<LoanCardDto> {
 
     @Override

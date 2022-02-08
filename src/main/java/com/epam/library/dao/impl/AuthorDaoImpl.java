@@ -19,6 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class {@link AuthorDaoImpl} is an implementation of the 'AuthorDao' interface.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class AuthorDaoImpl extends DaoHelper implements AuthorDao {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthorDaoImpl.class);

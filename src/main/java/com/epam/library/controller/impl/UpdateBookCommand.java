@@ -18,6 +18,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * This class is an implementation of a {@link com.epam.library.controller.Command} interface and
+ * is used to update the book data.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class UpdateBookCommand implements Command {
 
     private static final Logger logger = LoggerFactory.getLogger(UpdateBookCommand.class);

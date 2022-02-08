@@ -19,6 +19,13 @@ import java.io.IOException;
 
 import java.util.List;
 
+/**
+ * This class is an implementation of a {@link com.epam.library.controller.Command} interface and
+ * is used to display the admin page.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class AdminPageCommand implements Command {
 
     private static final Logger logger = LoggerFactory.getLogger(AdminPageCommand.class);

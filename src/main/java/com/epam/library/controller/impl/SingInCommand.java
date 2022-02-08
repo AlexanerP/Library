@@ -19,6 +19,13 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
+/**
+ * This class is an implementation of a {@link com.epam.library.controller.Command} interface and
+ * is used to verify the user in the system.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class SingInCommand implements Command {
 
     private static final Logger logger = LoggerFactory.getLogger(SingInCommand.class);

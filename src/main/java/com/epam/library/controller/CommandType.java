@@ -1,5 +1,11 @@
 package com.epam.library.controller;
 
+/**
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public final class CommandType {
 
     private CommandType(){}

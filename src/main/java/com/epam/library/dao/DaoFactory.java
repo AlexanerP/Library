@@ -1,8 +1,13 @@
 package com.epam.library.dao;
 
-
-//import com.epam.library.dao.test_impl.*;
 import com.epam.library.dao.impl.*;
+
+/**
+ * Class {@link DaoFactory}. Factory class for dao's.
+ *
+ *
+ * @author Alexander Pishchala
+ */
 
 public class DaoFactory {
 
@@ -23,6 +28,11 @@ public class DaoFactory {
     private LoanCardDtoDao loanCardDtoDao = new LoanCardDtoDaoImpl();
     private LoanCardDao loanCardDao = new LoanCardDaoImpl();
 
+    /**
+     * Method gets instance.
+     *
+     * @return instance of DaoFactory.
+     */
     public static DaoFactory getInstance() {
         return instance;
     }

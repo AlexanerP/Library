@@ -14,6 +14,14 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class {@link AuthorServiceImpl} is service class which provide operations on author
+ * part of application.
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class AuthorServiceImpl implements AuthorService {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthorServiceImpl.class);

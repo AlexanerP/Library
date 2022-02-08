@@ -18,6 +18,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is an implementation of a {@link com.epam.library.controller.Command} interface and
+ * is used to display the authors directory.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class CatalogAuthorCommand implements Command {
 
     private static final Logger logger = LoggerFactory.getLogger(CatalogAuthorCommand.class);

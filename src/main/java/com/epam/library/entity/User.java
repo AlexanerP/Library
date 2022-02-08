@@ -5,6 +5,13 @@ import com.epam.library.service.utill.UtilFactory;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+/**
+ * Class {@link User} is an entity that represents concrete records from 'User' table.
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class User implements Serializable {
 
     private static final long serialVersionUID = -1590356788525112801L;
@@ -22,8 +29,7 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String email, String password) {
-        this.password = new UtilFactory().getCipher().getCipherString(password);
+    public User(String email) {
         this.email = email;
     }
 

@@ -16,6 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * This class is an implementation of a {@link com.epam.library.controller.Command} interface and
+ * is used to update the user's password.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class UpdateUserPasswordCommand implements Command {
 
     private static final Logger logger = LoggerFactory.getLogger(UpdateUserPasswordCommand.class);

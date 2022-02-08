@@ -14,6 +14,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * This class is an implementation of a {@link com.epam.library.controller.Command} interface and
+ * is used to prepare the display of genre statistics.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class GoToStatisticGenreCommand implements Command {
 
     private static final Logger logger = LoggerFactory.getLogger(GoToStatisticGenreCommand.class);

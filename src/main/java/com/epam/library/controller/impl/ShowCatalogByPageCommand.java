@@ -18,6 +18,13 @@ import java.io.IOException;
 
 import java.util.List;
 
+/**
+ * This class is an implementation of a {@link com.epam.library.controller.Command} interface and
+ * is used to view books page by page.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class ShowCatalogByPageCommand implements Command {
 
     private static final Logger logger = LoggerFactory.getLogger(ShowCatalogByPageCommand.class);

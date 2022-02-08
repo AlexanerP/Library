@@ -2,10 +2,18 @@ package com.epam.library.entity.dto;
 
 import com.epam.library.entity.Author;
 import com.epam.library.entity.Genre;
+import com.epam.library.entity.WishBook;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
+
+/**
+ * Class {@link BookDto} is an entity that represents the ability to compose multiple 'Book', 'Author', 'Genre' table entities.
+ *
+ * @author Alexander Pishchala
+ *
+ */
 
 public class BookDto implements Serializable {
 

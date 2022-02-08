@@ -19,6 +19,13 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * This class is an implementation of a {@link com.epam.library.controller.Command} interface and
+ * is used to view the user's orders.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class OrderUserCommand implements Command {
 
     private final static Logger logger = LoggerFactory.getLogger(OrderUserCommand.class);

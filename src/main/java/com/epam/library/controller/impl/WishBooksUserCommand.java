@@ -1,9 +1,6 @@
 package com.epam.library.controller.impl;
 
-import com.epam.library.controller.Command;
-import com.epam.library.controller.CommandType;
-import com.epam.library.controller.Constant;
-import com.epam.library.controller.PathJsp;
+import com.epam.library.controller.*;
 import com.epam.library.entity.User;
 import com.epam.library.entity.dto.WishBookDto;
 import com.epam.library.service.ServiceException;
@@ -19,6 +16,13 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * This class is an implementation of a {@link com.epam.library.controller.Command} interface and
+ * is used to display the user's favorite books.
+ *
+ * @author Alexander Pishchala
+ */
 
 public class WishBooksUserCommand implements Command {
 

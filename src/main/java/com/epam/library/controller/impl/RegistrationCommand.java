@@ -5,7 +5,6 @@ import com.epam.library.controller.CommandType;
 import com.epam.library.controller.Constant;
 import com.epam.library.controller.PathJsp;
 import com.epam.library.entity.User;
-import com.epam.library.entity.UserStatus;
 import com.epam.library.service.ServiceException;
 import com.epam.library.service.ServiceFactory;
 import com.epam.library.service.UserService;
@@ -15,11 +14,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+/**
+ * This class is an implementation of a {@link com.epam.library.controller.Command} interface and
+ * is used to register a new user.
+ *
+ * @author Alexander Pishchala
+ */
 
 public class RegistrationCommand implements Command {
 

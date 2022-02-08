@@ -16,6 +16,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class {@link BookDtoServiceImpl} is service class which provide operations a book
+ * part of application.
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class BookDtoServiceImpl implements BookDtoService {
 
     private static final Logger logger = LoggerFactory.getLogger(BookDtoServiceImpl.class);

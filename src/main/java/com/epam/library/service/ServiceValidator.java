@@ -1,5 +1,12 @@
 package com.epam.library.service;
 
+/**
+ * Class {@link ServiceValidator}. Validator class for services.
+ *
+ *
+ * @author Alexander Pishchala
+ */
+
 public class ServiceValidator {
 
     private static final int MAX_LENGTH = 30;

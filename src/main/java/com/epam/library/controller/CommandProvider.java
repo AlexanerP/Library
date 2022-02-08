@@ -6,6 +6,12 @@ import com.epam.library.controller.impl.go_command.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public final class CommandProvider {
 
     private  final Map<String, Command> commands = new HashMap<>();

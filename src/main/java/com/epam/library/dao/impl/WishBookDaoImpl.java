@@ -19,6 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class {@link WishBookDaoImpl} is an implementation of the 'WishBookDao' interface.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class WishBookDaoImpl extends DaoHelper implements WishBookDao {
 
     private static final Logger logger = LoggerFactory.getLogger(WishBookDaoImpl.class);
@@ -122,7 +128,7 @@ public class WishBookDaoImpl extends DaoHelper implements WishBookDao {
     }
 
     @Override
-    public Optional<WishBook> getWishBookByID(long wishBookId) {
+    public Optional<WishBook> getWishBookById(long wishBookId) {
         PreparedStatement prStatement = null;
         ResultSet resultSet = null;
         try(Connection connection = ConnectionPool.INSTANCE.getConnection()) {

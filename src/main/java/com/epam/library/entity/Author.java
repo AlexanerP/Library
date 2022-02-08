@@ -2,6 +2,13 @@ package com.epam.library.entity;
 
 import java.io.Serializable;
 
+/**
+ * Class {@link Author} is an entity that represents concrete records from 'Author' table.
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class Author implements Serializable {
 
     private static final long serialVersionUID = 6829963999103023973L;

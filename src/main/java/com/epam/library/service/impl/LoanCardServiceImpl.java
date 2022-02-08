@@ -11,6 +11,14 @@ import org.slf4j.LoggerFactory;
 import java.time.LocalDate;
 import java.util.Optional;
 
+/**
+ * Class {@link LoanCardServiceImpl} is service class which provide operations an loan card
+ * part of application.
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class LoanCardServiceImpl implements LoanCardService {
 
     private static final Logger logger = LoggerFactory.getLogger(LoanCardServiceImpl.class);

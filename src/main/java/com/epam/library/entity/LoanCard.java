@@ -1,8 +1,14 @@
 package com.epam.library.entity;
 
-
 import java.io.Serializable;
 import java.time.LocalDate;
+
+/**
+ * Class {@link LoanCard} is an entity that represents concrete records from 'LoanCard' table.
+ *
+ * @author Alexander Pishchala
+ *
+ */
 
 public class LoanCard implements Serializable {
 

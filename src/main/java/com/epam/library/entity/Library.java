@@ -2,6 +2,13 @@ package com.epam.library.entity;
 
 import java.io.Serializable;
 
+/**
+ * Class {@link Library} is an entity that represents concrete records from 'Library' table.
+ *
+ * @author Alexander Pishchala
+ *
+ */
+
 public class Library implements Serializable {
 
     private static final long serialVersionUID = -5728043296240857736L;

@@ -20,6 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class {@link LoanCardDaoImpl} is an implementation of the 'LoanCardDao' interface.
+ *
+ * @author Alexander Pishchala
+ */
+
 public class LoanCardDaoImpl extends DaoHelper implements LoanCardDao {
 
     private static final Logger logger = LoggerFactory.getLogger(LoanCardDaoImpl.class);

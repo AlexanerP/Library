@@ -11,6 +11,11 @@ import java.util.*;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 
+/**
+ *
+ * @author Alexander Pishchala
+ *
+ */
 
 public enum ConnectionPool {
     INSTANCE;
@@ -103,9 +108,6 @@ public enum ConnectionPool {
                 logger.error("Something wrong with current thread", e);
             } catch (SQLException sqlE) {
                 logger.error("Exception in connection close method", sqlE);
-                for (Throwable e : sqlE) {
-                    logger.error(e.toString());
-                }
             }
             deregisterDrivers();
             logger.info("End of pool destruction.");
@@ -120,10 +122,7 @@ public enum ConnectionPool {
             try {
                 DriverManager.deregisterDriver(drivers.nextElement());
             } catch (SQLException sqlE) {
-                logger.error("Driver deregistration did not occur.");
-                for (Throwable e : sqlE) {
-                    logger.error(e.toString());
-                }
+                logger.error("Driver deregistration did not occur.", sqlE);
             }
         }
         logger.info("Finish deregister Drivers.");
